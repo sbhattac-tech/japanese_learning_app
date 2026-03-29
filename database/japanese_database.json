@@ -1,0 +1,5206 @@
+{
+  "metadata": {
+    "name": "Japanese Learning App Database",
+    "version": 1,
+    "generated_at": "2026-03-29T10:10:46.442704+00:00",
+    "source_files": [
+      "database/verbs.json",
+      "database/adjectives.json",
+      "database/vocabulary.json",
+      "database/demonstrative.json",
+      "database/kangi.json",
+      "database/hiragana.json",
+      "database/katakana.json"
+    ],
+    "notes": [
+      "This file is generated from the source JSON files in the database directory.",
+      "The source file named database/kangi.json is exposed here as the kanji section."
+    ]
+  },
+  "stats": {
+    "totals": {
+      "verbs": 48,
+      "adjectives": 25,
+      "vocabulary": 40,
+      "demonstratives": 36,
+      "kanji": 7,
+      "hiragana": 46,
+      "katakana": 48
+    },
+    "verbs_by_group": {
+      "godan": 31,
+      "ichidan": 11,
+      "irregular": 4,
+      "irregular-compound": 2
+    },
+    "adjectives_by_type": {
+      "i": 17,
+      "na": 8
+    },
+    "vocabulary_by_category": {
+      "entertainment": 2,
+      "food": 5,
+      "noun": 1,
+      "object": 13,
+      "place": 5,
+      "question": 2,
+      "time": 6,
+      "verb": 1,
+      "weather": 5
+    },
+    "demonstratives_by_prefix": {
+      "a": 9,
+      "do": 9,
+      "ko": 9,
+      "so": 9
+    }
+  },
+  "kana": {
+    "hiragana": [
+      {
+        "id": 1,
+        "entry_id": "hiragana-1",
+        "script": "hiragana",
+        "character": "あ",
+        "romaji": "a"
+      },
+      {
+        "id": 2,
+        "entry_id": "hiragana-2",
+        "script": "hiragana",
+        "character": "い",
+        "romaji": "i"
+      },
+      {
+        "id": 3,
+        "entry_id": "hiragana-3",
+        "script": "hiragana",
+        "character": "う",
+        "romaji": "u"
+      },
+      {
+        "id": 4,
+        "entry_id": "hiragana-4",
+        "script": "hiragana",
+        "character": "え",
+        "romaji": "e"
+      },
+      {
+        "id": 5,
+        "entry_id": "hiragana-5",
+        "script": "hiragana",
+        "character": "お",
+        "romaji": "o"
+      },
+      {
+        "id": 6,
+        "entry_id": "hiragana-6",
+        "script": "hiragana",
+        "character": "か",
+        "romaji": "ka"
+      },
+      {
+        "id": 7,
+        "entry_id": "hiragana-7",
+        "script": "hiragana",
+        "character": "き",
+        "romaji": "ki"
+      },
+      {
+        "id": 8,
+        "entry_id": "hiragana-8",
+        "script": "hiragana",
+        "character": "く",
+        "romaji": "ku"
+      },
+      {
+        "id": 9,
+        "entry_id": "hiragana-9",
+        "script": "hiragana",
+        "character": "け",
+        "romaji": "ke"
+      },
+      {
+        "id": 10,
+        "entry_id": "hiragana-10",
+        "script": "hiragana",
+        "character": "こ",
+        "romaji": "ko"
+      },
+      {
+        "id": 11,
+        "entry_id": "hiragana-11",
+        "script": "hiragana",
+        "character": "さ",
+        "romaji": "sa"
+      },
+      {
+        "id": 12,
+        "entry_id": "hiragana-12",
+        "script": "hiragana",
+        "character": "し",
+        "romaji": "shi"
+      },
+      {
+        "id": 13,
+        "entry_id": "hiragana-13",
+        "script": "hiragana",
+        "character": "す",
+        "romaji": "su"
+      },
+      {
+        "id": 14,
+        "entry_id": "hiragana-14",
+        "script": "hiragana",
+        "character": "せ",
+        "romaji": "se"
+      },
+      {
+        "id": 15,
+        "entry_id": "hiragana-15",
+        "script": "hiragana",
+        "character": "そ",
+        "romaji": "so"
+      },
+      {
+        "id": 16,
+        "entry_id": "hiragana-16",
+        "script": "hiragana",
+        "character": "た",
+        "romaji": "ta"
+      },
+      {
+        "id": 17,
+        "entry_id": "hiragana-17",
+        "script": "hiragana",
+        "character": "ち",
+        "romaji": "chi"
+      },
+      {
+        "id": 18,
+        "entry_id": "hiragana-18",
+        "script": "hiragana",
+        "character": "つ",
+        "romaji": "tsu"
+      },
+      {
+        "id": 19,
+        "entry_id": "hiragana-19",
+        "script": "hiragana",
+        "character": "て",
+        "romaji": "te"
+      },
+      {
+        "id": 20,
+        "entry_id": "hiragana-20",
+        "script": "hiragana",
+        "character": "と",
+        "romaji": "to"
+      },
+      {
+        "id": 21,
+        "entry_id": "hiragana-21",
+        "script": "hiragana",
+        "character": "な",
+        "romaji": "na"
+      },
+      {
+        "id": 22,
+        "entry_id": "hiragana-22",
+        "script": "hiragana",
+        "character": "に",
+        "romaji": "ni"
+      },
+      {
+        "id": 23,
+        "entry_id": "hiragana-23",
+        "script": "hiragana",
+        "character": "ぬ",
+        "romaji": "nu"
+      },
+      {
+        "id": 24,
+        "entry_id": "hiragana-24",
+        "script": "hiragana",
+        "character": "ね",
+        "romaji": "ne"
+      },
+      {
+        "id": 25,
+        "entry_id": "hiragana-25",
+        "script": "hiragana",
+        "character": "の",
+        "romaji": "no"
+      },
+      {
+        "id": 26,
+        "entry_id": "hiragana-26",
+        "script": "hiragana",
+        "character": "は",
+        "romaji": "ha"
+      },
+      {
+        "id": 27,
+        "entry_id": "hiragana-27",
+        "script": "hiragana",
+        "character": "ひ",
+        "romaji": "hi"
+      },
+      {
+        "id": 28,
+        "entry_id": "hiragana-28",
+        "script": "hiragana",
+        "character": "ふ",
+        "romaji": "fu"
+      },
+      {
+        "id": 29,
+        "entry_id": "hiragana-29",
+        "script": "hiragana",
+        "character": "へ",
+        "romaji": "he"
+      },
+      {
+        "id": 30,
+        "entry_id": "hiragana-30",
+        "script": "hiragana",
+        "character": "ほ",
+        "romaji": "ho"
+      },
+      {
+        "id": 31,
+        "entry_id": "hiragana-31",
+        "script": "hiragana",
+        "character": "ま",
+        "romaji": "ma"
+      },
+      {
+        "id": 32,
+        "entry_id": "hiragana-32",
+        "script": "hiragana",
+        "character": "み",
+        "romaji": "mi"
+      },
+      {
+        "id": 33,
+        "entry_id": "hiragana-33",
+        "script": "hiragana",
+        "character": "む",
+        "romaji": "mu"
+      },
+      {
+        "id": 34,
+        "entry_id": "hiragana-34",
+        "script": "hiragana",
+        "character": "め",
+        "romaji": "me"
+      },
+      {
+        "id": 35,
+        "entry_id": "hiragana-35",
+        "script": "hiragana",
+        "character": "も",
+        "romaji": "mo"
+      },
+      {
+        "id": 36,
+        "entry_id": "hiragana-36",
+        "script": "hiragana",
+        "character": "や",
+        "romaji": "ya"
+      },
+      {
+        "id": 37,
+        "entry_id": "hiragana-37",
+        "script": "hiragana",
+        "character": "ゆ",
+        "romaji": "yu"
+      },
+      {
+        "id": 38,
+        "entry_id": "hiragana-38",
+        "script": "hiragana",
+        "character": "よ",
+        "romaji": "yo"
+      },
+      {
+        "id": 39,
+        "entry_id": "hiragana-39",
+        "script": "hiragana",
+        "character": "ら",
+        "romaji": "ra"
+      },
+      {
+        "id": 40,
+        "entry_id": "hiragana-40",
+        "script": "hiragana",
+        "character": "り",
+        "romaji": "ri"
+      },
+      {
+        "id": 41,
+        "entry_id": "hiragana-41",
+        "script": "hiragana",
+        "character": "る",
+        "romaji": "ru"
+      },
+      {
+        "id": 42,
+        "entry_id": "hiragana-42",
+        "script": "hiragana",
+        "character": "れ",
+        "romaji": "re"
+      },
+      {
+        "id": 43,
+        "entry_id": "hiragana-43",
+        "script": "hiragana",
+        "character": "ろ",
+        "romaji": "ro"
+      },
+      {
+        "id": 44,
+        "entry_id": "hiragana-44",
+        "script": "hiragana",
+        "character": "わ",
+        "romaji": "wa"
+      },
+      {
+        "id": 45,
+        "entry_id": "hiragana-45",
+        "script": "hiragana",
+        "character": "を",
+        "romaji": "wo"
+      },
+      {
+        "id": 46,
+        "entry_id": "hiragana-46",
+        "script": "hiragana",
+        "character": "ん",
+        "romaji": "n"
+      }
+    ],
+    "katakana": [
+      {
+        "id": 1,
+        "entry_id": "katakana-1",
+        "script": "katakana",
+        "character": "ア",
+        "romaji": "a"
+      },
+      {
+        "id": 2,
+        "entry_id": "katakana-2",
+        "script": "katakana",
+        "character": "イ",
+        "romaji": "i"
+      },
+      {
+        "id": 3,
+        "entry_id": "katakana-3",
+        "script": "katakana",
+        "character": "ウ",
+        "romaji": "u"
+      },
+      {
+        "id": 4,
+        "entry_id": "katakana-4",
+        "script": "katakana",
+        "character": "エ",
+        "romaji": "e"
+      },
+      {
+        "id": 5,
+        "entry_id": "katakana-5",
+        "script": "katakana",
+        "character": "オ",
+        "romaji": "o"
+      },
+      {
+        "id": 6,
+        "entry_id": "katakana-6",
+        "script": "katakana",
+        "character": "カ",
+        "romaji": "ka"
+      },
+      {
+        "id": 7,
+        "entry_id": "katakana-7",
+        "script": "katakana",
+        "character": "キ",
+        "romaji": "ki"
+      },
+      {
+        "id": 8,
+        "entry_id": "katakana-8",
+        "script": "katakana",
+        "character": "ク",
+        "romaji": "ku"
+      },
+      {
+        "id": 9,
+        "entry_id": "katakana-9",
+        "script": "katakana",
+        "character": "ケ",
+        "romaji": "ke"
+      },
+      {
+        "id": 10,
+        "entry_id": "katakana-10",
+        "script": "katakana",
+        "character": "コ",
+        "romaji": "ko"
+      },
+      {
+        "id": 11,
+        "entry_id": "katakana-11",
+        "script": "katakana",
+        "character": "サ",
+        "romaji": "sa"
+      },
+      {
+        "id": 12,
+        "entry_id": "katakana-12",
+        "script": "katakana",
+        "character": "シ",
+        "romaji": "si"
+      },
+      {
+        "id": 13,
+        "entry_id": "katakana-13",
+        "script": "katakana",
+        "character": "ス",
+        "romaji": "su"
+      },
+      {
+        "id": 14,
+        "entry_id": "katakana-14",
+        "script": "katakana",
+        "character": "セ",
+        "romaji": "se"
+      },
+      {
+        "id": 15,
+        "entry_id": "katakana-15",
+        "script": "katakana",
+        "character": "ソ",
+        "romaji": "so"
+      },
+      {
+        "id": 16,
+        "entry_id": "katakana-16",
+        "script": "katakana",
+        "character": "タ",
+        "romaji": "ta"
+      },
+      {
+        "id": 17,
+        "entry_id": "katakana-17",
+        "script": "katakana",
+        "character": "チ",
+        "romaji": "ti"
+      },
+      {
+        "id": 18,
+        "entry_id": "katakana-18",
+        "script": "katakana",
+        "character": "ツ",
+        "romaji": "tu"
+      },
+      {
+        "id": 19,
+        "entry_id": "katakana-19",
+        "script": "katakana",
+        "character": "テ",
+        "romaji": "te"
+      },
+      {
+        "id": 20,
+        "entry_id": "katakana-20",
+        "script": "katakana",
+        "character": "ト",
+        "romaji": "to"
+      },
+      {
+        "id": 21,
+        "entry_id": "katakana-21",
+        "script": "katakana",
+        "character": "ナ",
+        "romaji": "na"
+      },
+      {
+        "id": 22,
+        "entry_id": "katakana-22",
+        "script": "katakana",
+        "character": "ニ",
+        "romaji": "ni"
+      },
+      {
+        "id": 23,
+        "entry_id": "katakana-23",
+        "script": "katakana",
+        "character": "ヌ",
+        "romaji": "nu"
+      },
+      {
+        "id": 24,
+        "entry_id": "katakana-24",
+        "script": "katakana",
+        "character": "ネ",
+        "romaji": "ne"
+      },
+      {
+        "id": 25,
+        "entry_id": "katakana-25",
+        "script": "katakana",
+        "character": "ノ",
+        "romaji": "no"
+      },
+      {
+        "id": 26,
+        "entry_id": "katakana-26",
+        "script": "katakana",
+        "character": "ハ",
+        "romaji": "ha"
+      },
+      {
+        "id": 27,
+        "entry_id": "katakana-27",
+        "script": "katakana",
+        "character": "ヒ",
+        "romaji": "hi"
+      },
+      {
+        "id": 28,
+        "entry_id": "katakana-28",
+        "script": "katakana",
+        "character": "フ",
+        "romaji": "hu"
+      },
+      {
+        "id": 29,
+        "entry_id": "katakana-29",
+        "script": "katakana",
+        "character": "ヘ",
+        "romaji": "he"
+      },
+      {
+        "id": 30,
+        "entry_id": "katakana-30",
+        "script": "katakana",
+        "character": "ホ",
+        "romaji": "ho"
+      },
+      {
+        "id": 31,
+        "entry_id": "katakana-31",
+        "script": "katakana",
+        "character": "マ",
+        "romaji": "ma"
+      },
+      {
+        "id": 32,
+        "entry_id": "katakana-32",
+        "script": "katakana",
+        "character": "ミ",
+        "romaji": "mi"
+      },
+      {
+        "id": 33,
+        "entry_id": "katakana-33",
+        "script": "katakana",
+        "character": "ム",
+        "romaji": "mu"
+      },
+      {
+        "id": 34,
+        "entry_id": "katakana-34",
+        "script": "katakana",
+        "character": "メ",
+        "romaji": "me"
+      },
+      {
+        "id": 35,
+        "entry_id": "katakana-35",
+        "script": "katakana",
+        "character": "モ",
+        "romaji": "mo"
+      },
+      {
+        "id": 36,
+        "entry_id": "katakana-36",
+        "script": "katakana",
+        "character": "ヤ",
+        "romaji": "ya"
+      },
+      {
+        "id": 37,
+        "entry_id": "katakana-37",
+        "script": "katakana",
+        "character": "ユ",
+        "romaji": "yu"
+      },
+      {
+        "id": 38,
+        "entry_id": "katakana-38",
+        "script": "katakana",
+        "character": "ヨ",
+        "romaji": "yo"
+      },
+      {
+        "id": 39,
+        "entry_id": "katakana-39",
+        "script": "katakana",
+        "character": "ラ",
+        "romaji": "ra"
+      },
+      {
+        "id": 40,
+        "entry_id": "katakana-40",
+        "script": "katakana",
+        "character": "リ",
+        "romaji": "ri"
+      },
+      {
+        "id": 41,
+        "entry_id": "katakana-41",
+        "script": "katakana",
+        "character": "ル",
+        "romaji": "ru"
+      },
+      {
+        "id": 42,
+        "entry_id": "katakana-42",
+        "script": "katakana",
+        "character": "レ",
+        "romaji": "re"
+      },
+      {
+        "id": 43,
+        "entry_id": "katakana-43",
+        "script": "katakana",
+        "character": "ロ",
+        "romaji": "ro"
+      },
+      {
+        "id": 44,
+        "entry_id": "katakana-44",
+        "script": "katakana",
+        "character": "ワ",
+        "romaji": "wa"
+      },
+      {
+        "id": 45,
+        "entry_id": "katakana-45",
+        "script": "katakana",
+        "character": "ウィ",
+        "romaji": "wi"
+      },
+      {
+        "id": 46,
+        "entry_id": "katakana-46",
+        "script": "katakana",
+        "character": "ウェ",
+        "romaji": "we"
+      },
+      {
+        "id": 47,
+        "entry_id": "katakana-47",
+        "script": "katakana",
+        "character": "ヲ",
+        "romaji": "wo"
+      },
+      {
+        "id": 48,
+        "entry_id": "katakana-48",
+        "script": "katakana",
+        "character": "ン",
+        "romaji": "n"
+      }
+    ]
+  },
+  "kanji": [
+    {
+      "id": 1,
+      "entry_id": "kanji-1",
+      "kanji": "月",
+      "meanings": [
+        "moon",
+        "month"
+      ],
+      "onyomi": [
+        "げつ (getsu)",
+        "がつ (gatsu)"
+      ],
+      "kunyomi": [
+        "つき (tsuki)"
+      ],
+      "notes": "Used for days of the week and months"
+    },
+    {
+      "id": 2,
+      "entry_id": "kanji-2",
+      "kanji": "火",
+      "meanings": [
+        "fire"
+      ],
+      "onyomi": [
+        "か (ka)"
+      ],
+      "kunyomi": [
+        "ひ (hi)"
+      ],
+      "notes": "Also used in 火曜日 (Tuesday)"
+    },
+    {
+      "id": 3,
+      "entry_id": "kanji-3",
+      "kanji": "水",
+      "meanings": [
+        "water"
+      ],
+      "onyomi": [
+        "すい (sui)"
+      ],
+      "kunyomi": [
+        "みず (mizu)"
+      ],
+      "notes": "Common basic kanji"
+    },
+    {
+      "id": 4,
+      "entry_id": "kanji-4",
+      "kanji": "木",
+      "meanings": [
+        "tree",
+        "wood"
+      ],
+      "onyomi": [
+        "もく (moku)"
+      ],
+      "kunyomi": [
+        "き (ki)"
+      ],
+      "notes": "Also used in 木曜日 (Thursday)"
+    },
+    {
+      "id": 5,
+      "entry_id": "kanji-5",
+      "kanji": "土",
+      "meanings": [
+        "earth",
+        "soil"
+      ],
+      "onyomi": [
+        "ど (do)",
+        "と (to)"
+      ],
+      "kunyomi": [
+        "つち (tsuchi)"
+      ],
+      "notes": "Represents ground/earth element"
+    },
+    {
+      "id": 6,
+      "entry_id": "kanji-6",
+      "kanji": "日",
+      "meanings": [
+        "sun",
+        "day"
+      ],
+      "onyomi": [
+        "にち (nichi)",
+        "じつ (jitsu)"
+      ],
+      "kunyomi": [
+        "ひ (hi)",
+        "び (bi)",
+        "か (ka)"
+      ],
+      "notes": "Very common kanji for dates and days"
+    },
+    {
+      "id": 7,
+      "entry_id": "kanji-7",
+      "kanji": "本",
+      "meanings": [
+        "book",
+        "origin",
+        "base"
+      ],
+      "onyomi": [
+        "ほん (hon)"
+      ],
+      "kunyomi": [
+        "もと (moto)"
+      ],
+      "notes": "Also used as a counter for long objects"
+    }
+  ],
+  "grammar": {
+    "demonstratives": {
+      "category": "ko-so-a-do",
+      "description": "Japanese demonstrative system covering location, objects, direction, description, manner, and extended forms",
+      "prefix_meanings": {
+        "ko": "near speaker",
+        "so": "near listener",
+        "a": "far from both",
+        "do": "question word"
+      },
+      "groups": [
+        {
+          "type": "place",
+          "description": "Locations",
+          "words": [
+            {
+              "id": 1,
+              "entry_id": "demonstrative-1",
+              "kana": "ここ",
+              "romaji": "koko",
+              "meaning": "here",
+              "prefix": "ko",
+              "group_type": "place"
+            },
+            {
+              "id": 2,
+              "entry_id": "demonstrative-2",
+              "kana": "そこ",
+              "romaji": "soko",
+              "meaning": "there (near listener)",
+              "prefix": "so",
+              "group_type": "place"
+            },
+            {
+              "id": 3,
+              "entry_id": "demonstrative-3",
+              "kana": "あそこ",
+              "romaji": "asoko",
+              "meaning": "over there",
+              "prefix": "a",
+              "group_type": "place"
+            },
+            {
+              "id": 4,
+              "entry_id": "demonstrative-4",
+              "kana": "どこ",
+              "romaji": "doko",
+              "meaning": "where",
+              "prefix": "do",
+              "group_type": "place"
+            }
+          ]
+        },
+        {
+          "type": "thing",
+          "description": "Standalone objects",
+          "words": [
+            {
+              "id": 5,
+              "entry_id": "demonstrative-5",
+              "kana": "これ",
+              "romaji": "kore",
+              "meaning": "this",
+              "prefix": "ko",
+              "group_type": "thing"
+            },
+            {
+              "id": 6,
+              "entry_id": "demonstrative-6",
+              "kana": "それ",
+              "romaji": "sore",
+              "meaning": "that (near listener)",
+              "prefix": "so",
+              "group_type": "thing"
+            },
+            {
+              "id": 7,
+              "entry_id": "demonstrative-7",
+              "kana": "あれ",
+              "romaji": "are",
+              "meaning": "that (over there)",
+              "prefix": "a",
+              "group_type": "thing"
+            },
+            {
+              "id": 8,
+              "entry_id": "demonstrative-8",
+              "kana": "どれ",
+              "romaji": "dore",
+              "meaning": "which",
+              "prefix": "do",
+              "group_type": "thing"
+            }
+          ]
+        },
+        {
+          "type": "noun_modifier",
+          "description": "Used before nouns",
+          "words": [
+            {
+              "id": 9,
+              "entry_id": "demonstrative-9",
+              "kana": "この",
+              "romaji": "kono",
+              "meaning": "this ___",
+              "prefix": "ko",
+              "group_type": "noun_modifier"
+            },
+            {
+              "id": 10,
+              "entry_id": "demonstrative-10",
+              "kana": "その",
+              "romaji": "sono",
+              "meaning": "that ___ (near listener)",
+              "prefix": "so",
+              "group_type": "noun_modifier"
+            },
+            {
+              "id": 11,
+              "entry_id": "demonstrative-11",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that ___ (over there)",
+              "prefix": "a",
+              "group_type": "noun_modifier"
+            },
+            {
+              "id": 12,
+              "entry_id": "demonstrative-12",
+              "kana": "どの",
+              "romaji": "dono",
+              "meaning": "which ___",
+              "prefix": "do",
+              "group_type": "noun_modifier"
+            }
+          ]
+        },
+        {
+          "type": "polite_direction_person",
+          "description": "Polite direction or person reference",
+          "words": [
+            {
+              "id": 13,
+              "entry_id": "demonstrative-13",
+              "kana": "こちら",
+              "romaji": "kochira",
+              "meaning": "this way / this person (polite)",
+              "prefix": "ko",
+              "group_type": "polite_direction_person"
+            },
+            {
+              "id": 14,
+              "entry_id": "demonstrative-14",
+              "kana": "そちら",
+              "romaji": "sochira",
+              "meaning": "that way / that person",
+              "prefix": "so",
+              "group_type": "polite_direction_person"
+            },
+            {
+              "id": 15,
+              "entry_id": "demonstrative-15",
+              "kana": "あちら",
+              "romaji": "achira",
+              "meaning": "that way (over there)",
+              "prefix": "a",
+              "group_type": "polite_direction_person"
+            },
+            {
+              "id": 16,
+              "entry_id": "demonstrative-16",
+              "kana": "どちら",
+              "romaji": "dochira",
+              "meaning": "which way / which person",
+              "prefix": "do",
+              "group_type": "polite_direction_person"
+            }
+          ]
+        },
+        {
+          "type": "casual_direction",
+          "description": "Casual direction",
+          "words": [
+            {
+              "id": 17,
+              "entry_id": "demonstrative-17",
+              "kana": "こっち",
+              "romaji": "kocchi",
+              "meaning": "this way",
+              "prefix": "ko",
+              "group_type": "casual_direction"
+            },
+            {
+              "id": 18,
+              "entry_id": "demonstrative-18",
+              "kana": "そっち",
+              "romaji": "socchi",
+              "meaning": "that way",
+              "prefix": "so",
+              "group_type": "casual_direction"
+            },
+            {
+              "id": 19,
+              "entry_id": "demonstrative-19",
+              "kana": "あっち",
+              "romaji": "acchi",
+              "meaning": "that way (over there)",
+              "prefix": "a",
+              "group_type": "casual_direction"
+            },
+            {
+              "id": 20,
+              "entry_id": "demonstrative-20",
+              "kana": "どっち",
+              "romaji": "docchi",
+              "meaning": "which way",
+              "prefix": "do",
+              "group_type": "casual_direction"
+            }
+          ]
+        },
+        {
+          "type": "manner",
+          "description": "How / in what way",
+          "words": [
+            {
+              "id": 21,
+              "entry_id": "demonstrative-21",
+              "kana": "こう",
+              "romaji": "kou",
+              "meaning": "like this",
+              "prefix": "ko",
+              "group_type": "manner"
+            },
+            {
+              "id": 22,
+              "entry_id": "demonstrative-22",
+              "kana": "そう",
+              "romaji": "sou",
+              "meaning": "like that",
+              "prefix": "so",
+              "group_type": "manner"
+            },
+            {
+              "id": 23,
+              "entry_id": "demonstrative-23",
+              "kana": "ああ",
+              "romaji": "aa",
+              "meaning": "like that (over there / known)",
+              "prefix": "a",
+              "group_type": "manner"
+            },
+            {
+              "id": 24,
+              "entry_id": "demonstrative-24",
+              "kana": "どう",
+              "romaji": "dou",
+              "meaning": "how",
+              "prefix": "do",
+              "group_type": "manner"
+            }
+          ]
+        },
+        {
+          "type": "kind_type",
+          "description": "Type/kind of thing",
+          "words": [
+            {
+              "id": 25,
+              "entry_id": "demonstrative-25",
+              "kana": "こんな",
+              "romaji": "konna",
+              "meaning": "this kind of",
+              "prefix": "ko",
+              "group_type": "kind_type"
+            },
+            {
+              "id": 26,
+              "entry_id": "demonstrative-26",
+              "kana": "そんな",
+              "romaji": "sonna",
+              "meaning": "that kind of",
+              "prefix": "so",
+              "group_type": "kind_type"
+            },
+            {
+              "id": 27,
+              "entry_id": "demonstrative-27",
+              "kana": "あんな",
+              "romaji": "anna",
+              "meaning": "that kind of (over there)",
+              "prefix": "a",
+              "group_type": "kind_type"
+            },
+            {
+              "id": 28,
+              "entry_id": "demonstrative-28",
+              "kana": "どんな",
+              "romaji": "donna",
+              "meaning": "what kind of",
+              "prefix": "do",
+              "group_type": "kind_type"
+            }
+          ]
+        },
+        {
+          "type": "formal_written",
+          "description": "More formal/literary variants",
+          "words": [
+            {
+              "id": 29,
+              "entry_id": "demonstrative-29",
+              "kana": "かく",
+              "romaji": "kaku",
+              "meaning": "thus (like this)",
+              "prefix": "ko",
+              "group_type": "formal_written"
+            },
+            {
+              "id": 30,
+              "entry_id": "demonstrative-30",
+              "kana": "さく",
+              "romaji": "saku",
+              "meaning": "thus (archaic)",
+              "prefix": "so",
+              "group_type": "formal_written"
+            },
+            {
+              "id": 31,
+              "entry_id": "demonstrative-31",
+              "kana": "ああして",
+              "romaji": "aa shite",
+              "meaning": "doing like that",
+              "prefix": "a",
+              "group_type": "formal_written"
+            },
+            {
+              "id": 32,
+              "entry_id": "demonstrative-32",
+              "kana": "いかに",
+              "romaji": "ikani",
+              "meaning": "how (formal)",
+              "prefix": "do",
+              "group_type": "formal_written"
+            }
+          ]
+        },
+        {
+          "type": "compound_pronouns",
+          "description": "Plural or grouped references",
+          "words": [
+            {
+              "id": 33,
+              "entry_id": "demonstrative-33",
+              "kana": "これら",
+              "romaji": "korera",
+              "meaning": "these",
+              "prefix": "ko",
+              "group_type": "compound_pronouns"
+            },
+            {
+              "id": 34,
+              "entry_id": "demonstrative-34",
+              "kana": "それら",
+              "romaji": "sorera",
+              "meaning": "those",
+              "prefix": "so",
+              "group_type": "compound_pronouns"
+            },
+            {
+              "id": 35,
+              "entry_id": "demonstrative-35",
+              "kana": "あれら",
+              "romaji": "arera",
+              "meaning": "those over there",
+              "prefix": "a",
+              "group_type": "compound_pronouns"
+            },
+            {
+              "id": 36,
+              "entry_id": "demonstrative-36",
+              "kana": "どれら",
+              "romaji": "dorera",
+              "meaning": "which (plural)",
+              "prefix": "do",
+              "group_type": "compound_pronouns"
+            }
+          ]
+        }
+      ],
+      "all_words": [
+        {
+          "id": 1,
+          "entry_id": "demonstrative-1",
+          "kana": "ここ",
+          "romaji": "koko",
+          "meaning": "here",
+          "prefix": "ko",
+          "group_type": "place"
+        },
+        {
+          "id": 2,
+          "entry_id": "demonstrative-2",
+          "kana": "そこ",
+          "romaji": "soko",
+          "meaning": "there (near listener)",
+          "prefix": "so",
+          "group_type": "place"
+        },
+        {
+          "id": 3,
+          "entry_id": "demonstrative-3",
+          "kana": "あそこ",
+          "romaji": "asoko",
+          "meaning": "over there",
+          "prefix": "a",
+          "group_type": "place"
+        },
+        {
+          "id": 4,
+          "entry_id": "demonstrative-4",
+          "kana": "どこ",
+          "romaji": "doko",
+          "meaning": "where",
+          "prefix": "do",
+          "group_type": "place"
+        },
+        {
+          "id": 5,
+          "entry_id": "demonstrative-5",
+          "kana": "これ",
+          "romaji": "kore",
+          "meaning": "this",
+          "prefix": "ko",
+          "group_type": "thing"
+        },
+        {
+          "id": 6,
+          "entry_id": "demonstrative-6",
+          "kana": "それ",
+          "romaji": "sore",
+          "meaning": "that (near listener)",
+          "prefix": "so",
+          "group_type": "thing"
+        },
+        {
+          "id": 7,
+          "entry_id": "demonstrative-7",
+          "kana": "あれ",
+          "romaji": "are",
+          "meaning": "that (over there)",
+          "prefix": "a",
+          "group_type": "thing"
+        },
+        {
+          "id": 8,
+          "entry_id": "demonstrative-8",
+          "kana": "どれ",
+          "romaji": "dore",
+          "meaning": "which",
+          "prefix": "do",
+          "group_type": "thing"
+        },
+        {
+          "id": 9,
+          "entry_id": "demonstrative-9",
+          "kana": "この",
+          "romaji": "kono",
+          "meaning": "this ___",
+          "prefix": "ko",
+          "group_type": "noun_modifier"
+        },
+        {
+          "id": 10,
+          "entry_id": "demonstrative-10",
+          "kana": "その",
+          "romaji": "sono",
+          "meaning": "that ___ (near listener)",
+          "prefix": "so",
+          "group_type": "noun_modifier"
+        },
+        {
+          "id": 11,
+          "entry_id": "demonstrative-11",
+          "kana": "あの",
+          "romaji": "ano",
+          "meaning": "that ___ (over there)",
+          "prefix": "a",
+          "group_type": "noun_modifier"
+        },
+        {
+          "id": 12,
+          "entry_id": "demonstrative-12",
+          "kana": "どの",
+          "romaji": "dono",
+          "meaning": "which ___",
+          "prefix": "do",
+          "group_type": "noun_modifier"
+        },
+        {
+          "id": 13,
+          "entry_id": "demonstrative-13",
+          "kana": "こちら",
+          "romaji": "kochira",
+          "meaning": "this way / this person (polite)",
+          "prefix": "ko",
+          "group_type": "polite_direction_person"
+        },
+        {
+          "id": 14,
+          "entry_id": "demonstrative-14",
+          "kana": "そちら",
+          "romaji": "sochira",
+          "meaning": "that way / that person",
+          "prefix": "so",
+          "group_type": "polite_direction_person"
+        },
+        {
+          "id": 15,
+          "entry_id": "demonstrative-15",
+          "kana": "あちら",
+          "romaji": "achira",
+          "meaning": "that way (over there)",
+          "prefix": "a",
+          "group_type": "polite_direction_person"
+        },
+        {
+          "id": 16,
+          "entry_id": "demonstrative-16",
+          "kana": "どちら",
+          "romaji": "dochira",
+          "meaning": "which way / which person",
+          "prefix": "do",
+          "group_type": "polite_direction_person"
+        },
+        {
+          "id": 17,
+          "entry_id": "demonstrative-17",
+          "kana": "こっち",
+          "romaji": "kocchi",
+          "meaning": "this way",
+          "prefix": "ko",
+          "group_type": "casual_direction"
+        },
+        {
+          "id": 18,
+          "entry_id": "demonstrative-18",
+          "kana": "そっち",
+          "romaji": "socchi",
+          "meaning": "that way",
+          "prefix": "so",
+          "group_type": "casual_direction"
+        },
+        {
+          "id": 19,
+          "entry_id": "demonstrative-19",
+          "kana": "あっち",
+          "romaji": "acchi",
+          "meaning": "that way (over there)",
+          "prefix": "a",
+          "group_type": "casual_direction"
+        },
+        {
+          "id": 20,
+          "entry_id": "demonstrative-20",
+          "kana": "どっち",
+          "romaji": "docchi",
+          "meaning": "which way",
+          "prefix": "do",
+          "group_type": "casual_direction"
+        },
+        {
+          "id": 21,
+          "entry_id": "demonstrative-21",
+          "kana": "こう",
+          "romaji": "kou",
+          "meaning": "like this",
+          "prefix": "ko",
+          "group_type": "manner"
+        },
+        {
+          "id": 22,
+          "entry_id": "demonstrative-22",
+          "kana": "そう",
+          "romaji": "sou",
+          "meaning": "like that",
+          "prefix": "so",
+          "group_type": "manner"
+        },
+        {
+          "id": 23,
+          "entry_id": "demonstrative-23",
+          "kana": "ああ",
+          "romaji": "aa",
+          "meaning": "like that (over there / known)",
+          "prefix": "a",
+          "group_type": "manner"
+        },
+        {
+          "id": 24,
+          "entry_id": "demonstrative-24",
+          "kana": "どう",
+          "romaji": "dou",
+          "meaning": "how",
+          "prefix": "do",
+          "group_type": "manner"
+        },
+        {
+          "id": 25,
+          "entry_id": "demonstrative-25",
+          "kana": "こんな",
+          "romaji": "konna",
+          "meaning": "this kind of",
+          "prefix": "ko",
+          "group_type": "kind_type"
+        },
+        {
+          "id": 26,
+          "entry_id": "demonstrative-26",
+          "kana": "そんな",
+          "romaji": "sonna",
+          "meaning": "that kind of",
+          "prefix": "so",
+          "group_type": "kind_type"
+        },
+        {
+          "id": 27,
+          "entry_id": "demonstrative-27",
+          "kana": "あんな",
+          "romaji": "anna",
+          "meaning": "that kind of (over there)",
+          "prefix": "a",
+          "group_type": "kind_type"
+        },
+        {
+          "id": 28,
+          "entry_id": "demonstrative-28",
+          "kana": "どんな",
+          "romaji": "donna",
+          "meaning": "what kind of",
+          "prefix": "do",
+          "group_type": "kind_type"
+        },
+        {
+          "id": 29,
+          "entry_id": "demonstrative-29",
+          "kana": "かく",
+          "romaji": "kaku",
+          "meaning": "thus (like this)",
+          "prefix": "ko",
+          "group_type": "formal_written"
+        },
+        {
+          "id": 30,
+          "entry_id": "demonstrative-30",
+          "kana": "さく",
+          "romaji": "saku",
+          "meaning": "thus (archaic)",
+          "prefix": "so",
+          "group_type": "formal_written"
+        },
+        {
+          "id": 31,
+          "entry_id": "demonstrative-31",
+          "kana": "ああして",
+          "romaji": "aa shite",
+          "meaning": "doing like that",
+          "prefix": "a",
+          "group_type": "formal_written"
+        },
+        {
+          "id": 32,
+          "entry_id": "demonstrative-32",
+          "kana": "いかに",
+          "romaji": "ikani",
+          "meaning": "how (formal)",
+          "prefix": "do",
+          "group_type": "formal_written"
+        },
+        {
+          "id": 33,
+          "entry_id": "demonstrative-33",
+          "kana": "これら",
+          "romaji": "korera",
+          "meaning": "these",
+          "prefix": "ko",
+          "group_type": "compound_pronouns"
+        },
+        {
+          "id": 34,
+          "entry_id": "demonstrative-34",
+          "kana": "それら",
+          "romaji": "sorera",
+          "meaning": "those",
+          "prefix": "so",
+          "group_type": "compound_pronouns"
+        },
+        {
+          "id": 35,
+          "entry_id": "demonstrative-35",
+          "kana": "あれら",
+          "romaji": "arera",
+          "meaning": "those over there",
+          "prefix": "a",
+          "group_type": "compound_pronouns"
+        },
+        {
+          "id": 36,
+          "entry_id": "demonstrative-36",
+          "kana": "どれら",
+          "romaji": "dorera",
+          "meaning": "which (plural)",
+          "prefix": "do",
+          "group_type": "compound_pronouns"
+        }
+      ]
+    }
+  },
+  "lexicon": {
+    "verbs": [
+      {
+        "id": 1,
+        "entry_id": "verb-1",
+        "part_of_speech": "verb",
+        "romaji": "taberu",
+        "kana": "たべる",
+        "kanji": "食べる",
+        "meaning": "to eat",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "たべる",
+          "masu": "たべます",
+          "masu_past": "たべました",
+          "te": "たべて",
+          "past": "たべた",
+          "nai": "たべない",
+          "nai_past": "たべなかった",
+          "teiru": "たべている",
+          "request": "たべてください",
+          "permission": "たべてもいい"
+        }
+      },
+      {
+        "id": 2,
+        "entry_id": "verb-2",
+        "part_of_speech": "verb",
+        "romaji": "miru",
+        "kana": "みる",
+        "kanji": "見る",
+        "meaning": "to see/watch",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "みる",
+          "masu": "みます",
+          "masu_past": "みました",
+          "te": "みて",
+          "past": "みた",
+          "nai": "みない",
+          "nai_past": "みなかった",
+          "teiru": "みている",
+          "request": "みてください",
+          "permission": "みてもいい"
+        }
+      },
+      {
+        "id": 3,
+        "entry_id": "verb-3",
+        "part_of_speech": "verb",
+        "romaji": "neru",
+        "kana": "ねる",
+        "kanji": "寝る",
+        "meaning": "to sleep",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "ねる",
+          "masu": "ねます",
+          "masu_past": "ねました",
+          "te": "ねて",
+          "past": "ねた",
+          "nai": "ねない",
+          "nai_past": "ねなかった",
+          "teiru": "ねている",
+          "request": "ねてください",
+          "permission": "ねてもいい"
+        }
+      },
+      {
+        "id": 4,
+        "entry_id": "verb-4",
+        "part_of_speech": "verb",
+        "romaji": "kiru",
+        "kana": "きる",
+        "kanji": "着る",
+        "meaning": "to wear",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "きる",
+          "masu": "きます",
+          "masu_past": "きました",
+          "te": "きて",
+          "past": "きた",
+          "nai": "きない",
+          "nai_past": "きなかった",
+          "teiru": "きている",
+          "request": "きてください",
+          "permission": "きてもいい"
+        }
+      },
+      {
+        "id": 5,
+        "entry_id": "verb-5",
+        "part_of_speech": "verb",
+        "romaji": "okiru",
+        "kana": "おきる",
+        "kanji": "起きる",
+        "meaning": "to wake up",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "おきる",
+          "masu": "おきます",
+          "masu_past": "おきました",
+          "te": "おきて",
+          "past": "おきた",
+          "nai": "おきない",
+          "nai_past": "おきなかった",
+          "teiru": "おきている",
+          "request": "おきてください",
+          "permission": "おきてもいい"
+        }
+      },
+      {
+        "id": 6,
+        "entry_id": "verb-6",
+        "part_of_speech": "verb",
+        "romaji": "akeru",
+        "kana": "あける",
+        "kanji": "開ける",
+        "meaning": "to open",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "あける",
+          "masu": "あけます",
+          "masu_past": "あけました",
+          "te": "あけて",
+          "past": "あけた",
+          "nai": "あけない",
+          "nai_past": "あけなかった",
+          "teiru": "あけている",
+          "request": "あけてください",
+          "permission": "あけてもいい"
+        }
+      },
+      {
+        "id": 7,
+        "entry_id": "verb-7",
+        "part_of_speech": "verb",
+        "romaji": "shimeru",
+        "kana": "しめる",
+        "kanji": "閉める",
+        "meaning": "to close",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "しめる",
+          "masu": "しめます",
+          "masu_past": "しめました",
+          "te": "しめて",
+          "past": "しめた",
+          "nai": "しめない",
+          "nai_past": "しめなかった",
+          "teiru": "しめている",
+          "request": "しめてください",
+          "permission": "しめてもいい"
+        }
+      },
+      {
+        "id": 8,
+        "entry_id": "verb-8",
+        "part_of_speech": "verb",
+        "romaji": "oshieru",
+        "kana": "おしえる",
+        "kanji": "教える",
+        "meaning": "to teach",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "おしえる",
+          "masu": "おしえます",
+          "masu_past": "おしえました",
+          "te": "おしえて",
+          "past": "おしえた",
+          "nai": "おしえない",
+          "nai_past": "おしえなかった",
+          "teiru": "おしえている",
+          "request": "おしえてください",
+          "permission": "おしえてもいい"
+        }
+      },
+      {
+        "id": 9,
+        "entry_id": "verb-9",
+        "part_of_speech": "verb",
+        "romaji": "kariru",
+        "kana": "かりる",
+        "kanji": "借りる",
+        "meaning": "to borrow",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "かりる",
+          "masu": "かります",
+          "masu_past": "かりました",
+          "te": "かりて",
+          "past": "かりた",
+          "nai": "かりない",
+          "nai_past": "かりなかった",
+          "teiru": "かりている",
+          "request": "かりてください",
+          "permission": "かりてもいい"
+        }
+      },
+      {
+        "id": 10,
+        "entry_id": "verb-10",
+        "part_of_speech": "verb",
+        "romaji": "tsukeru",
+        "kana": "つける",
+        "kanji": "付ける",
+        "meaning": "to turn on",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "つける",
+          "masu": "つけます",
+          "masu_past": "つけました",
+          "te": "つけて",
+          "past": "つけた",
+          "nai": "つけない",
+          "nai_past": "つけなかった",
+          "teiru": "つけている",
+          "request": "つけてください",
+          "permission": "つけてもいい"
+        }
+      },
+      {
+        "id": 11,
+        "entry_id": "verb-11",
+        "part_of_speech": "verb",
+        "romaji": "tasukeru",
+        "kana": "たすける",
+        "kanji": "助ける",
+        "meaning": "to help (rescue)",
+        "verb_type": "ru-verb",
+        "verb_group": "ichidan",
+        "forms": {
+          "dictionary": "たすける",
+          "masu": "たすけます",
+          "masu_past": "たすけました",
+          "te": "たすけて",
+          "past": "たすけた",
+          "nai": "たすけない",
+          "nai_past": "たすけなかった",
+          "teiru": "たすけている",
+          "request": "たすけてください",
+          "permission": "たすけてもいい"
+        }
+      },
+      {
+        "id": 12,
+        "entry_id": "verb-12",
+        "part_of_speech": "verb",
+        "romaji": "kau",
+        "kana": "かう",
+        "kanji": "買う",
+        "meaning": "to buy",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "かう",
+          "masu": "かいます",
+          "masu_past": "かいました",
+          "te": "かって",
+          "past": "かった",
+          "nai": "かわない",
+          "nai_past": "かわなかった",
+          "teiru": "かっている",
+          "request": "かってください",
+          "permission": "かってもいい"
+        }
+      },
+      {
+        "id": 13,
+        "entry_id": "verb-13",
+        "part_of_speech": "verb",
+        "romaji": "iku",
+        "kana": "いく",
+        "kanji": "行く",
+        "meaning": "to go",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "いく",
+          "masu": "いきます",
+          "masu_past": "いきました",
+          "te": "いって",
+          "past": "いった",
+          "nai": "いかない",
+          "nai_past": "いかなかった",
+          "teiru": "いっている",
+          "request": "いってください",
+          "permission": "いってもいい"
+        }
+      },
+      {
+        "id": 14,
+        "entry_id": "verb-14",
+        "part_of_speech": "verb",
+        "romaji": "kaeru",
+        "kana": "かえる",
+        "kanji": "帰る",
+        "meaning": "to return",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "かえる",
+          "masu": "かえります",
+          "masu_past": "かえりました",
+          "te": "かえって",
+          "past": "かえった",
+          "nai": "かえらない",
+          "nai_past": "かえらなかった",
+          "teiru": "かえっている",
+          "request": "かえってください",
+          "permission": "かえってもいい"
+        }
+      },
+      {
+        "id": 15,
+        "entry_id": "verb-15",
+        "part_of_speech": "verb",
+        "romaji": "yomu",
+        "kana": "よむ",
+        "kanji": "読む",
+        "meaning": "to read",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "よむ",
+          "masu": "よみます",
+          "masu_past": "よみました",
+          "te": "よんで",
+          "past": "よんだ",
+          "nai": "よまない",
+          "nai_past": "よまなかった",
+          "teiru": "よんでいる",
+          "request": "よんでください",
+          "permission": "よんでもいい"
+        }
+      },
+      {
+        "id": 16,
+        "entry_id": "verb-16",
+        "part_of_speech": "verb",
+        "romaji": "oku",
+        "kana": "おく",
+        "kanji": "置く",
+        "meaning": "to put",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "おく",
+          "masu": "おきます",
+          "masu_past": "おきました",
+          "te": "おいて",
+          "past": "おいた",
+          "nai": "おかない",
+          "nai_past": "おかなかった",
+          "teiru": "おいている",
+          "request": "おいてください",
+          "permission": "おいてもいい"
+        }
+      },
+      {
+        "id": 17,
+        "entry_id": "verb-17",
+        "part_of_speech": "verb",
+        "romaji": "tsukau",
+        "kana": "つかう",
+        "kanji": "使う",
+        "meaning": "to use",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "つかう",
+          "masu": "つかいます",
+          "masu_past": "つかいました",
+          "te": "つかって",
+          "past": "つかった",
+          "nai": "つかわない",
+          "nai_past": "つかわなかった",
+          "teiru": "つかっている",
+          "request": "つかってください",
+          "permission": "つかってもいい"
+        }
+      },
+      {
+        "id": 18,
+        "entry_id": "verb-18",
+        "part_of_speech": "verb",
+        "romaji": "nomu",
+        "kana": "のむ",
+        "kanji": "飲む",
+        "meaning": "to drink",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "のむ",
+          "masu": "のみます",
+          "masu_past": "のみました",
+          "te": "のんで",
+          "past": "のんだ",
+          "nai": "のまない",
+          "nai_past": "のまなかった",
+          "teiru": "のんでいる",
+          "request": "のんでください",
+          "permission": "のんでもいい"
+        }
+      },
+      {
+        "id": 19,
+        "entry_id": "verb-19",
+        "part_of_speech": "verb",
+        "romaji": "kiku",
+        "kana": "きく",
+        "kanji": "聞く",
+        "meaning": "to listen",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "きく",
+          "masu": "ききます",
+          "masu_past": "ききました",
+          "te": "きいて",
+          "past": "きいた",
+          "nai": "きかない",
+          "nai_past": "きかなかった",
+          "teiru": "きいている",
+          "request": "きいてください",
+          "permission": "きいてもいい"
+        }
+      },
+      {
+        "id": 20,
+        "entry_id": "verb-20",
+        "part_of_speech": "verb",
+        "romaji": "hanasu",
+        "kana": "はなす",
+        "kanji": "話す",
+        "meaning": "to speak",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "はなす",
+          "masu": "はなします",
+          "masu_past": "はなしました",
+          "te": "はなして",
+          "past": "はなした",
+          "nai": "はなさない",
+          "nai_past": "はなさなかった",
+          "teiru": "はなしている",
+          "request": "はなしてください",
+          "permission": "はなしてもいい"
+        }
+      },
+      {
+        "id": 21,
+        "entry_id": "verb-21",
+        "part_of_speech": "verb",
+        "romaji": "iu",
+        "kana": "いう",
+        "kanji": "言う",
+        "meaning": "to say",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "いう",
+          "masu": "いいます",
+          "masu_past": "いいました",
+          "te": "いって",
+          "past": "いった",
+          "nai": "いわない",
+          "nai_past": "いわなかった",
+          "teiru": "いっている",
+          "request": "いってください",
+          "permission": "いってもいい"
+        }
+      },
+      {
+        "id": 22,
+        "entry_id": "verb-22",
+        "part_of_speech": "verb",
+        "romaji": "wakaru",
+        "kana": "わかる",
+        "kanji": "分かる",
+        "meaning": "to understand",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "わかる",
+          "masu": "わかります",
+          "masu_past": "わかりました",
+          "te": "わかって",
+          "past": "わかった",
+          "nai": "わからない",
+          "nai_past": "わからなかった",
+          "teiru": "わかっている",
+          "request": "わかってください",
+          "permission": "わかってもいい"
+        }
+      },
+      {
+        "id": 23,
+        "entry_id": "verb-23",
+        "part_of_speech": "verb",
+        "romaji": "utau",
+        "kana": "うたう",
+        "kanji": "歌う",
+        "meaning": "to sing",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "うたう",
+          "masu": "うたいます",
+          "masu_past": "うたいました",
+          "te": "うたって",
+          "past": "うたった",
+          "nai": "うたわない",
+          "nai_past": "うたわなかった",
+          "teiru": "うたっている",
+          "request": "うたってください",
+          "permission": "うたってもいい"
+        }
+      },
+      {
+        "id": 24,
+        "entry_id": "verb-24",
+        "part_of_speech": "verb",
+        "romaji": "aruku",
+        "kana": "あるく",
+        "kanji": "歩く",
+        "meaning": "to walk",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "あるく",
+          "masu": "あるきます",
+          "masu_past": "あるきました",
+          "te": "あるいて",
+          "past": "あるいた",
+          "nai": "あるかない",
+          "nai_past": "あるかなかった",
+          "teiru": "あるいている",
+          "request": "あるいてください",
+          "permission": "あるいてもいい"
+        }
+      },
+      {
+        "id": 25,
+        "entry_id": "verb-25",
+        "part_of_speech": "verb",
+        "romaji": "matsu",
+        "kana": "まつ",
+        "kanji": "待つ",
+        "meaning": "to wait",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "まつ",
+          "masu": "まちます",
+          "masu_past": "まちました",
+          "te": "まって",
+          "past": "まった",
+          "nai": "またない",
+          "nai_past": "またなかった",
+          "teiru": "まっている",
+          "request": "まってください",
+          "permission": "まってもいい"
+        }
+      },
+      {
+        "id": 26,
+        "entry_id": "verb-26",
+        "part_of_speech": "verb",
+        "romaji": "kaku",
+        "kana": "かく",
+        "kanji": "書く",
+        "meaning": "to write",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "かく",
+          "masu": "かきます",
+          "masu_past": "かきました",
+          "te": "かいて",
+          "past": "かいた",
+          "nai": "かかない",
+          "nai_past": "かかなかった",
+          "teiru": "かいている",
+          "request": "かいてください",
+          "permission": "かいてもいい"
+        }
+      },
+      {
+        "id": 27,
+        "entry_id": "verb-27",
+        "part_of_speech": "verb",
+        "romaji": "au",
+        "kana": "あう",
+        "kanji": "会う",
+        "meaning": "to meet",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "あう",
+          "masu": "あいます",
+          "masu_past": "あいました",
+          "te": "あって",
+          "past": "あった",
+          "nai": "あわない",
+          "nai_past": "あわなかった",
+          "teiru": "あっている",
+          "request": "あってください",
+          "permission": "あってもいい"
+        }
+      },
+      {
+        "id": 28,
+        "entry_id": "verb-28",
+        "part_of_speech": "verb",
+        "romaji": "asobu",
+        "kana": "あそぶ",
+        "kanji": "遊ぶ",
+        "meaning": "to play",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "あそぶ",
+          "masu": "あそびます",
+          "masu_past": "あそびました",
+          "te": "あそんで",
+          "past": "あそんだ",
+          "nai": "あそばない",
+          "nai_past": "あそばなかった",
+          "teiru": "あそんでいる",
+          "request": "あそんでください",
+          "permission": "あそんでもいい"
+        }
+      },
+      {
+        "id": 29,
+        "entry_id": "verb-29",
+        "part_of_speech": "verb",
+        "romaji": "oyogu",
+        "kana": "およぐ",
+        "kanji": "泳ぐ",
+        "meaning": "to swim",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "およぐ",
+          "masu": "およぎます",
+          "masu_past": "およぎました",
+          "te": "およいで",
+          "past": "およいだ",
+          "nai": "およがない",
+          "nai_past": "およがなかった",
+          "teiru": "およいでいる",
+          "request": "およいでください",
+          "permission": "およいでもいい"
+        }
+      },
+      {
+        "id": 30,
+        "entry_id": "verb-30",
+        "part_of_speech": "verb",
+        "romaji": "shinu",
+        "kana": "しぬ",
+        "kanji": "死ぬ",
+        "meaning": "to die",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "しぬ",
+          "masu": "しにます",
+          "masu_past": "しにました",
+          "te": "しんで",
+          "past": "しんだ",
+          "nai": "しなない",
+          "nai_past": "しななかった",
+          "teiru": "しんでいる",
+          "request": "しんでください",
+          "permission": "しんでもいい"
+        }
+      },
+      {
+        "id": 31,
+        "entry_id": "verb-31",
+        "part_of_speech": "verb",
+        "romaji": "tsukuru",
+        "kana": "つくる",
+        "kanji": "作る",
+        "meaning": "to make",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "つくる",
+          "masu": "つくります",
+          "masu_past": "つくりました",
+          "te": "つくって",
+          "past": "つくった",
+          "nai": "つくらない",
+          "nai_past": "つくらなかった",
+          "teiru": "つくっている",
+          "request": "つくってください",
+          "permission": "つくってもいい"
+        }
+      },
+      {
+        "id": 32,
+        "entry_id": "verb-32",
+        "part_of_speech": "verb",
+        "romaji": "aru",
+        "kana": "ある",
+        "kanji": "ある",
+        "meaning": "to exist",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "ある",
+          "masu": "あります",
+          "masu_past": "ありました",
+          "te": "あって",
+          "past": "あった",
+          "nai": "ない",
+          "nai_past": "なかった",
+          "teiru": "あっている",
+          "request": "あってください",
+          "permission": "あってもいい"
+        }
+      },
+      {
+        "id": 33,
+        "entry_id": "verb-33",
+        "part_of_speech": "verb",
+        "romaji": "tsuku",
+        "kana": "つく",
+        "kanji": "着く",
+        "meaning": "to arrive",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "つく",
+          "masu": "つきます",
+          "masu_past": "つきました",
+          "te": "ついて",
+          "past": "ついた",
+          "nai": "つかない",
+          "nai_past": "つかなかった",
+          "teiru": "ついている",
+          "request": "ついてください",
+          "permission": "ついてもいい"
+        }
+      },
+      {
+        "id": 34,
+        "entry_id": "verb-34",
+        "part_of_speech": "verb",
+        "romaji": "toru",
+        "kana": "とる",
+        "kanji": "取る",
+        "meaning": "to take",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "とる",
+          "masu": "とります",
+          "masu_past": "とりました",
+          "te": "とって",
+          "past": "とった",
+          "nai": "とらない",
+          "nai_past": "とらなかった",
+          "teiru": "とっている",
+          "request": "とってください",
+          "permission": "とってもいい"
+        }
+      },
+      {
+        "id": 35,
+        "entry_id": "verb-35",
+        "part_of_speech": "verb",
+        "romaji": "kasu",
+        "kana": "かす",
+        "kanji": "貸す",
+        "meaning": "to lend",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "かす",
+          "masu": "かします",
+          "masu_past": "かしました",
+          "te": "かして",
+          "past": "かした",
+          "nai": "かさない",
+          "nai_past": "かさなかった",
+          "teiru": "かしている",
+          "request": "かしてください",
+          "permission": "かしてもいい"
+        }
+      },
+      {
+        "id": 36,
+        "entry_id": "verb-36",
+        "part_of_speech": "verb",
+        "romaji": "kesu",
+        "kana": "けす",
+        "kanji": "消す",
+        "meaning": "to turn off",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "けす",
+          "masu": "けします",
+          "masu_past": "けしました",
+          "te": "けして",
+          "past": "けした",
+          "nai": "けさない",
+          "nai_past": "けさなかった",
+          "teiru": "けしている",
+          "request": "けしてください",
+          "permission": "けしてもいい"
+        }
+      },
+      {
+        "id": 37,
+        "entry_id": "verb-37",
+        "part_of_speech": "verb",
+        "romaji": "tatsu",
+        "kana": "たつ",
+        "kanji": "立つ",
+        "meaning": "to stand",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "たつ",
+          "masu": "たちます",
+          "masu_past": "たちました",
+          "te": "たって",
+          "past": "たった",
+          "nai": "たたない",
+          "nai_past": "たたなかった",
+          "teiru": "たっている",
+          "request": "たってください",
+          "permission": "たってもいい"
+        }
+      },
+      {
+        "id": 38,
+        "entry_id": "verb-38",
+        "part_of_speech": "verb",
+        "romaji": "suwaru",
+        "kana": "すわる",
+        "kanji": "座る",
+        "meaning": "to sit",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "すわる",
+          "masu": "すわります",
+          "masu_past": "すわりました",
+          "te": "すわって",
+          "past": "すわった",
+          "nai": "すわらない",
+          "nai_past": "すわらなかった",
+          "teiru": "すわっている",
+          "request": "すわってください",
+          "permission": "すわってもいい"
+        }
+      },
+      {
+        "id": 39,
+        "entry_id": "verb-39",
+        "part_of_speech": "verb",
+        "romaji": "motsu",
+        "kana": "もつ",
+        "kanji": "持つ",
+        "meaning": "to hold",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "もつ",
+          "masu": "もちます",
+          "masu_past": "もちました",
+          "te": "もって",
+          "past": "もった",
+          "nai": "もたない",
+          "nai_past": "もたなかった",
+          "teiru": "もっている",
+          "request": "もってください",
+          "permission": "もってもいい"
+        }
+      },
+      {
+        "id": 40,
+        "entry_id": "verb-40",
+        "part_of_speech": "verb",
+        "romaji": "isogu",
+        "kana": "いそぐ",
+        "kanji": "急ぐ",
+        "meaning": "to hurry",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "いそぐ",
+          "masu": "いそぎます",
+          "masu_past": "いそぎました",
+          "te": "いそいで",
+          "past": "いそいだ",
+          "nai": "いそがない",
+          "nai_past": "いそがなかった",
+          "teiru": "いそいでいる",
+          "request": "いそいでください",
+          "permission": "いそいでもいい"
+        }
+      },
+      {
+        "id": 41,
+        "entry_id": "verb-41",
+        "part_of_speech": "verb",
+        "romaji": "kiru",
+        "kana": "きる",
+        "kanji": "切る",
+        "meaning": "to cut",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "きる",
+          "masu": "きります",
+          "masu_past": "きりました",
+          "te": "きって",
+          "past": "きった",
+          "nai": "きらない",
+          "nai_past": "きらなかった",
+          "teiru": "きっている",
+          "request": "きってください",
+          "permission": "きってもいい"
+        }
+      },
+      {
+        "id": 42,
+        "entry_id": "verb-42",
+        "part_of_speech": "verb",
+        "romaji": "tetsudau",
+        "kana": "てつだう",
+        "kanji": "手伝う",
+        "meaning": "to help (assist)",
+        "verb_type": "u-verb",
+        "verb_group": "godan",
+        "forms": {
+          "dictionary": "てつだう",
+          "masu": "てつだいます",
+          "masu_past": "てつだいました",
+          "te": "てつだって",
+          "past": "てつだった",
+          "nai": "てつだわない",
+          "nai_past": "てつだわなかった",
+          "teiru": "てつだっている",
+          "request": "てつだってください",
+          "permission": "てつだってもいい"
+        }
+      },
+      {
+        "id": 43,
+        "entry_id": "verb-43",
+        "part_of_speech": "verb",
+        "romaji": "suru",
+        "kana": "する",
+        "kanji": "する",
+        "meaning": "to do",
+        "verb_type": "irregular",
+        "verb_group": "irregular",
+        "forms": {
+          "dictionary": "する",
+          "masu": "します",
+          "masu_past": "しました",
+          "te": "して",
+          "past": "した",
+          "nai": "しない",
+          "nai_past": "しなかった",
+          "teiru": "している",
+          "request": "してください",
+          "permission": "してもいい"
+        }
+      },
+      {
+        "id": 44,
+        "entry_id": "verb-44",
+        "part_of_speech": "verb",
+        "romaji": "kuru",
+        "kana": "くる",
+        "kanji": "来る",
+        "meaning": "to come",
+        "verb_type": "irregular",
+        "verb_group": "irregular",
+        "forms": {
+          "dictionary": "くる",
+          "masu": "きます",
+          "masu_past": "きました",
+          "te": "きて",
+          "past": "きた",
+          "nai": "こない",
+          "nai_past": "こなかった",
+          "teiru": "きている",
+          "request": "きてください",
+          "permission": "きてもいい"
+        }
+      },
+      {
+        "id": 45,
+        "entry_id": "verb-45",
+        "part_of_speech": "verb",
+        "romaji": "benkyou suru",
+        "kana": "べんきょうする",
+        "kanji": "勉強する",
+        "meaning": "to study",
+        "verb_type": "irregular",
+        "verb_group": "irregular",
+        "forms": {
+          "dictionary": "べんきょうする",
+          "masu": "べんきょうします",
+          "masu_past": "べんきょうしました",
+          "te": "べんきょうして",
+          "past": "べんきょうした",
+          "nai": "べんきょうしない",
+          "nai_past": "べんきょうしなかった",
+          "teiru": "べんきょうしている",
+          "request": "べんきょうしてください",
+          "permission": "べんきょうしてもいい"
+        }
+      },
+      {
+        "id": 46,
+        "entry_id": "verb-46",
+        "part_of_speech": "verb",
+        "romaji": "denwa suru",
+        "kana": "でんわする",
+        "kanji": "電話する",
+        "meaning": "to call",
+        "verb_type": "irregular",
+        "verb_group": "irregular",
+        "forms": {
+          "dictionary": "でんわする",
+          "masu": "でんわします",
+          "masu_past": "でんわしました",
+          "te": "でんわして",
+          "past": "でんわした",
+          "nai": "でんわしない",
+          "nai_past": "でんわしなかった",
+          "teiru": "でんわしている",
+          "request": "でんわしてください",
+          "permission": "でんわしてもいい"
+        }
+      },
+      {
+        "id": 47,
+        "entry_id": "verb-47",
+        "part_of_speech": "verb",
+        "romaji": "mottekuru",
+        "kana": "もってくる",
+        "kanji": "持ってくる",
+        "meaning": "to bring (thing)",
+        "verb_type": "compound",
+        "verb_group": "irregular-compound",
+        "forms": {
+          "dictionary": "もってくる",
+          "masu": "もってきます",
+          "masu_past": "もってきました",
+          "te": "もってきて",
+          "past": "もってきた",
+          "nai": "もってこない",
+          "nai_past": "もってこなかった",
+          "teiru": "もってきている",
+          "request": "もってきてください",
+          "permission": "もってきてもいい"
+        }
+      },
+      {
+        "id": 48,
+        "entry_id": "verb-48",
+        "part_of_speech": "verb",
+        "romaji": "tsuretekuru",
+        "kana": "つれてくる",
+        "kanji": "連れてくる",
+        "meaning": "to bring (person)",
+        "verb_type": "compound",
+        "verb_group": "irregular-compound",
+        "forms": {
+          "dictionary": "つれてくる",
+          "masu": "つれてきます",
+          "masu_past": "つれてきました",
+          "te": "つれてきて",
+          "past": "つれてきた",
+          "nai": "つれてこない",
+          "nai_past": "つれてこなかった",
+          "teiru": "つれてきている",
+          "request": "つれてきてください",
+          "permission": "つれてきてもいい"
+        }
+      }
+    ],
+    "adjectives": [
+      {
+        "id": 1,
+        "entry_id": "adjective-1",
+        "part_of_speech": "adjective",
+        "romaji": "ookii",
+        "kana": "おおきい",
+        "meaning": "big / large",
+        "adjective_type": "i"
+      },
+      {
+        "id": 2,
+        "entry_id": "adjective-2",
+        "part_of_speech": "adjective",
+        "romaji": "chiisai",
+        "kana": "ちいさい",
+        "meaning": "small",
+        "adjective_type": "i"
+      },
+      {
+        "id": 3,
+        "entry_id": "adjective-3",
+        "part_of_speech": "adjective",
+        "romaji": "takai",
+        "kana": "たかい",
+        "meaning": "expensive / tall",
+        "adjective_type": "i"
+      },
+      {
+        "id": 4,
+        "entry_id": "adjective-4",
+        "part_of_speech": "adjective",
+        "romaji": "kowai",
+        "kana": "こわい",
+        "meaning": "scary / frightening",
+        "adjective_type": "i"
+      },
+      {
+        "id": 5,
+        "entry_id": "adjective-5",
+        "part_of_speech": "adjective",
+        "romaji": "omoshiroi",
+        "kana": "おもしろい",
+        "meaning": "interesting",
+        "adjective_type": "i"
+      },
+      {
+        "id": 6,
+        "entry_id": "adjective-6",
+        "part_of_speech": "adjective",
+        "romaji": "tsumaranai",
+        "kana": "つまらない",
+        "meaning": "boring",
+        "adjective_type": "i"
+      },
+      {
+        "id": 7,
+        "entry_id": "adjective-7",
+        "part_of_speech": "adjective",
+        "romaji": "furui",
+        "kana": "ふるい",
+        "meaning": "old",
+        "adjective_type": "i"
+      },
+      {
+        "id": 8,
+        "entry_id": "adjective-8",
+        "part_of_speech": "adjective",
+        "romaji": "ii / yoi",
+        "kana": "いい / よい",
+        "meaning": "good",
+        "adjective_type": "i"
+      },
+      {
+        "id": 9,
+        "entry_id": "adjective-9",
+        "part_of_speech": "adjective",
+        "romaji": "atarashii",
+        "kana": "あたらしい",
+        "meaning": "new",
+        "adjective_type": "i"
+      },
+      {
+        "id": 10,
+        "entry_id": "adjective-10",
+        "part_of_speech": "adjective",
+        "romaji": "atsui",
+        "kana": "あつい",
+        "meaning": "hot (weather / objects)",
+        "adjective_type": "i"
+      },
+      {
+        "id": 11,
+        "entry_id": "adjective-11",
+        "part_of_speech": "adjective",
+        "romaji": "samui",
+        "kana": "さむい",
+        "meaning": "cold (weather)",
+        "adjective_type": "i"
+      },
+      {
+        "id": 12,
+        "entry_id": "adjective-12",
+        "part_of_speech": "adjective",
+        "romaji": "tsumetai",
+        "kana": "つめたい",
+        "meaning": "cold (to touch)",
+        "adjective_type": "i"
+      },
+      {
+        "id": 13,
+        "entry_id": "adjective-13",
+        "part_of_speech": "adjective",
+        "romaji": "yasashii",
+        "kana": "やさしい",
+        "meaning": "kind / easy",
+        "adjective_type": "i"
+      },
+      {
+        "id": 14,
+        "entry_id": "adjective-14",
+        "part_of_speech": "adjective",
+        "romaji": "muzukashii",
+        "kana": "むずかしい",
+        "meaning": "difficult",
+        "adjective_type": "i"
+      },
+      {
+        "id": 15,
+        "entry_id": "adjective-15",
+        "part_of_speech": "adjective",
+        "romaji": "tanoshii",
+        "kana": "たのしい",
+        "meaning": "fun",
+        "adjective_type": "i"
+      },
+      {
+        "id": 16,
+        "entry_id": "adjective-16",
+        "part_of_speech": "adjective",
+        "romaji": "isogashii",
+        "kana": "いそがしい",
+        "meaning": "busy",
+        "adjective_type": "i"
+      },
+      {
+        "id": 17,
+        "entry_id": "adjective-17",
+        "part_of_speech": "adjective",
+        "romaji": "hidoi",
+        "kana": "ひどい",
+        "meaning": "terrible",
+        "adjective_type": "i"
+      },
+      {
+        "id": 18,
+        "entry_id": "adjective-18",
+        "part_of_speech": "adjective",
+        "romaji": "shizuka",
+        "kana": "しずか",
+        "meaning": "quiet",
+        "adjective_type": "na"
+      },
+      {
+        "id": 19,
+        "entry_id": "adjective-19",
+        "part_of_speech": "adjective",
+        "romaji": "kirei",
+        "kana": "きれい",
+        "meaning": "beautiful / clean",
+        "adjective_type": "na"
+      },
+      {
+        "id": 20,
+        "entry_id": "adjective-20",
+        "part_of_speech": "adjective",
+        "romaji": "genki",
+        "kana": "げんき",
+        "meaning": "healthy / energetic",
+        "adjective_type": "na"
+      },
+      {
+        "id": 21,
+        "entry_id": "adjective-21",
+        "part_of_speech": "adjective",
+        "romaji": "suki",
+        "kana": "すき",
+        "meaning": "liked / to like",
+        "adjective_type": "na"
+      },
+      {
+        "id": 22,
+        "entry_id": "adjective-22",
+        "part_of_speech": "adjective",
+        "romaji": "kirai",
+        "kana": "きらい",
+        "meaning": "disliked / to dislike",
+        "adjective_type": "na"
+      },
+      {
+        "id": 23,
+        "entry_id": "adjective-23",
+        "part_of_speech": "adjective",
+        "romaji": "nigiyaka",
+        "kana": "にぎやか",
+        "meaning": "lively / busy",
+        "adjective_type": "na"
+      },
+      {
+        "id": 24,
+        "entry_id": "adjective-24",
+        "part_of_speech": "adjective",
+        "romaji": "hen",
+        "kana": "へん",
+        "meaning": "strange",
+        "adjective_type": "na"
+      },
+      {
+        "id": 25,
+        "entry_id": "adjective-25",
+        "part_of_speech": "adjective",
+        "romaji": "himana",
+        "kana": "ひま（な）",
+        "meaning": "free / not busy",
+        "adjective_type": "na"
+      }
+    ],
+    "vocabulary": [
+      {
+        "id": 1,
+        "entry_id": "vocabulary-1",
+        "part_of_speech": "vocabulary",
+        "romaji": "jitensha",
+        "kana": "じてんしゃ",
+        "meaning": "bicycle",
+        "category": "object"
+      },
+      {
+        "id": 2,
+        "entry_id": "vocabulary-2",
+        "part_of_speech": "vocabulary",
+        "romaji": "boushi",
+        "kana": "ぼうし",
+        "meaning": "hat",
+        "category": "object"
+      },
+      {
+        "id": 3,
+        "entry_id": "vocabulary-3",
+        "part_of_speech": "vocabulary",
+        "romaji": "enpitsu",
+        "kana": "えんぴつ",
+        "meaning": "pencil",
+        "category": "object"
+      },
+      {
+        "id": 4,
+        "entry_id": "vocabulary-4",
+        "part_of_speech": "vocabulary",
+        "romaji": "kasa",
+        "kana": "かさ",
+        "meaning": "umbrella",
+        "category": "object"
+      },
+      {
+        "id": 5,
+        "entry_id": "vocabulary-5",
+        "part_of_speech": "vocabulary",
+        "romaji": "jisho",
+        "kana": "じしょ",
+        "meaning": "dictionary",
+        "category": "object"
+      },
+      {
+        "id": 6,
+        "entry_id": "vocabulary-6",
+        "part_of_speech": "vocabulary",
+        "romaji": "kaban",
+        "kana": "かばん",
+        "meaning": "bag",
+        "category": "object"
+      },
+      {
+        "id": 7,
+        "entry_id": "vocabulary-7",
+        "part_of_speech": "vocabulary",
+        "romaji": "saifu",
+        "kana": "さいふ",
+        "meaning": "wallet",
+        "category": "object"
+      },
+      {
+        "id": 8,
+        "entry_id": "vocabulary-8",
+        "part_of_speech": "vocabulary",
+        "romaji": "kyoukasho",
+        "kana": "きょうかしょ",
+        "meaning": "textbook",
+        "category": "object"
+      },
+      {
+        "id": 9,
+        "entry_id": "vocabulary-9",
+        "part_of_speech": "vocabulary",
+        "romaji": "noto",
+        "kana": "ノート",
+        "meaning": "notebook",
+        "category": "object"
+      },
+      {
+        "id": 10,
+        "entry_id": "vocabulary-10",
+        "part_of_speech": "vocabulary",
+        "romaji": "kutsu",
+        "kana": "くつ",
+        "meaning": "shoes",
+        "category": "object"
+      },
+      {
+        "id": 11,
+        "entry_id": "vocabulary-11",
+        "part_of_speech": "vocabulary",
+        "romaji": "tokei",
+        "kana": "とけい",
+        "meaning": "watch / clock",
+        "category": "object"
+      },
+      {
+        "id": 12,
+        "entry_id": "vocabulary-12",
+        "part_of_speech": "vocabulary",
+        "romaji": "shinbun",
+        "kana": "しんぶん",
+        "meaning": "newspaper",
+        "category": "object"
+      },
+      {
+        "id": 13,
+        "entry_id": "vocabulary-13",
+        "part_of_speech": "vocabulary",
+        "romaji": "toshokan",
+        "kana": "としょかん",
+        "meaning": "library",
+        "category": "place"
+      },
+      {
+        "id": 14,
+        "entry_id": "vocabulary-14",
+        "part_of_speech": "vocabulary",
+        "romaji": "ginkou",
+        "kana": "ぎんこう",
+        "meaning": "bank",
+        "category": "place"
+      },
+      {
+        "id": 15,
+        "entry_id": "vocabulary-15",
+        "part_of_speech": "vocabulary",
+        "romaji": "yuubinkyoku",
+        "kana": "ゆうびんきょく",
+        "meaning": "post office",
+        "category": "place"
+      },
+      {
+        "id": 16,
+        "entry_id": "vocabulary-16",
+        "part_of_speech": "vocabulary",
+        "romaji": "cafe",
+        "kana": "カフェ",
+        "meaning": "cafe",
+        "category": "place"
+      },
+      {
+        "id": 17,
+        "entry_id": "vocabulary-17",
+        "part_of_speech": "vocabulary",
+        "romaji": "niku",
+        "kana": "にく",
+        "meaning": "meat",
+        "category": "food"
+      },
+      {
+        "id": 18,
+        "entry_id": "vocabulary-18",
+        "part_of_speech": "vocabulary",
+        "romaji": "hon",
+        "kana": "ほん",
+        "meaning": "book",
+        "category": "object"
+      },
+      {
+        "id": 19,
+        "entry_id": "vocabulary-19",
+        "part_of_speech": "vocabulary",
+        "romaji": "shuumatsu",
+        "kana": "しゅうまつ",
+        "meaning": "weekend",
+        "category": "time"
+      },
+      {
+        "id": 20,
+        "entry_id": "vocabulary-20",
+        "part_of_speech": "vocabulary",
+        "romaji": "kyou",
+        "kana": "きょう",
+        "meaning": "today",
+        "category": "time"
+      },
+      {
+        "id": 21,
+        "entry_id": "vocabulary-21",
+        "part_of_speech": "vocabulary",
+        "romaji": "ashita",
+        "kana": "あした",
+        "meaning": "tomorrow",
+        "category": "time"
+      },
+      {
+        "id": 22,
+        "entry_id": "vocabulary-22",
+        "part_of_speech": "vocabulary",
+        "romaji": "kinou",
+        "kana": "きのう",
+        "meaning": "yesterday",
+        "category": "time"
+      },
+      {
+        "id": 23,
+        "entry_id": "vocabulary-23",
+        "part_of_speech": "vocabulary",
+        "romaji": "ototoi",
+        "kana": "おととい",
+        "meaning": "day before yesterday",
+        "category": "time"
+      },
+      {
+        "id": 24,
+        "entry_id": "vocabulary-24",
+        "part_of_speech": "vocabulary",
+        "romaji": "asatte",
+        "kana": "あさって",
+        "meaning": "day after tomorrow",
+        "category": "time"
+      },
+      {
+        "id": 25,
+        "entry_id": "vocabulary-25",
+        "part_of_speech": "vocabulary",
+        "romaji": "asa gohan",
+        "kana": "あさごはん",
+        "meaning": "breakfast",
+        "category": "food"
+      },
+      {
+        "id": 26,
+        "entry_id": "vocabulary-26",
+        "part_of_speech": "vocabulary",
+        "romaji": "hiru gohan",
+        "kana": "ひるごはん",
+        "meaning": "lunch",
+        "category": "food"
+      },
+      {
+        "id": 27,
+        "entry_id": "vocabulary-27",
+        "part_of_speech": "vocabulary",
+        "romaji": "yoru gohan",
+        "kana": "よるごはん",
+        "meaning": "dinner (night meal)",
+        "category": "food"
+      },
+      {
+        "id": 28,
+        "entry_id": "vocabulary-28",
+        "part_of_speech": "vocabulary",
+        "romaji": "bangohan",
+        "kana": "ばんごはん",
+        "meaning": "dinner (evening meal)",
+        "category": "food"
+      },
+      {
+        "id": 29,
+        "entry_id": "vocabulary-29",
+        "part_of_speech": "vocabulary",
+        "romaji": "eiga",
+        "kana": "えいが",
+        "meaning": "movie",
+        "category": "entertainment"
+      },
+      {
+        "id": 30,
+        "entry_id": "vocabulary-30",
+        "part_of_speech": "vocabulary",
+        "romaji": "dou",
+        "kana": "どう",
+        "meaning": "how",
+        "category": "question"
+      },
+      {
+        "id": 31,
+        "entry_id": "vocabulary-31",
+        "part_of_speech": "vocabulary",
+        "romaji": "doko",
+        "kana": "どこ",
+        "meaning": "where",
+        "category": "question"
+      },
+      {
+        "id": 32,
+        "entry_id": "vocabulary-32",
+        "part_of_speech": "vocabulary",
+        "romaji": "izakaya",
+        "kana": "いざかや",
+        "meaning": "bar / Japanese pub",
+        "category": "place"
+      },
+      {
+        "id": 33,
+        "entry_id": "vocabulary-33",
+        "part_of_speech": "vocabulary",
+        "romaji": "ongaku",
+        "kana": "おんがく",
+        "meaning": "music",
+        "category": "entertainment"
+      },
+      {
+        "id": 34,
+        "entry_id": "vocabulary-34",
+        "part_of_speech": "vocabulary",
+        "romaji": "hare",
+        "kana": "はれ",
+        "meaning": "sunny",
+        "category": "weather"
+      },
+      {
+        "id": 35,
+        "entry_id": "vocabulary-35",
+        "part_of_speech": "vocabulary",
+        "romaji": "ame",
+        "kana": "あめ",
+        "meaning": "rainy",
+        "category": "weather"
+      },
+      {
+        "id": 36,
+        "entry_id": "vocabulary-36",
+        "part_of_speech": "vocabulary",
+        "romaji": "kumori",
+        "kana": "くもり",
+        "meaning": "cloudy",
+        "category": "weather"
+      },
+      {
+        "id": 37,
+        "entry_id": "vocabulary-37",
+        "part_of_speech": "vocabulary",
+        "romaji": "yuki",
+        "kana": "ゆき",
+        "meaning": "snowy",
+        "category": "weather"
+      },
+      {
+        "id": 38,
+        "entry_id": "vocabulary-38",
+        "part_of_speech": "vocabulary",
+        "romaji": "kaminari",
+        "kana": "かみなり",
+        "meaning": "thunder",
+        "category": "weather"
+      },
+      {
+        "id": 39,
+        "entry_id": "vocabulary-39",
+        "part_of_speech": "vocabulary",
+        "romaji": "yasumi",
+        "kana": "やすみ",
+        "meaning": "day off / rest",
+        "category": "noun"
+      },
+      {
+        "id": 40,
+        "entry_id": "vocabulary-40",
+        "part_of_speech": "vocabulary",
+        "romaji": "yasumu",
+        "kana": "やすむ",
+        "meaning": "to rest",
+        "category": "verb"
+      }
+    ]
+  },
+  "search_index": [
+    {
+      "entry_id": "verb-1",
+      "section": "lexicon.verbs",
+      "romaji": "taberu",
+      "kana": "たべる",
+      "kanji": "食べる",
+      "meaning": "to eat",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-2",
+      "section": "lexicon.verbs",
+      "romaji": "miru",
+      "kana": "みる",
+      "kanji": "見る",
+      "meaning": "to see/watch",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-3",
+      "section": "lexicon.verbs",
+      "romaji": "neru",
+      "kana": "ねる",
+      "kanji": "寝る",
+      "meaning": "to sleep",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-4",
+      "section": "lexicon.verbs",
+      "romaji": "kiru",
+      "kana": "きる",
+      "kanji": "着る",
+      "meaning": "to wear",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-5",
+      "section": "lexicon.verbs",
+      "romaji": "okiru",
+      "kana": "おきる",
+      "kanji": "起きる",
+      "meaning": "to wake up",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-6",
+      "section": "lexicon.verbs",
+      "romaji": "akeru",
+      "kana": "あける",
+      "kanji": "開ける",
+      "meaning": "to open",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-7",
+      "section": "lexicon.verbs",
+      "romaji": "shimeru",
+      "kana": "しめる",
+      "kanji": "閉める",
+      "meaning": "to close",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-8",
+      "section": "lexicon.verbs",
+      "romaji": "oshieru",
+      "kana": "おしえる",
+      "kanji": "教える",
+      "meaning": "to teach",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-9",
+      "section": "lexicon.verbs",
+      "romaji": "kariru",
+      "kana": "かりる",
+      "kanji": "借りる",
+      "meaning": "to borrow",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-10",
+      "section": "lexicon.verbs",
+      "romaji": "tsukeru",
+      "kana": "つける",
+      "kanji": "付ける",
+      "meaning": "to turn on",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-11",
+      "section": "lexicon.verbs",
+      "romaji": "tasukeru",
+      "kana": "たすける",
+      "kanji": "助ける",
+      "meaning": "to help (rescue)",
+      "tags": [
+        "verb",
+        "ru-verb",
+        "ichidan"
+      ]
+    },
+    {
+      "entry_id": "verb-12",
+      "section": "lexicon.verbs",
+      "romaji": "kau",
+      "kana": "かう",
+      "kanji": "買う",
+      "meaning": "to buy",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-13",
+      "section": "lexicon.verbs",
+      "romaji": "iku",
+      "kana": "いく",
+      "kanji": "行く",
+      "meaning": "to go",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-14",
+      "section": "lexicon.verbs",
+      "romaji": "kaeru",
+      "kana": "かえる",
+      "kanji": "帰る",
+      "meaning": "to return",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-15",
+      "section": "lexicon.verbs",
+      "romaji": "yomu",
+      "kana": "よむ",
+      "kanji": "読む",
+      "meaning": "to read",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-16",
+      "section": "lexicon.verbs",
+      "romaji": "oku",
+      "kana": "おく",
+      "kanji": "置く",
+      "meaning": "to put",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-17",
+      "section": "lexicon.verbs",
+      "romaji": "tsukau",
+      "kana": "つかう",
+      "kanji": "使う",
+      "meaning": "to use",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-18",
+      "section": "lexicon.verbs",
+      "romaji": "nomu",
+      "kana": "のむ",
+      "kanji": "飲む",
+      "meaning": "to drink",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-19",
+      "section": "lexicon.verbs",
+      "romaji": "kiku",
+      "kana": "きく",
+      "kanji": "聞く",
+      "meaning": "to listen",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-20",
+      "section": "lexicon.verbs",
+      "romaji": "hanasu",
+      "kana": "はなす",
+      "kanji": "話す",
+      "meaning": "to speak",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-21",
+      "section": "lexicon.verbs",
+      "romaji": "iu",
+      "kana": "いう",
+      "kanji": "言う",
+      "meaning": "to say",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-22",
+      "section": "lexicon.verbs",
+      "romaji": "wakaru",
+      "kana": "わかる",
+      "kanji": "分かる",
+      "meaning": "to understand",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-23",
+      "section": "lexicon.verbs",
+      "romaji": "utau",
+      "kana": "うたう",
+      "kanji": "歌う",
+      "meaning": "to sing",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-24",
+      "section": "lexicon.verbs",
+      "romaji": "aruku",
+      "kana": "あるく",
+      "kanji": "歩く",
+      "meaning": "to walk",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-25",
+      "section": "lexicon.verbs",
+      "romaji": "matsu",
+      "kana": "まつ",
+      "kanji": "待つ",
+      "meaning": "to wait",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-26",
+      "section": "lexicon.verbs",
+      "romaji": "kaku",
+      "kana": "かく",
+      "kanji": "書く",
+      "meaning": "to write",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-27",
+      "section": "lexicon.verbs",
+      "romaji": "au",
+      "kana": "あう",
+      "kanji": "会う",
+      "meaning": "to meet",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-28",
+      "section": "lexicon.verbs",
+      "romaji": "asobu",
+      "kana": "あそぶ",
+      "kanji": "遊ぶ",
+      "meaning": "to play",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-29",
+      "section": "lexicon.verbs",
+      "romaji": "oyogu",
+      "kana": "およぐ",
+      "kanji": "泳ぐ",
+      "meaning": "to swim",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-30",
+      "section": "lexicon.verbs",
+      "romaji": "shinu",
+      "kana": "しぬ",
+      "kanji": "死ぬ",
+      "meaning": "to die",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-31",
+      "section": "lexicon.verbs",
+      "romaji": "tsukuru",
+      "kana": "つくる",
+      "kanji": "作る",
+      "meaning": "to make",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-32",
+      "section": "lexicon.verbs",
+      "romaji": "aru",
+      "kana": "ある",
+      "kanji": "ある",
+      "meaning": "to exist",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-33",
+      "section": "lexicon.verbs",
+      "romaji": "tsuku",
+      "kana": "つく",
+      "kanji": "着く",
+      "meaning": "to arrive",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-34",
+      "section": "lexicon.verbs",
+      "romaji": "toru",
+      "kana": "とる",
+      "kanji": "取る",
+      "meaning": "to take",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-35",
+      "section": "lexicon.verbs",
+      "romaji": "kasu",
+      "kana": "かす",
+      "kanji": "貸す",
+      "meaning": "to lend",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-36",
+      "section": "lexicon.verbs",
+      "romaji": "kesu",
+      "kana": "けす",
+      "kanji": "消す",
+      "meaning": "to turn off",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-37",
+      "section": "lexicon.verbs",
+      "romaji": "tatsu",
+      "kana": "たつ",
+      "kanji": "立つ",
+      "meaning": "to stand",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-38",
+      "section": "lexicon.verbs",
+      "romaji": "suwaru",
+      "kana": "すわる",
+      "kanji": "座る",
+      "meaning": "to sit",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-39",
+      "section": "lexicon.verbs",
+      "romaji": "motsu",
+      "kana": "もつ",
+      "kanji": "持つ",
+      "meaning": "to hold",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-40",
+      "section": "lexicon.verbs",
+      "romaji": "isogu",
+      "kana": "いそぐ",
+      "kanji": "急ぐ",
+      "meaning": "to hurry",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-41",
+      "section": "lexicon.verbs",
+      "romaji": "kiru",
+      "kana": "きる",
+      "kanji": "切る",
+      "meaning": "to cut",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-42",
+      "section": "lexicon.verbs",
+      "romaji": "tetsudau",
+      "kana": "てつだう",
+      "kanji": "手伝う",
+      "meaning": "to help (assist)",
+      "tags": [
+        "verb",
+        "u-verb",
+        "godan"
+      ]
+    },
+    {
+      "entry_id": "verb-43",
+      "section": "lexicon.verbs",
+      "romaji": "suru",
+      "kana": "する",
+      "kanji": "する",
+      "meaning": "to do",
+      "tags": [
+        "verb",
+        "irregular",
+        "irregular"
+      ]
+    },
+    {
+      "entry_id": "verb-44",
+      "section": "lexicon.verbs",
+      "romaji": "kuru",
+      "kana": "くる",
+      "kanji": "来る",
+      "meaning": "to come",
+      "tags": [
+        "verb",
+        "irregular",
+        "irregular"
+      ]
+    },
+    {
+      "entry_id": "verb-45",
+      "section": "lexicon.verbs",
+      "romaji": "benkyou suru",
+      "kana": "べんきょうする",
+      "kanji": "勉強する",
+      "meaning": "to study",
+      "tags": [
+        "verb",
+        "irregular",
+        "irregular"
+      ]
+    },
+    {
+      "entry_id": "verb-46",
+      "section": "lexicon.verbs",
+      "romaji": "denwa suru",
+      "kana": "でんわする",
+      "kanji": "電話する",
+      "meaning": "to call",
+      "tags": [
+        "verb",
+        "irregular",
+        "irregular"
+      ]
+    },
+    {
+      "entry_id": "verb-47",
+      "section": "lexicon.verbs",
+      "romaji": "mottekuru",
+      "kana": "もってくる",
+      "kanji": "持ってくる",
+      "meaning": "to bring (thing)",
+      "tags": [
+        "verb",
+        "compound",
+        "irregular-compound"
+      ]
+    },
+    {
+      "entry_id": "verb-48",
+      "section": "lexicon.verbs",
+      "romaji": "tsuretekuru",
+      "kana": "つれてくる",
+      "kanji": "連れてくる",
+      "meaning": "to bring (person)",
+      "tags": [
+        "verb",
+        "compound",
+        "irregular-compound"
+      ]
+    },
+    {
+      "entry_id": "adjective-1",
+      "section": "lexicon.adjectives",
+      "romaji": "ookii",
+      "kana": "おおきい",
+      "kanji": null,
+      "meaning": "big / large",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-2",
+      "section": "lexicon.adjectives",
+      "romaji": "chiisai",
+      "kana": "ちいさい",
+      "kanji": null,
+      "meaning": "small",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-3",
+      "section": "lexicon.adjectives",
+      "romaji": "takai",
+      "kana": "たかい",
+      "kanji": null,
+      "meaning": "expensive / tall",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-4",
+      "section": "lexicon.adjectives",
+      "romaji": "kowai",
+      "kana": "こわい",
+      "kanji": null,
+      "meaning": "scary / frightening",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-5",
+      "section": "lexicon.adjectives",
+      "romaji": "omoshiroi",
+      "kana": "おもしろい",
+      "kanji": null,
+      "meaning": "interesting",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-6",
+      "section": "lexicon.adjectives",
+      "romaji": "tsumaranai",
+      "kana": "つまらない",
+      "kanji": null,
+      "meaning": "boring",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-7",
+      "section": "lexicon.adjectives",
+      "romaji": "furui",
+      "kana": "ふるい",
+      "kanji": null,
+      "meaning": "old",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-8",
+      "section": "lexicon.adjectives",
+      "romaji": "ii / yoi",
+      "kana": "いい / よい",
+      "kanji": null,
+      "meaning": "good",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-9",
+      "section": "lexicon.adjectives",
+      "romaji": "atarashii",
+      "kana": "あたらしい",
+      "kanji": null,
+      "meaning": "new",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-10",
+      "section": "lexicon.adjectives",
+      "romaji": "atsui",
+      "kana": "あつい",
+      "kanji": null,
+      "meaning": "hot (weather / objects)",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-11",
+      "section": "lexicon.adjectives",
+      "romaji": "samui",
+      "kana": "さむい",
+      "kanji": null,
+      "meaning": "cold (weather)",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-12",
+      "section": "lexicon.adjectives",
+      "romaji": "tsumetai",
+      "kana": "つめたい",
+      "kanji": null,
+      "meaning": "cold (to touch)",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-13",
+      "section": "lexicon.adjectives",
+      "romaji": "yasashii",
+      "kana": "やさしい",
+      "kanji": null,
+      "meaning": "kind / easy",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-14",
+      "section": "lexicon.adjectives",
+      "romaji": "muzukashii",
+      "kana": "むずかしい",
+      "kanji": null,
+      "meaning": "difficult",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-15",
+      "section": "lexicon.adjectives",
+      "romaji": "tanoshii",
+      "kana": "たのしい",
+      "kanji": null,
+      "meaning": "fun",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-16",
+      "section": "lexicon.adjectives",
+      "romaji": "isogashii",
+      "kana": "いそがしい",
+      "kanji": null,
+      "meaning": "busy",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-17",
+      "section": "lexicon.adjectives",
+      "romaji": "hidoi",
+      "kana": "ひどい",
+      "kanji": null,
+      "meaning": "terrible",
+      "tags": [
+        "adjective",
+        "i"
+      ]
+    },
+    {
+      "entry_id": "adjective-18",
+      "section": "lexicon.adjectives",
+      "romaji": "shizuka",
+      "kana": "しずか",
+      "kanji": null,
+      "meaning": "quiet",
+      "tags": [
+        "adjective",
+        "na"
+      ]
+    },
+    {
+      "entry_id": "adjective-19",
+      "section": "lexicon.adjectives",
+      "romaji": "kirei",
+      "kana": "きれい",
+      "kanji": null,
+      "meaning": "beautiful / clean",
+      "tags": [
+        "adjective",
+        "na"
+      ]
+    },
+    {
+      "entry_id": "adjective-20",
+      "section": "lexicon.adjectives",
+      "romaji": "genki",
+      "kana": "げんき",
+      "kanji": null,
+      "meaning": "healthy / energetic",
+      "tags": [
+        "adjective",
+        "na"
+      ]
+    },
+    {
+      "entry_id": "adjective-21",
+      "section": "lexicon.adjectives",
+      "romaji": "suki",
+      "kana": "すき",
+      "kanji": null,
+      "meaning": "liked / to like",
+      "tags": [
+        "adjective",
+        "na"
+      ]
+    },
+    {
+      "entry_id": "adjective-22",
+      "section": "lexicon.adjectives",
+      "romaji": "kirai",
+      "kana": "きらい",
+      "kanji": null,
+      "meaning": "disliked / to dislike",
+      "tags": [
+        "adjective",
+        "na"
+      ]
+    },
+    {
+      "entry_id": "adjective-23",
+      "section": "lexicon.adjectives",
+      "romaji": "nigiyaka",
+      "kana": "にぎやか",
+      "kanji": null,
+      "meaning": "lively / busy",
+      "tags": [
+        "adjective",
+        "na"
+      ]
+    },
+    {
+      "entry_id": "adjective-24",
+      "section": "lexicon.adjectives",
+      "romaji": "hen",
+      "kana": "へん",
+      "kanji": null,
+      "meaning": "strange",
+      "tags": [
+        "adjective",
+        "na"
+      ]
+    },
+    {
+      "entry_id": "adjective-25",
+      "section": "lexicon.adjectives",
+      "romaji": "himana",
+      "kana": "ひま（な）",
+      "kanji": null,
+      "meaning": "free / not busy",
+      "tags": [
+        "adjective",
+        "na"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-1",
+      "section": "lexicon.vocabulary",
+      "romaji": "jitensha",
+      "kana": "じてんしゃ",
+      "kanji": null,
+      "meaning": "bicycle",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-2",
+      "section": "lexicon.vocabulary",
+      "romaji": "boushi",
+      "kana": "ぼうし",
+      "kanji": null,
+      "meaning": "hat",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-3",
+      "section": "lexicon.vocabulary",
+      "romaji": "enpitsu",
+      "kana": "えんぴつ",
+      "kanji": null,
+      "meaning": "pencil",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-4",
+      "section": "lexicon.vocabulary",
+      "romaji": "kasa",
+      "kana": "かさ",
+      "kanji": null,
+      "meaning": "umbrella",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-5",
+      "section": "lexicon.vocabulary",
+      "romaji": "jisho",
+      "kana": "じしょ",
+      "kanji": null,
+      "meaning": "dictionary",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-6",
+      "section": "lexicon.vocabulary",
+      "romaji": "kaban",
+      "kana": "かばん",
+      "kanji": null,
+      "meaning": "bag",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-7",
+      "section": "lexicon.vocabulary",
+      "romaji": "saifu",
+      "kana": "さいふ",
+      "kanji": null,
+      "meaning": "wallet",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-8",
+      "section": "lexicon.vocabulary",
+      "romaji": "kyoukasho",
+      "kana": "きょうかしょ",
+      "kanji": null,
+      "meaning": "textbook",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-9",
+      "section": "lexicon.vocabulary",
+      "romaji": "noto",
+      "kana": "ノート",
+      "kanji": null,
+      "meaning": "notebook",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-10",
+      "section": "lexicon.vocabulary",
+      "romaji": "kutsu",
+      "kana": "くつ",
+      "kanji": null,
+      "meaning": "shoes",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-11",
+      "section": "lexicon.vocabulary",
+      "romaji": "tokei",
+      "kana": "とけい",
+      "kanji": null,
+      "meaning": "watch / clock",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-12",
+      "section": "lexicon.vocabulary",
+      "romaji": "shinbun",
+      "kana": "しんぶん",
+      "kanji": null,
+      "meaning": "newspaper",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-13",
+      "section": "lexicon.vocabulary",
+      "romaji": "toshokan",
+      "kana": "としょかん",
+      "kanji": null,
+      "meaning": "library",
+      "tags": [
+        "vocabulary",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-14",
+      "section": "lexicon.vocabulary",
+      "romaji": "ginkou",
+      "kana": "ぎんこう",
+      "kanji": null,
+      "meaning": "bank",
+      "tags": [
+        "vocabulary",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-15",
+      "section": "lexicon.vocabulary",
+      "romaji": "yuubinkyoku",
+      "kana": "ゆうびんきょく",
+      "kanji": null,
+      "meaning": "post office",
+      "tags": [
+        "vocabulary",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-16",
+      "section": "lexicon.vocabulary",
+      "romaji": "cafe",
+      "kana": "カフェ",
+      "kanji": null,
+      "meaning": "cafe",
+      "tags": [
+        "vocabulary",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-17",
+      "section": "lexicon.vocabulary",
+      "romaji": "niku",
+      "kana": "にく",
+      "kanji": null,
+      "meaning": "meat",
+      "tags": [
+        "vocabulary",
+        "food"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-18",
+      "section": "lexicon.vocabulary",
+      "romaji": "hon",
+      "kana": "ほん",
+      "kanji": null,
+      "meaning": "book",
+      "tags": [
+        "vocabulary",
+        "object"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-19",
+      "section": "lexicon.vocabulary",
+      "romaji": "shuumatsu",
+      "kana": "しゅうまつ",
+      "kanji": null,
+      "meaning": "weekend",
+      "tags": [
+        "vocabulary",
+        "time"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-20",
+      "section": "lexicon.vocabulary",
+      "romaji": "kyou",
+      "kana": "きょう",
+      "kanji": null,
+      "meaning": "today",
+      "tags": [
+        "vocabulary",
+        "time"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-21",
+      "section": "lexicon.vocabulary",
+      "romaji": "ashita",
+      "kana": "あした",
+      "kanji": null,
+      "meaning": "tomorrow",
+      "tags": [
+        "vocabulary",
+        "time"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-22",
+      "section": "lexicon.vocabulary",
+      "romaji": "kinou",
+      "kana": "きのう",
+      "kanji": null,
+      "meaning": "yesterday",
+      "tags": [
+        "vocabulary",
+        "time"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-23",
+      "section": "lexicon.vocabulary",
+      "romaji": "ototoi",
+      "kana": "おととい",
+      "kanji": null,
+      "meaning": "day before yesterday",
+      "tags": [
+        "vocabulary",
+        "time"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-24",
+      "section": "lexicon.vocabulary",
+      "romaji": "asatte",
+      "kana": "あさって",
+      "kanji": null,
+      "meaning": "day after tomorrow",
+      "tags": [
+        "vocabulary",
+        "time"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-25",
+      "section": "lexicon.vocabulary",
+      "romaji": "asa gohan",
+      "kana": "あさごはん",
+      "kanji": null,
+      "meaning": "breakfast",
+      "tags": [
+        "vocabulary",
+        "food"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-26",
+      "section": "lexicon.vocabulary",
+      "romaji": "hiru gohan",
+      "kana": "ひるごはん",
+      "kanji": null,
+      "meaning": "lunch",
+      "tags": [
+        "vocabulary",
+        "food"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-27",
+      "section": "lexicon.vocabulary",
+      "romaji": "yoru gohan",
+      "kana": "よるごはん",
+      "kanji": null,
+      "meaning": "dinner (night meal)",
+      "tags": [
+        "vocabulary",
+        "food"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-28",
+      "section": "lexicon.vocabulary",
+      "romaji": "bangohan",
+      "kana": "ばんごはん",
+      "kanji": null,
+      "meaning": "dinner (evening meal)",
+      "tags": [
+        "vocabulary",
+        "food"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-29",
+      "section": "lexicon.vocabulary",
+      "romaji": "eiga",
+      "kana": "えいが",
+      "kanji": null,
+      "meaning": "movie",
+      "tags": [
+        "vocabulary",
+        "entertainment"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-30",
+      "section": "lexicon.vocabulary",
+      "romaji": "dou",
+      "kana": "どう",
+      "kanji": null,
+      "meaning": "how",
+      "tags": [
+        "vocabulary",
+        "question"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-31",
+      "section": "lexicon.vocabulary",
+      "romaji": "doko",
+      "kana": "どこ",
+      "kanji": null,
+      "meaning": "where",
+      "tags": [
+        "vocabulary",
+        "question"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-32",
+      "section": "lexicon.vocabulary",
+      "romaji": "izakaya",
+      "kana": "いざかや",
+      "kanji": null,
+      "meaning": "bar / Japanese pub",
+      "tags": [
+        "vocabulary",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-33",
+      "section": "lexicon.vocabulary",
+      "romaji": "ongaku",
+      "kana": "おんがく",
+      "kanji": null,
+      "meaning": "music",
+      "tags": [
+        "vocabulary",
+        "entertainment"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-34",
+      "section": "lexicon.vocabulary",
+      "romaji": "hare",
+      "kana": "はれ",
+      "kanji": null,
+      "meaning": "sunny",
+      "tags": [
+        "vocabulary",
+        "weather"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-35",
+      "section": "lexicon.vocabulary",
+      "romaji": "ame",
+      "kana": "あめ",
+      "kanji": null,
+      "meaning": "rainy",
+      "tags": [
+        "vocabulary",
+        "weather"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-36",
+      "section": "lexicon.vocabulary",
+      "romaji": "kumori",
+      "kana": "くもり",
+      "kanji": null,
+      "meaning": "cloudy",
+      "tags": [
+        "vocabulary",
+        "weather"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-37",
+      "section": "lexicon.vocabulary",
+      "romaji": "yuki",
+      "kana": "ゆき",
+      "kanji": null,
+      "meaning": "snowy",
+      "tags": [
+        "vocabulary",
+        "weather"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-38",
+      "section": "lexicon.vocabulary",
+      "romaji": "kaminari",
+      "kana": "かみなり",
+      "kanji": null,
+      "meaning": "thunder",
+      "tags": [
+        "vocabulary",
+        "weather"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-39",
+      "section": "lexicon.vocabulary",
+      "romaji": "yasumi",
+      "kana": "やすみ",
+      "kanji": null,
+      "meaning": "day off / rest",
+      "tags": [
+        "vocabulary",
+        "noun"
+      ]
+    },
+    {
+      "entry_id": "vocabulary-40",
+      "section": "lexicon.vocabulary",
+      "romaji": "yasumu",
+      "kana": "やすむ",
+      "kanji": null,
+      "meaning": "to rest",
+      "tags": [
+        "vocabulary",
+        "verb"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-1",
+      "section": "grammar.demonstratives",
+      "romaji": "koko",
+      "kana": "ここ",
+      "kanji": null,
+      "meaning": "here",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-2",
+      "section": "grammar.demonstratives",
+      "romaji": "soko",
+      "kana": "そこ",
+      "kanji": null,
+      "meaning": "there (near listener)",
+      "tags": [
+        "demonstrative",
+        "so",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-3",
+      "section": "grammar.demonstratives",
+      "romaji": "asoko",
+      "kana": "あそこ",
+      "kanji": null,
+      "meaning": "over there",
+      "tags": [
+        "demonstrative",
+        "a",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-4",
+      "section": "grammar.demonstratives",
+      "romaji": "doko",
+      "kana": "どこ",
+      "kanji": null,
+      "meaning": "where",
+      "tags": [
+        "demonstrative",
+        "do",
+        "place"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-5",
+      "section": "grammar.demonstratives",
+      "romaji": "kore",
+      "kana": "これ",
+      "kanji": null,
+      "meaning": "this",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "thing"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-6",
+      "section": "grammar.demonstratives",
+      "romaji": "sore",
+      "kana": "それ",
+      "kanji": null,
+      "meaning": "that (near listener)",
+      "tags": [
+        "demonstrative",
+        "so",
+        "thing"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-7",
+      "section": "grammar.demonstratives",
+      "romaji": "are",
+      "kana": "あれ",
+      "kanji": null,
+      "meaning": "that (over there)",
+      "tags": [
+        "demonstrative",
+        "a",
+        "thing"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-8",
+      "section": "grammar.demonstratives",
+      "romaji": "dore",
+      "kana": "どれ",
+      "kanji": null,
+      "meaning": "which",
+      "tags": [
+        "demonstrative",
+        "do",
+        "thing"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-9",
+      "section": "grammar.demonstratives",
+      "romaji": "kono",
+      "kana": "この",
+      "kanji": null,
+      "meaning": "this ___",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "noun_modifier"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-10",
+      "section": "grammar.demonstratives",
+      "romaji": "sono",
+      "kana": "その",
+      "kanji": null,
+      "meaning": "that ___ (near listener)",
+      "tags": [
+        "demonstrative",
+        "so",
+        "noun_modifier"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-11",
+      "section": "grammar.demonstratives",
+      "romaji": "ano",
+      "kana": "あの",
+      "kanji": null,
+      "meaning": "that ___ (over there)",
+      "tags": [
+        "demonstrative",
+        "a",
+        "noun_modifier"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-12",
+      "section": "grammar.demonstratives",
+      "romaji": "dono",
+      "kana": "どの",
+      "kanji": null,
+      "meaning": "which ___",
+      "tags": [
+        "demonstrative",
+        "do",
+        "noun_modifier"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-13",
+      "section": "grammar.demonstratives",
+      "romaji": "kochira",
+      "kana": "こちら",
+      "kanji": null,
+      "meaning": "this way / this person (polite)",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "polite_direction_person"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-14",
+      "section": "grammar.demonstratives",
+      "romaji": "sochira",
+      "kana": "そちら",
+      "kanji": null,
+      "meaning": "that way / that person",
+      "tags": [
+        "demonstrative",
+        "so",
+        "polite_direction_person"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-15",
+      "section": "grammar.demonstratives",
+      "romaji": "achira",
+      "kana": "あちら",
+      "kanji": null,
+      "meaning": "that way (over there)",
+      "tags": [
+        "demonstrative",
+        "a",
+        "polite_direction_person"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-16",
+      "section": "grammar.demonstratives",
+      "romaji": "dochira",
+      "kana": "どちら",
+      "kanji": null,
+      "meaning": "which way / which person",
+      "tags": [
+        "demonstrative",
+        "do",
+        "polite_direction_person"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-17",
+      "section": "grammar.demonstratives",
+      "romaji": "kocchi",
+      "kana": "こっち",
+      "kanji": null,
+      "meaning": "this way",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "casual_direction"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-18",
+      "section": "grammar.demonstratives",
+      "romaji": "socchi",
+      "kana": "そっち",
+      "kanji": null,
+      "meaning": "that way",
+      "tags": [
+        "demonstrative",
+        "so",
+        "casual_direction"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-19",
+      "section": "grammar.demonstratives",
+      "romaji": "acchi",
+      "kana": "あっち",
+      "kanji": null,
+      "meaning": "that way (over there)",
+      "tags": [
+        "demonstrative",
+        "a",
+        "casual_direction"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-20",
+      "section": "grammar.demonstratives",
+      "romaji": "docchi",
+      "kana": "どっち",
+      "kanji": null,
+      "meaning": "which way",
+      "tags": [
+        "demonstrative",
+        "do",
+        "casual_direction"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-21",
+      "section": "grammar.demonstratives",
+      "romaji": "kou",
+      "kana": "こう",
+      "kanji": null,
+      "meaning": "like this",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "manner"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-22",
+      "section": "grammar.demonstratives",
+      "romaji": "sou",
+      "kana": "そう",
+      "kanji": null,
+      "meaning": "like that",
+      "tags": [
+        "demonstrative",
+        "so",
+        "manner"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-23",
+      "section": "grammar.demonstratives",
+      "romaji": "aa",
+      "kana": "ああ",
+      "kanji": null,
+      "meaning": "like that (over there / known)",
+      "tags": [
+        "demonstrative",
+        "a",
+        "manner"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-24",
+      "section": "grammar.demonstratives",
+      "romaji": "dou",
+      "kana": "どう",
+      "kanji": null,
+      "meaning": "how",
+      "tags": [
+        "demonstrative",
+        "do",
+        "manner"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-25",
+      "section": "grammar.demonstratives",
+      "romaji": "konna",
+      "kana": "こんな",
+      "kanji": null,
+      "meaning": "this kind of",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "kind_type"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-26",
+      "section": "grammar.demonstratives",
+      "romaji": "sonna",
+      "kana": "そんな",
+      "kanji": null,
+      "meaning": "that kind of",
+      "tags": [
+        "demonstrative",
+        "so",
+        "kind_type"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-27",
+      "section": "grammar.demonstratives",
+      "romaji": "anna",
+      "kana": "あんな",
+      "kanji": null,
+      "meaning": "that kind of (over there)",
+      "tags": [
+        "demonstrative",
+        "a",
+        "kind_type"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-28",
+      "section": "grammar.demonstratives",
+      "romaji": "donna",
+      "kana": "どんな",
+      "kanji": null,
+      "meaning": "what kind of",
+      "tags": [
+        "demonstrative",
+        "do",
+        "kind_type"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-29",
+      "section": "grammar.demonstratives",
+      "romaji": "kaku",
+      "kana": "かく",
+      "kanji": null,
+      "meaning": "thus (like this)",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "formal_written"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-30",
+      "section": "grammar.demonstratives",
+      "romaji": "saku",
+      "kana": "さく",
+      "kanji": null,
+      "meaning": "thus (archaic)",
+      "tags": [
+        "demonstrative",
+        "so",
+        "formal_written"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-31",
+      "section": "grammar.demonstratives",
+      "romaji": "aa shite",
+      "kana": "ああして",
+      "kanji": null,
+      "meaning": "doing like that",
+      "tags": [
+        "demonstrative",
+        "a",
+        "formal_written"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-32",
+      "section": "grammar.demonstratives",
+      "romaji": "ikani",
+      "kana": "いかに",
+      "kanji": null,
+      "meaning": "how (formal)",
+      "tags": [
+        "demonstrative",
+        "do",
+        "formal_written"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-33",
+      "section": "grammar.demonstratives",
+      "romaji": "korera",
+      "kana": "これら",
+      "kanji": null,
+      "meaning": "these",
+      "tags": [
+        "demonstrative",
+        "ko",
+        "compound_pronouns"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-34",
+      "section": "grammar.demonstratives",
+      "romaji": "sorera",
+      "kana": "それら",
+      "kanji": null,
+      "meaning": "those",
+      "tags": [
+        "demonstrative",
+        "so",
+        "compound_pronouns"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-35",
+      "section": "grammar.demonstratives",
+      "romaji": "arera",
+      "kana": "あれら",
+      "kanji": null,
+      "meaning": "those over there",
+      "tags": [
+        "demonstrative",
+        "a",
+        "compound_pronouns"
+      ]
+    },
+    {
+      "entry_id": "demonstrative-36",
+      "section": "grammar.demonstratives",
+      "romaji": "dorera",
+      "kana": "どれら",
+      "kanji": null,
+      "meaning": "which (plural)",
+      "tags": [
+        "demonstrative",
+        "do",
+        "compound_pronouns"
+      ]
+    },
+    {
+      "entry_id": "kanji-1",
+      "section": "kanji",
+      "romaji": null,
+      "kana": null,
+      "kanji": "月",
+      "meaning": "moon, month",
+      "tags": [
+        "kanji"
+      ]
+    },
+    {
+      "entry_id": "kanji-2",
+      "section": "kanji",
+      "romaji": null,
+      "kana": null,
+      "kanji": "火",
+      "meaning": "fire",
+      "tags": [
+        "kanji"
+      ]
+    },
+    {
+      "entry_id": "kanji-3",
+      "section": "kanji",
+      "romaji": null,
+      "kana": null,
+      "kanji": "水",
+      "meaning": "water",
+      "tags": [
+        "kanji"
+      ]
+    },
+    {
+      "entry_id": "kanji-4",
+      "section": "kanji",
+      "romaji": null,
+      "kana": null,
+      "kanji": "木",
+      "meaning": "tree, wood",
+      "tags": [
+        "kanji"
+      ]
+    },
+    {
+      "entry_id": "kanji-5",
+      "section": "kanji",
+      "romaji": null,
+      "kana": null,
+      "kanji": "土",
+      "meaning": "earth, soil",
+      "tags": [
+        "kanji"
+      ]
+    },
+    {
+      "entry_id": "kanji-6",
+      "section": "kanji",
+      "romaji": null,
+      "kana": null,
+      "kanji": "日",
+      "meaning": "sun, day",
+      "tags": [
+        "kanji"
+      ]
+    },
+    {
+      "entry_id": "kanji-7",
+      "section": "kanji",
+      "romaji": null,
+      "kana": null,
+      "kanji": "本",
+      "meaning": "book, origin, base",
+      "tags": [
+        "kanji"
+      ]
+    }
+  ]
+}

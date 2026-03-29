@@ -1,0 +1,180 @@
+{
+  "adjectives": [
+    {
+      "id": 1,
+      "romaji": "ookii",
+      "kana": "おおきい",
+      "type": "i",
+      "meaning": "big / large"
+    },
+    {
+      "id": 2,
+      "romaji": "chiisai",
+      "kana": "ちいさい",
+      "type": "i",
+      "meaning": "small"
+    },
+    {
+      "id": 3,
+      "romaji": "takai",
+      "kana": "たかい",
+      "type": "i",
+      "meaning": "expensive / tall"
+    },
+    {
+      "id": 4,
+      "romaji": "kowai",
+      "kana": "こわい",
+      "type": "i",
+      "meaning": "scary / frightening"
+    },
+    {
+      "id": 5,
+      "romaji": "omoshiroi",
+      "kana": "おもしろい",
+      "type": "i",
+      "meaning": "interesting"
+    },
+    {
+      "id": 6,
+      "romaji": "tsumaranai",
+      "kana": "つまらない",
+      "type": "i",
+      "meaning": "boring"
+    },
+    {
+      "id": 7,
+      "romaji": "furui",
+      "kana": "ふるい",
+      "type": "i",
+      "meaning": "old"
+    },
+    {
+      "id": 8,
+      "romaji": "ii / yoi",
+      "kana": "いい / よい",
+      "type": "i",
+      "meaning": "good"
+    },
+    {
+      "id": 9,
+      "romaji": "atarashii",
+      "kana": "あたらしい",
+      "type": "i",
+      "meaning": "new"
+    },
+    {
+      "id": 10,
+      "romaji": "atsui",
+      "kana": "あつい",
+      "type": "i",
+      "meaning": "hot (weather / objects)"
+    },
+    {
+      "id": 11,
+      "romaji": "samui",
+      "kana": "さむい",
+      "type": "i",
+      "meaning": "cold (weather)"
+    },
+    {
+      "id": 12,
+      "romaji": "tsumetai",
+      "kana": "つめたい",
+      "type": "i",
+      "meaning": "cold (to touch)"
+    },
+    {
+      "id": 13,
+      "romaji": "yasashii",
+      "kana": "やさしい",
+      "type": "i",
+      "meaning": "kind / easy"
+    },
+    {
+      "id": 14,
+      "romaji": "muzukashii",
+      "kana": "むずかしい",
+      "type": "i",
+      "meaning": "difficult"
+    },
+    {
+      "id": 15,
+      "romaji": "tanoshii",
+      "kana": "たのしい",
+      "type": "i",
+      "meaning": "fun"
+    },
+    {
+      "id": 16,
+      "romaji": "isogashii",
+      "kana": "いそがしい",
+      "type": "i",
+      "meaning": "busy"
+    },
+    {
+      "id": 17,
+      "romaji": "hidoi",
+      "kana": "ひどい",
+      "type": "i",
+      "meaning": "terrible"
+    },
+
+    {
+      "id": 18,
+      "romaji": "shizuka",
+      "kana": "しずか",
+      "type": "na",
+      "meaning": "quiet"
+    },
+    {
+      "id": 19,
+      "romaji": "kirei",
+      "kana": "きれい",
+      "type": "na",
+      "meaning": "beautiful / clean"
+    },
+    {
+      "id": 20,
+      "romaji": "genki",
+      "kana": "げんき",
+      "type": "na",
+      "meaning": "healthy / energetic"
+    },
+    {
+      "id": 21,
+      "romaji": "suki",
+      "kana": "すき",
+      "type": "na",
+      "meaning": "liked / to like"
+    },
+    {
+      "id": 22,
+      "romaji": "kirai",
+      "kana": "きらい",
+      "type": "na",
+      "meaning": "disliked / to dislike"
+    },
+    {
+      "id": 23,
+      "romaji": "nigiyaka",
+      "kana": "にぎやか",
+      "type": "na",
+      "meaning": "lively / busy"
+    },
+    {
+      "id": 24,
+      "romaji": "hen",
+      "kana": "へん",
+      "type": "na",
+      "meaning": "strange"
+    },
+    {
+      "id": 25,
+      "romaji": "himana",
+      "kana": "ひま（な）",
+      "type": "na",
+      "meaning": "free / not busy"
+    }
+  ]
+}

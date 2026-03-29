@@ -1,0 +1,102 @@
+{
+  "category": "ko-so-a-do",
+  "description": "Japanese demonstrative system covering location, objects, direction, description, manner, and extended forms",
+  "groups": [
+    {
+      "type": "place",
+      "description": "Locations",
+      "words": [
+        {"id": 1, "jp": "ここ", "romaji": "koko", "en": "here", "prefix": "ko"},
+        {"id": 2, "jp": "そこ", "romaji": "soko", "en": "there (near listener)", "prefix": "so"},
+        {"id": 3, "jp": "あそこ", "romaji": "asoko", "en": "over there", "prefix": "a"},
+        {"id": 4, "jp": "どこ", "romaji": "doko", "en": "where", "prefix": "do"}
+      ]
+    },
+    {
+      "type": "thing",
+      "description": "Standalone objects",
+      "words": [
+        {"id": 5, "jp": "これ", "romaji": "kore", "en": "this", "prefix": "ko"},
+        {"id": 6, "jp": "それ", "romaji": "sore", "en": "that (near listener)", "prefix": "so"},
+        {"id": 7, "jp": "あれ", "romaji": "are", "en": "that (over there)", "prefix": "a"},
+        {"id": 8, "jp": "どれ", "romaji": "dore", "en": "which", "prefix": "do"}
+      ]
+    },
+    {
+      "type": "noun_modifier",
+      "description": "Used before nouns",
+      "words": [
+        {"id": 9, "jp": "この", "romaji": "kono", "en": "this ___", "prefix": "ko"},
+        {"id": 10, "jp": "その", "romaji": "sono", "en": "that ___ (near listener)", "prefix": "so"},
+        {"id": 11, "jp": "あの", "romaji": "ano", "en": "that ___ (over there)", "prefix": "a"},
+        {"id": 12, "jp": "どの", "romaji": "dono", "en": "which ___", "prefix": "do"}
+      ]
+    },
+    {
+      "type": "polite_direction_person",
+      "description": "Polite direction or person reference",
+      "words": [
+        {"id": 13, "jp": "こちら", "romaji": "kochira", "en": "this way / this person (polite)", "prefix": "ko"},
+        {"id": 14, "jp": "そちら", "romaji": "sochira", "en": "that way / that person", "prefix": "so"},
+        {"id": 15, "jp": "あちら", "romaji": "achira", "en": "that way (over there)", "prefix": "a"},
+        {"id": 16, "jp": "どちら", "romaji": "dochira", "en": "which way / which person", "prefix": "do"}
+      ]
+    },
+    {
+      "type": "casual_direction",
+      "description": "Casual direction",
+      "words": [
+        {"id": 17, "jp": "こっち", "romaji": "kocchi", "en": "this way", "prefix": "ko"},
+        {"id": 18, "jp": "そっち", "romaji": "socchi", "en": "that way", "prefix": "so"},
+        {"id": 19, "jp": "あっち", "romaji": "acchi", "en": "that way (over there)", "prefix": "a"},
+        {"id": 20, "jp": "どっち", "romaji": "docchi", "en": "which way", "prefix": "do"}
+      ]
+    },
+    {
+      "type": "manner",
+      "description": "How / in what way",
+      "words": [
+        {"id": 21, "jp": "こう", "romaji": "kou", "en": "like this", "prefix": "ko"},
+        {"id": 22, "jp": "そう", "romaji": "sou", "en": "like that", "prefix": "so"},
+        {"id": 23, "jp": "ああ", "romaji": "aa", "en": "like that (over there / known)", "prefix": "a"},
+        {"id": 24, "jp": "どう", "romaji": "dou", "en": "how", "prefix": "do"}
+      ]
+    },
+    {
+      "type": "kind_type",
+      "description": "Type/kind of thing",
+      "words": [
+        {"id": 25, "jp": "こんな", "romaji": "konna", "en": "this kind of", "prefix": "ko"},
+        {"id": 26, "jp": "そんな", "romaji": "sonna", "en": "that kind of", "prefix": "so"},
+        {"id": 27, "jp": "あんな", "romaji": "anna", "en": "that kind of (over there)", "prefix": "a"},
+        {"id": 28, "jp": "どんな", "romaji": "donna", "en": "what kind of", "prefix": "do"}
+      ]
+    },
+    {
+      "type": "formal_written",
+      "description": "More formal/literary variants",
+      "words": [
+        {"id": 29, "jp": "かく", "romaji": "kaku", "en": "thus (like this)", "prefix": "ko"},
+        {"id": 30, "jp": "さく", "romaji": "saku", "en": "thus (archaic)", "prefix": "so"},
+        {"id": 31, "jp": "ああして", "romaji": "aa shite", "en": "doing like that", "prefix": "a"},
+        {"id": 32, "jp": "いかに", "romaji": "ikani", "en": "how (formal)", "prefix": "do"}
+      ]
+    },
+    {
+      "type": "compound_pronouns",
+      "description": "Plural or grouped references",
+      "words": [
+        {"id": 33, "jp": "これら", "romaji": "korera", "en": "these", "prefix": "ko"},
+        {"id": 34, "jp": "それら", "romaji": "sorera", "en": "those", "prefix": "so"},
+        {"id": 35, "jp": "あれら", "romaji": "arera", "en": "those over there", "prefix": "a"},
+        {"id": 36, "jp": "どれら", "romaji": "dorera", "en": "which (plural)", "prefix": "do"}
+      ]
+    }
+  ],
+  "prefix_meanings": {
+    "ko": "near speaker",
+    "so": "near listener",
+    "a": "far from both",
+    "do": "question word"
+  }
+}
