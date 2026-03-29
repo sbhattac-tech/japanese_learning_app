@@ -5,11 +5,13 @@ import '../models/study_entry.dart';
 class FlashcardView extends StatelessWidget {
   final StudyEntry entry;
   final bool showAnswer;
+  final String answerLabel;
 
   const FlashcardView({
     super.key,
     required this.entry,
     required this.showAnswer,
+    required this.answerLabel,
   });
 
   @override
@@ -38,28 +40,32 @@ class FlashcardView extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
           ),
+          if (entry.kana.isNotEmpty && entry.kana != entry.primaryJapanese) ...[
+            const SizedBox(height: 16),
+            Text(
+              entry.kana,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: Colors.white70,
+                  ),
+            ),
+          ],
           const SizedBox(height: 16),
           Text(
-            entry.kana,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Colors.white70,
-                ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            showAnswer ? entry.meaning : 'Tap reveal to see the meaning',
+            showAnswer ? '$answerLabel: ${entry.meaning}' : 'Tap reveal to see the answer',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Colors.white,
                 ),
           ),
-          const SizedBox(height: 10),
-          Text(
-            entry.romaji,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.white70,
-                ),
-          ),
+          if (entry.romaji.isNotEmpty && entry.romaji != entry.meaning) ...[
+            const SizedBox(height: 10),
+            Text(
+              entry.romaji,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.white70,
+                  ),
+            ),
+          ],
         ],
       ),
     );

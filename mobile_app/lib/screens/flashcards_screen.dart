@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../models/practice_category.dart';
 import '../models/study_entry.dart';
 import '../services/api_service.dart';
 import '../widgets/flashcard_view.dart';
 
 class FlashcardsScreen extends StatefulWidget {
   final ApiService api;
+  final PracticeCategory category;
 
-  const FlashcardsScreen({super.key, required this.api});
+  const FlashcardsScreen({
+    super.key,
+    required this.api,
+    required this.category,
+  });
 
   @override
   State<FlashcardsScreen> createState() => _FlashcardsScreenState();
@@ -27,7 +33,7 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
 
   Future<void> _load() async {
     try {
-      final entries = await widget.api.fetchVocabulary();
+      final entries = await widget.api.fetchEntries(widget.category);
       if (!mounted) return;
       setState(() {
         _entries = entries;
@@ -39,7 +45,9 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
         _loading = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not load flashcards from the API.')),
+        SnackBar(
+          content: Text('Could not load ${widget.category.label.toLowerCase()} flashcards.'),
+        ),
       );
     }
   }
@@ -57,13 +65,15 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
     final entry = _entries.isEmpty ? null : _entries[_index];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Flashcards')),
+      appBar: AppBar(title: Text('${widget.category.label} Flashcards')),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: _loading
             ? const Center(child: CircularProgressIndicator())
             : entry == null
-                ? const Center(child: Text('No vocabulary entries found.'))
+                ? Center(
+                    child: Text('No ${widget.category.label.toLowerCase()} entries found.'),
+                  )
                 : Column(
                     children: [
                       Expanded(
@@ -71,6 +81,10 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                           child: FlashcardView(
                             entry: entry,
                             showAnswer: _showAnswer,
+                            answerLabel: widget.category.apiName == 'hiragana' ||
+                                    widget.category.apiName == 'katakana'
+                                ? 'Romaji'
+                                : 'Meaning',
                           ),
                         ),
                       ),

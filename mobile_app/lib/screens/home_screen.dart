@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../models/practice_category.dart';
 import '../services/api_service.dart';
 import '../widgets/section_card.dart';
 import '../widgets/study_header.dart';
+import 'category_picker_screen.dart';
 import 'flashcards_screen.dart';
 import 'matching_screen.dart';
 import 'quiz_screen.dart';
@@ -10,10 +12,33 @@ import 'quiz_screen.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
+  void _openCategoryPicker(
+    BuildContext context, {
+    required String modeTitle,
+    required String modeDescription,
+    required Widget Function(BuildContext, ApiService, PracticeCategory) builder,
+  }) {
     const api = ApiService();
 
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => CategoryPickerScreen(
+          modeTitle: modeTitle,
+          modeDescription: modeDescription,
+          onSelectCategory: (category) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => builder(context, api, category),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -21,7 +46,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             const StudyHeader(
               title: 'Japanese Learning',
-              subtitle: 'Study vocabulary and verbs with fast practice modes.',
+              subtitle: 'Choose a mode, then pick what you want to practice.',
             ),
             const SizedBox(height: 24),
             SectionCard(
@@ -29,9 +54,13 @@ class HomeScreen extends StatelessWidget {
               description: 'Flip through entries and reveal meanings one by one.',
               icon: Icons.style_outlined,
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const FlashcardsScreen(api: api),
+                _openCategoryPicker(
+                  context,
+                  modeTitle: 'Flashcards',
+                  modeDescription: 'Pick a topic to study with quick swipe-free cards.',
+                  builder: (_, api, category) => FlashcardsScreen(
+                    api: api,
+                    category: category,
                   ),
                 );
               },
@@ -42,9 +71,13 @@ class HomeScreen extends StatelessWidget {
               description: 'Answer multiple choice questions from live API data.',
               icon: Icons.quiz_outlined,
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const QuizScreen(api: api),
+                _openCategoryPicker(
+                  context,
+                  modeTitle: 'Quiz',
+                  modeDescription: 'Pick a topic and answer multiple choice questions.',
+                  builder: (_, api, category) => QuizScreen(
+                    api: api,
+                    category: category,
                   ),
                 );
               },
@@ -55,9 +88,13 @@ class HomeScreen extends StatelessWidget {
               description: 'Match Japanese words with their meanings in pairs.',
               icon: Icons.grid_view_rounded,
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const MatchingScreen(api: api),
+                _openCategoryPicker(
+                  context,
+                  modeTitle: 'Matching',
+                  modeDescription: 'Pick a topic and pair the Japanese side with the answer side.',
+                  builder: (_, api, category) => MatchingScreen(
+                    api: api,
+                    category: category,
                   ),
                 );
               },

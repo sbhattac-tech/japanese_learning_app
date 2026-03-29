@@ -2,13 +2,19 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../models/practice_category.dart';
 import '../models/study_entry.dart';
 import '../services/api_service.dart';
 
 class MatchingScreen extends StatefulWidget {
   final ApiService api;
+  final PracticeCategory category;
 
-  const MatchingScreen({super.key, required this.api});
+  const MatchingScreen({
+    super.key,
+    required this.api,
+    required this.category,
+  });
 
   @override
   State<MatchingScreen> createState() => _MatchingScreenState();
@@ -33,7 +39,7 @@ class _MatchingScreenState extends State<MatchingScreen> {
 
   Future<void> _load() async {
     try {
-      final entries = await widget.api.fetchVocabulary();
+      final entries = await widget.api.fetchEntries(widget.category);
       final sample = List<StudyEntry>.from(entries)..shuffle(_random);
       final chosen = sample.take(4).toList();
       final answers = chosen.map((entry) => entry.meaning).toList()..shuffle(_random);
@@ -93,13 +99,17 @@ class _MatchingScreenState extends State<MatchingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Matching')),
+      appBar: AppBar(title: Text('${widget.category.label} Matching')),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: _loading
             ? const Center(child: CircularProgressIndicator())
             : _entries.length < 4
-                ? const Center(child: Text('Add at least 4 vocabulary entries to play matching.'))
+                ? Center(
+                    child: Text(
+                      'Add at least 4 ${widget.category.label.toLowerCase()} entries to play matching.',
+                    ),
+                  )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

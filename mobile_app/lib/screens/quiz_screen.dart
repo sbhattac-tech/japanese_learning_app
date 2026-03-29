@@ -2,13 +2,19 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../models/practice_category.dart';
 import '../models/study_entry.dart';
 import '../services/api_service.dart';
 
 class QuizScreen extends StatefulWidget {
   final ApiService api;
+  final PracticeCategory category;
 
-  const QuizScreen({super.key, required this.api});
+  const QuizScreen({
+    super.key,
+    required this.api,
+    required this.category,
+  });
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -32,7 +38,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
   Future<void> _load() async {
     try {
-      final entries = await widget.api.fetchVocabulary();
+      final entries = await widget.api.fetchEntries(widget.category);
       if (!mounted) return;
       setState(() {
         _entries = entries;
@@ -69,13 +75,17 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Quiz')),
+      appBar: AppBar(title: Text('${widget.category.label} Quiz')),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: _loading
             ? const Center(child: CircularProgressIndicator())
             : _current == null
-                ? const Center(child: Text('Not enough entries to build a quiz yet.'))
+                ? Center(
+                    child: Text(
+                      'Not enough ${widget.category.label.toLowerCase()} entries to build a quiz yet.',
+                    ),
+                  )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -87,14 +97,16 @@ class _QuizScreenState extends State<QuizScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text('What does this mean?'),
+                              Text(widget.category.quizPrompt),
                               const SizedBox(height: 12),
                               Text(
                                 _current!.primaryJapanese,
                                 style: Theme.of(context).textTheme.headlineMedium,
                               ),
-                              const SizedBox(height: 8),
-                              Text(_current!.romaji),
+                              if (_current!.romaji.isNotEmpty) ...[
+                                const SizedBox(height: 8),
+                                Text(_current!.romaji),
+                              ],
                             ],
                           ),
                         ),
