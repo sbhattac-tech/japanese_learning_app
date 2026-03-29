@@ -258,16 +258,25 @@ def build_stats(
     }
 
 
-def main() -> None:
-    verbs = normalize_verbs(load_json("verbs.json")["verbs"])
-    adjectives = normalize_adjectives(load_json("adjectives.json")["adjectives"])
-    vocabulary = normalize_vocabulary(load_json("vocabulary.json")["vocabulary"])
-    demonstratives = normalize_demonstratives(load_json("demonstrative.json"))
-    kanji = normalize_kanji(load_json("kangi.json"))
-    hiragana = normalize_kana(load_json("hiragana.json")["hiragana"], "hiragana")
-    katakana = normalize_kana(load_json("katakana.json")["katakana"], "katakana")
+def build_database_from_sources(
+    *,
+    verbs: dict,
+    adjectives: dict,
+    vocabulary: dict,
+    demonstratives: dict,
+    kanji: list[dict],
+    hiragana: dict,
+    katakana: dict,
+) -> dict:
+    normalized_verbs = normalize_verbs(verbs["verbs"])
+    normalized_adjectives = normalize_adjectives(adjectives["adjectives"])
+    normalized_vocabulary = normalize_vocabulary(vocabulary["vocabulary"])
+    normalized_demonstratives = normalize_demonstratives(demonstratives)
+    normalized_kanji = normalize_kanji(kanji)
+    normalized_hiragana = normalize_kana(hiragana["hiragana"], "hiragana")
+    normalized_katakana = normalize_kana(katakana["katakana"], "katakana")
 
-    database = {
+    return {
         "metadata": {
             "name": "Japanese Learning App Database",
             "version": 1,
@@ -287,35 +296,47 @@ def main() -> None:
             ],
         },
         "stats": build_stats(
-            verbs=verbs,
-            adjectives=adjectives,
-            vocabulary=vocabulary,
-            demonstratives=demonstratives,
-            kanji=kanji,
-            hiragana=hiragana,
-            katakana=katakana,
+            verbs=normalized_verbs,
+            adjectives=normalized_adjectives,
+            vocabulary=normalized_vocabulary,
+            demonstratives=normalized_demonstratives,
+            kanji=normalized_kanji,
+            hiragana=normalized_hiragana,
+            katakana=normalized_katakana,
         ),
         "kana": {
-            "hiragana": hiragana,
-            "katakana": katakana,
+            "hiragana": normalized_hiragana,
+            "katakana": normalized_katakana,
         },
-        "kanji": kanji,
+        "kanji": normalized_kanji,
         "grammar": {
-            "demonstratives": demonstratives,
+            "demonstratives": normalized_demonstratives,
         },
         "lexicon": {
-            "verbs": verbs,
-            "adjectives": adjectives,
-            "vocabulary": vocabulary,
+            "verbs": normalized_verbs,
+            "adjectives": normalized_adjectives,
+            "vocabulary": normalized_vocabulary,
         },
         "search_index": build_search_index(
-            verbs=verbs,
-            adjectives=adjectives,
-            vocabulary=vocabulary,
-            demonstratives=demonstratives,
-            kanji=kanji,
+            verbs=normalized_verbs,
+            adjectives=normalized_adjectives,
+            vocabulary=normalized_vocabulary,
+            demonstratives=normalized_demonstratives,
+            kanji=normalized_kanji,
         ),
     }
+
+
+def main() -> None:
+    database = build_database_from_sources(
+        verbs=load_json("verbs.json"),
+        adjectives=load_json("adjectives.json"),
+        vocabulary=load_json("vocabulary.json"),
+        demonstratives=load_json("demonstrative.json"),
+        kanji=load_json("kangi.json"),
+        hiragana=load_json("hiragana.json"),
+        katakana=load_json("katakana.json"),
+    )
 
     OUTPUT_FILE.write_text(
         json.dumps(database, ensure_ascii=False, indent=2) + "\n",

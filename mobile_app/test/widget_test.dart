@@ -19,6 +19,7 @@ void main() {
     expect(find.text('Flashcards'), findsOneWidget);
     expect(find.text('Quiz'), findsOneWidget);
     expect(find.text('Matching'), findsOneWidget);
+    expect(find.text('Import From Image'), findsOneWidget);
     expect(find.byIcon(Icons.style_outlined), findsOneWidget);
   });
 }

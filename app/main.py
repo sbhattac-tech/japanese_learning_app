@@ -3,11 +3,13 @@ from __future__ import annotations
 import os
 from typing import Any, Literal
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from app.database_service import DatabaseService
+from app.import_models import ImportCandidate, ImportExtractResponse, ImportSaveRequest
+from app.ocr_service import OcrDependencyError, OcrService
+from app.service_factory import create_database_service
 
 
 class VerbPayload(BaseModel):
@@ -68,7 +70,8 @@ class DemonstrativePayload(BaseModel):
     group_type: str
 
 
-service = DatabaseService()
+service = create_database_service()
+ocr_service = OcrService()
 IS_VERCEL = bool(os.getenv("VERCEL"))
 
 app = FastAPI(
@@ -202,6 +205,67 @@ def get_master_database() -> Any:
         raise HTTPException(status_code=500, detail="Master database file is missing") from error
 
 
+@app.post("/imports/image/extract", response_model=ImportExtractResponse)
+async def extract_entries_from_image(
+    file: UploadFile = File(...),
+    target_category: str = Form(default="vocabulary"),
+) -> ImportExtractResponse:
+    if target_category != "vocabulary":
+        raise HTTPException(
+            status_code=400,
+            detail="Image import currently supports only the vocabulary category.",
+        )
+
+    image_bytes = await file.read()
+    if not image_bytes:
+        raise HTTPException(status_code=400, detail="Uploaded image is empty")
+
+    try:
+        tokens = ocr_service.extract_candidates(image_bytes)
+    except OcrDependencyError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+
+    entries = [
+        ImportCandidate(
+            source_text=token,
+            kana=token,
+        )
+        for token in tokens
+    ]
+    return ImportExtractResponse(entries=entries)
+
+
+@app.post("/imports/image/save", status_code=201)
+def save_imported_entries(payload: ImportSaveRequest) -> dict[str, Any]:
+    _ensure_mutations_supported()
+
+    cleaned_entries = []
+    for entry in payload.entries:
+        candidate = entry.model_dump()
+        validated = _validate_payload(
+            "vocabulary",
+            {
+                "romaji": candidate["romaji"].strip(),
+                "kana": candidate["kana"].strip(),
+                "meaning": candidate["meaning"].strip(),
+                "category": candidate["category"].strip() or "imported",
+            },
+        )
+        cleaned_entries.append(validated)
+
+    if not cleaned_entries:
+        raise HTTPException(status_code=400, detail="No entries were provided for import")
+
+    try:
+        created = service.create_entries("vocabulary", cleaned_entries)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+
+    return {"created": created, "count": len(created)}
+
+
 def _validate_payload(category: str, payload: dict[str, Any]) -> dict[str, Any]:
     model_map = {
         "verbs": VerbPayload,
@@ -222,7 +286,7 @@ def _validate_payload(category: str, payload: dict[str, Any]) -> dict[str, Any]:
 
 
 def _ensure_mutations_supported() -> None:
-    if IS_VERCEL:
+    if IS_VERCEL and getattr(service, "storage_backend", "json") == "json":
         raise HTTPException(
             status_code=501,
             detail=(

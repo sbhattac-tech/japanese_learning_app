@@ -6,6 +6,7 @@ import '../widgets/section_card.dart';
 import '../widgets/study_header.dart';
 import 'category_picker_screen.dart';
 import 'flashcards_screen.dart';
+import 'image_import_screen.dart';
 import 'matching_screen.dart';
 import 'quiz_screen.dart';
 
@@ -39,6 +40,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const api = ApiService();
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -95,6 +98,19 @@ class HomeScreen extends StatelessWidget {
                   builder: (_, api, category) => MatchingScreen(
                     api: api,
                     category: category,
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            SectionCard(
+              title: 'Import From Image',
+              description: 'Take a photo or upload one, extract text, and review entries before saving.',
+              icon: Icons.camera_alt_outlined,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const ImageImportScreen(api: api),
                   ),
                 );
               },

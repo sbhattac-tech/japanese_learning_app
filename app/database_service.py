@@ -35,6 +35,8 @@ CATEGORY_CONFIG: dict[str, CategoryConfig] = {
 
 
 class DatabaseService:
+    storage_backend = "json"
+
     def list_categories(self) -> list[str]:
         return sorted(CATEGORY_CONFIG.keys())
 
@@ -73,6 +75,27 @@ class DatabaseService:
         self._save(config.source_file, data)
         self._rebuild()
         return entry
+
+    def create_entries(self, category: str, payloads: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        if category == "demonstratives":
+            raise ValueError("Bulk import is not supported for demonstratives")
+
+        config = self._config(category)
+        data = self._load(config.source_file)
+        entries = self._extract_entries(data, config)
+
+        created: list[dict[str, Any]] = []
+        next_id = self._next_id(entries)
+        for payload in payloads:
+            entry = dict(payload)
+            entry["id"] = next_id
+            next_id += 1
+            entries.append(entry)
+            created.append(entry)
+
+        self._save(config.source_file, data)
+        self._rebuild()
+        return created
 
     def update_entry(self, category: str, entry_id: int, payload: dict[str, Any]) -> dict[str, Any] | None:
         if category == "demonstratives":
