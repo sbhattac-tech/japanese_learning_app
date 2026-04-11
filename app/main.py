@@ -1,12 +1,15 @@
 from __future__ import annotations
 
+import logging
 import os
+from contextlib import asynccontextmanager
 from typing import Any, Literal
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from app.database_service import DatabaseService
 from app.import_models import ImportCandidate, ImportExtractResponse, ImportSaveRequest
 from app.ocr_service import OcrDependencyError, OcrService
 from app.service_factory import create_database_service
@@ -73,11 +76,19 @@ class DemonstrativePayload(BaseModel):
 service = create_database_service()
 ocr_service = OcrService()
 IS_VERCEL = bool(os.getenv("VERCEL"))
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    _bootstrap_postgres_if_needed()
+    yield
 
 app = FastAPI(
     title="Japanese Learning App API",
     version="1.0.0",
     description="CRUD API for the Japanese learning JSON database.",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -294,3 +305,28 @@ def _ensure_mutations_supported() -> None:
                 "Use a persistent database for POST/PUT/DELETE support."
             ),
         )
+
+
+def _bootstrap_postgres_if_needed() -> None:
+    should_bootstrap = os.getenv("BOOTSTRAP_DATABASE", "true").strip().lower() not in {
+        "0",
+        "false",
+        "no",
+    }
+    if not should_bootstrap:
+        return
+
+    if getattr(service, "storage_backend", "json") != "postgres":
+        return
+
+    raw_categories = os.getenv("BOOTSTRAP_CATEGORIES")
+    categories = None
+    if raw_categories:
+        categories = [item.strip() for item in raw_categories.split(",") if item.strip()]
+
+    inserted = service.bootstrap_from_json_service(
+        DatabaseService(),
+        categories=categories,
+    )
+    if inserted:
+        logger.info("Bootstrapped Postgres from JSON source files: %s", inserted)

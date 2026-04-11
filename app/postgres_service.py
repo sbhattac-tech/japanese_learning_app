@@ -23,6 +23,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 from app.database_service import CATEGORY_CONFIG, CategoryConfig
 from scripts.build_database import build_database_from_sources
 
+POSTGRES_CATEGORIES = ("vocabulary", "adjectives", "verbs")
 
 DEMONSTRATIVE_CATEGORY = "ko-so-a-do"
 DEMONSTRATIVE_DESCRIPTION = (
@@ -95,7 +96,7 @@ class PostgresDatabaseService:
         self._metadata.create_all(self._engine)
 
     def list_categories(self) -> list[str]:
-        return sorted(CATEGORY_CONFIG.keys())
+        return list(POSTGRES_CATEGORIES)
 
     def get_category(self, category: str) -> Any:
         self._config(category)
@@ -112,15 +113,19 @@ class PostgresDatabaseService:
         return self._materialize_payload(category, row)
 
     def get_master_database(self) -> Any:
-        demonstratives = self.get_category("demonstratives")
         return build_database_from_sources(
             verbs={"verbs": self.get_category("verbs")},
             adjectives={"adjectives": self.get_category("adjectives")},
             vocabulary={"vocabulary": self.get_category("vocabulary")},
-            demonstratives=demonstratives,
-            kanji=self.get_category("kanji"),
-            hiragana={"hiragana": self.get_category("hiragana")},
-            katakana={"katakana": self.get_category("katakana")},
+            demonstratives={
+                "category": DEMONSTRATIVE_CATEGORY,
+                "description": DEMONSTRATIVE_DESCRIPTION,
+                "prefix_meanings": DEMONSTRATIVE_PREFIX_MEANINGS,
+                "groups": [],
+            },
+            kanji=[],
+            hiragana={"hiragana": []},
+            katakana={"katakana": []},
         )
 
     def create_entry(self, category: str, payload: dict[str, Any]) -> dict[str, Any]:
@@ -207,8 +212,17 @@ class PostgresDatabaseService:
             )
         return bool(result.rowcount)
 
-    def bootstrap_from_json_service(self, json_service: Any, *, overwrite: bool = False) -> dict[str, int]:
+    def bootstrap_from_json_service(
+        self,
+        json_service: Any,
+        *,
+        overwrite: bool = False,
+        categories: list[str] | None = None,
+    ) -> dict[str, int]:
         inserted_counts: dict[str, int] = {}
+        selected_categories = categories or self.list_categories()
+        for category in selected_categories:
+            self._config(category)
         with self._engine.begin() as connection:
             if overwrite:
                 connection.execute(delete(self._entries))
@@ -217,7 +231,7 @@ class PostgresDatabaseService:
                 if existing_rows:
                     return {}
 
-            for category in self.list_categories():
+            for category in selected_categories:
                 payloads = self._category_payloads_for_bootstrap(json_service, category)
                 sort_order = 1
                 rows = []
@@ -245,14 +259,6 @@ class PostgresDatabaseService:
 
     def _category_payloads_for_bootstrap(self, json_service: Any, category: str) -> list[dict[str, Any]]:
         data = json_service.get_category(category)
-        if category == "demonstratives":
-            payloads: list[dict[str, Any]] = []
-            for group in data["groups"]:
-                for word in group["words"]:
-                    payload = dict(word)
-                    payload["group_type"] = group["type"]
-                    payloads.append(payload)
-            return payloads
         return list(data)
 
     def _payload_entry_id(self, category: str, payload: dict[str, Any], fallback: int) -> int:
@@ -268,16 +274,12 @@ class PostgresDatabaseService:
     ) -> tuple[dict[str, Any], str | None]:
         stored_payload = dict(payload)
         group_type = None
-        if category == "demonstratives":
-            group_type = stored_payload.pop("group_type")
-            stored_payload.pop("id", None)
-        else:
-            stored_payload.pop("id", None)
+        stored_payload.pop("id", None)
         return stored_payload, group_type
 
     def _materialize_payload(self, category: str, row: StoredEntry) -> dict[str, Any]:
         payload = dict(row.payload)
-        if category in {"verbs", "adjectives", "vocabulary", "kanji", "demonstratives"}:
+        if category in {"verbs", "adjectives", "vocabulary"}:
             payload["id"] = row.entry_id
         return payload
 
@@ -325,39 +327,12 @@ class PostgresDatabaseService:
             payload=dict(row.payload),
         )
 
-    def _serialize_demonstratives(self, rows: list[StoredEntry]) -> dict[str, Any]:
-        sorted_rows = sorted(
-            rows,
-            key=lambda row: (
-                DEMONSTRATIVE_GROUP_ORDER.index(row.group_type)
-                if row.group_type in DEMONSTRATIVE_GROUP_ORDER
-                else len(DEMONSTRATIVE_GROUP_ORDER),
-                row.sort_order,
-            ),
-        )
-        groups = []
-        for group_type, items in groupby(sorted_rows, key=lambda row: row.group_type or "unknown"):
-            words = []
-            for row in items:
-                payload = dict(row.payload)
-                payload["id"] = row.entry_id
-                words.append(payload)
-            groups.append(
-                {
-                    "type": group_type,
-                    "description": DEMONSTRATIVE_GROUP_DESCRIPTIONS.get(group_type, group_type),
-                    "words": words,
-                }
-            )
-
-        return {
-            "category": DEMONSTRATIVE_CATEGORY,
-            "description": DEMONSTRATIVE_DESCRIPTION,
-            "prefix_meanings": DEMONSTRATIVE_PREFIX_MEANINGS,
-            "groups": groups,
-        }
-
     def _config(self, category: str) -> CategoryConfig:
+        if category not in POSTGRES_CATEGORIES:
+            raise ValueError(
+                f"Unsupported Postgres category: {category}. "
+                f"Supported categories: {', '.join(POSTGRES_CATEGORIES)}"
+            )
         try:
             return CATEGORY_CONFIG[category]
         except KeyError as error:

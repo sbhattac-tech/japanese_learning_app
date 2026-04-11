@@ -1,0 +1,5 @@
+
+supabase2693899890SB.ssj4
+postgresql://postgres.dfizmjouwjxiwlaykcpy:supabase2693899890SB.ssj4@aws-1-eu-west-1.pooler.supabase.com:5432/postgres
+
+flutter build apk --release --dart-define=API_BASE_URL=https://japanese-learning-app-pearl.vercel.app

@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "kanji": "月",
+    "meaning": ["moon", "month"],
+    "onyomi": ["げつ (getsu)", "がつ (gatsu)"],
+    "kunyomi": ["つき (tsuki)"],
+    "notes": "Used for days of the week and months"
+  },
+  {
+    "id": 2,
+    "kanji": "火",
+    "meaning": ["fire"],
+    "onyomi": ["か (ka)"],
+    "kunyomi": ["ひ (hi)"],
+    "notes": "Also used in 火曜日 (Tuesday)"
+  },
+  {
+    "id": 3,
+    "kanji": "水",
+    "meaning": ["water"],
+    "onyomi": ["すい (sui)"],
+    "kunyomi": ["みず (mizu)"],
+    "notes": "Common basic kanji"
+  },
+  {
+    "id": 4,
+    "kanji": "木",
+    "meaning": ["tree", "wood"],
+    "onyomi": ["もく (moku)"],
+    "kunyomi": ["き (ki)"],
+    "notes": "Also used in 木曜日 (Thursday)"
+  },
+  {
+    "id": 5,
+    "kanji": "土",
+    "meaning": ["earth", "soil"],
+    "onyomi": ["ど (do)", "と (to)"],
+    "kunyomi": ["つち (tsuchi)"],
+    "notes": "Represents ground/earth element"
+  },
+  {
+    "id": 6,
+    "kanji": "日",
+    "meaning": ["sun", "day"],
+    "onyomi": ["にち (nichi)", "じつ (jitsu)"],
+    "kunyomi": ["ひ (hi)", "び (bi)", "か (ka)"],
+    "notes": "Very common kanji for dates and days"
+  },
+  {
+    "id": 7,
+    "kanji": "本",
+    "meaning": ["book", "origin", "base"],
+    "onyomi": ["ほん (hon)"],
+    "kunyomi": ["もと (moto)"],
+    "notes": "Also used as a counter for long objects"
+  }
+]

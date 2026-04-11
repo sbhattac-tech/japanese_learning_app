@@ -7,11 +7,20 @@ import '../config/app_config.dart';
 import '../models/import_candidate.dart';
 import '../models/practice_category.dart';
 import '../models/study_entry.dart';
+import 'local_study_data_service.dart';
 
 class ApiService {
-  const ApiService();
+  const ApiService({
+    LocalStudyDataService localDataService = const LocalStudyDataService(),
+  }) : _localDataService = localDataService;
+
+  final LocalStudyDataService _localDataService;
 
   Future<List<StudyEntry>> fetchEntries(PracticeCategory category) async {
+    if (_usesBundledData(category)) {
+      return _localDataService.fetchEntries(category);
+    }
+
     final uri = Uri.parse('${AppConfig.baseUrl}/entries/${category.apiName}');
     final response = await http.get(uri);
     if (response.statusCode != 200) {
@@ -30,6 +39,28 @@ class ApiService {
           ),
         )
         .toList();
+  }
+
+  Future<Map<String, dynamic>> createEntry(
+    PracticeCategory category,
+    Map<String, dynamic> payload,
+  ) async {
+    if (_usesBundledData(category)) {
+      throw Exception('${category.label} is stored offline in the app and cannot be edited via the API.');
+    }
+
+    final uri = Uri.parse('${AppConfig.baseUrl}/entries/${category.apiName}');
+    final response = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(payload),
+    );
+
+    if (response.statusCode != 201) {
+      throw Exception(_errorMessage(response));
+    }
+
+    return jsonDecode(response.body) as Map<String, dynamic>;
   }
 
   Future<List<ImportCandidate>> extractImportCandidates(XFile file) async {
@@ -84,5 +115,11 @@ class ApiService {
     } catch (_) {
       return 'Request failed';
     }
+  }
+
+  bool _usesBundledData(PracticeCategory category) {
+    return category.apiName == 'hiragana' ||
+        category.apiName == 'katakana' ||
+        category.apiName == 'kanji';
   }
 }
