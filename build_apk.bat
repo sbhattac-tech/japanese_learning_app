@@ -4,6 +4,7 @@ setlocal
 set "ROOT=%~dp0"
 set "FLUTTER_BIN=C:\Users\sbssj\Downloads\flutter\bin\flutter.bat"
 set "APP_DIR=%ROOT%mobile_app"
+set "TEMP_BUILD_ROOT=C:\temp\tango_mobile_app_build"
 set "JBR_DIR=C:\Program Files\Android\Android Studio\jbr"
 set "API_BASE_URL=%~1"
 set "BUILD_MODE=%~2"
@@ -29,15 +30,21 @@ if not exist "%JBR_DIR%\bin\java.exe" (
 set "JAVA_HOME=%JBR_DIR%"
 set "PATH=%JAVA_HOME%\bin;%PATH%"
 
-pushd "%APP_DIR%"
 if /I "%BUILD_MODE%"=="--clean" (
-  call "%FLUTTER_BIN%" clean
-  if errorlevel 1 (
-    popd
-    exit /b 1
-  )
+  if exist "%TEMP_BUILD_ROOT%" rmdir /s /q "%TEMP_BUILD_ROOT%"
 )
 
+if not exist "%TEMP_BUILD_ROOT%" mkdir "%TEMP_BUILD_ROOT%"
+
+robocopy "%APP_DIR%" "%TEMP_BUILD_ROOT%" /MIR /XD build .dart_tool .idea >nul
+set "ROBOCOPY_EXIT=%ERRORLEVEL%"
+if %ROBOCOPY_EXIT% GEQ 8 (
+  echo Failed to mirror project to temp build directory.
+  echo Robocopy exit code: %ROBOCOPY_EXIT%
+  exit /b %ROBOCOPY_EXIT%
+)
+
+pushd "%TEMP_BUILD_ROOT%"
 call "%FLUTTER_BIN%" pub get
 if errorlevel 1 (
   popd
@@ -50,14 +57,21 @@ popd
 
 if not "%EXIT_CODE%"=="0" exit /b %EXIT_CODE%
 
+if not exist "%ROOT%mobile_app\release_artifacts" mkdir "%ROOT%mobile_app\release_artifacts"
+copy /Y "%TEMP_BUILD_ROOT%\build\app\outputs\flutter-apk\app-release.apk" "%ROOT%mobile_app\release_artifacts\app-release.apk" >nul
+if errorlevel 1 (
+  echo Build succeeded but failed to copy APK to workspace.
+  exit /b 1
+)
+
 echo.
 echo APK build complete.
 echo Output:
-echo   %ROOT%mobile_app\build\app\outputs\flutter-apk\app-release.apk
+echo   %ROOT%mobile_app\release_artifacts\app-release.apk
 echo API_BASE_URL used:
 echo   %API_BASE_URL%
 if /I "%BUILD_MODE%"=="--clean" (
-  echo Build mode:
-  echo   clean
+  echo Temp build cache reset:
+  echo   yes
 )
 exit /b 0

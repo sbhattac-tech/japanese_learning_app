@@ -136,7 +136,8 @@ class _QuizScreenState extends State<QuizScreen> {
                             _current!.promptFor(widget.direction),
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
-                          if (_current!.subtitleFor(widget.direction).isNotEmpty) ...[
+                          if (!widget.category.isLetterCategory &&
+                              _current!.subtitleFor(widget.direction).isNotEmpty) ...[
                             const SizedBox(height: 8),
                             Text(_current!.subtitleFor(widget.direction)),
                           ],

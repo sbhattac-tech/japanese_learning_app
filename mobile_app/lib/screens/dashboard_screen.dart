@@ -7,6 +7,7 @@ import '../services/api_service.dart';
 import '../services/auth_service.dart';
 import '../services/progress_service.dart';
 import '../widgets/study_header.dart';
+import 'image_import_screen.dart';
 import 'landing_screen.dart';
 import 'library_screen.dart';
 import 'set_selection_screen.dart';
@@ -161,6 +162,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     },
                     icon: const Icon(Icons.analytics_outlined),
                     label: const Text('Open Learning Analytics'),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton.tonalIcon(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const ImageImportScreen(api: _api),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.photo_camera_outlined),
+                    label: const Text('Import Words From Image'),
                   ),
                 ),
                 const SizedBox(height: 24),

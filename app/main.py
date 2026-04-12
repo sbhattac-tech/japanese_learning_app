@@ -8,11 +8,21 @@ from typing import Any, Literal
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - optional local convenience dependency
+    def load_dotenv() -> bool:
+        return False
 
 from app.database_service import DatabaseService
-from app.import_models import ImportCandidate, ImportExtractResponse, ImportSaveRequest
+from app.gemini_import_service import GeminiImportError, GeminiImportService
+from app.import_models import ImportCandidate, ImportExtractResponse, ImportSaveRequest, ImportSetSummary
+from app.import_service import ImportService
 from app.ocr_service import OcrDependencyError, OcrService
 from app.service_factory import create_database_service
+
+
+load_dotenv()
 
 
 class VerbPayload(BaseModel):
@@ -45,6 +55,13 @@ class VocabularyPayload(BaseModel):
     kana: str
     meaning: str
     category: str
+    kanji: str | None = None
+    hiragana: str | None = None
+    katakana: str | None = None
+    part_of_speech: str | None = None
+    source_text: str | None = None
+    source_language: str | None = None
+    set_name: str | None = None
 
 
 class KanjiPayload(BaseModel):
@@ -75,6 +92,8 @@ class DemonstrativePayload(BaseModel):
 
 service = create_database_service()
 ocr_service = OcrService()
+gemini_import_service = GeminiImportService()
+import_service = ImportService(service)
 IS_VERCEL = bool(os.getenv("VERCEL"))
 logger = logging.getLogger(__name__)
 
@@ -231,37 +250,61 @@ async def extract_entries_from_image(
     if not image_bytes:
         raise HTTPException(status_code=400, detail="Uploaded image is empty")
 
-    try:
-        tokens = ocr_service.extract_candidates(image_bytes)
-    except OcrDependencyError as error:
-        raise HTTPException(status_code=503, detail=str(error)) from error
-    except ValueError as error:
-        raise HTTPException(status_code=400, detail=str(error)) from error
+    if gemini_import_service.is_configured:
+        try:
+            entries = gemini_import_service.extract_candidates(
+                image_bytes,
+                mime_type=file.content_type or "image/jpeg",
+            )
+        except GeminiImportError as error:
+            raise HTTPException(status_code=502, detail=str(error)) from error
+    else:
+        try:
+            tokens = ocr_service.extract_candidates(image_bytes)
+        except OcrDependencyError as error:
+            raise HTTPException(status_code=503, detail=str(error)) from error
+        except ValueError as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
 
-    entries = [
-        ImportCandidate(
-            source_text=token,
-            kana=token,
-        )
-        for token in tokens
-    ]
-    return ImportExtractResponse(entries=entries)
+        entries = import_service.build_candidates(tokens)
+
+    available_sets = [item["name"] for item in import_service.list_import_sets()]
+    return ImportExtractResponse(entries=entries, available_sets=available_sets)
+
+
+@app.get("/imports/sets", response_model=list[ImportSetSummary])
+def list_import_sets() -> list[ImportSetSummary]:
+    return [ImportSetSummary.model_validate(item) for item in import_service.list_import_sets()]
 
 
 @app.post("/imports/image/save", status_code=201)
 def save_imported_entries(payload: ImportSaveRequest) -> dict[str, Any]:
     _ensure_mutations_supported()
+    set_name = payload.set_name.strip()
 
     cleaned_entries = []
     for entry in payload.entries:
         candidate = entry.model_dump()
+        kana = (
+            candidate["hiragana"].strip()
+            or candidate["katakana"].strip()
+            or candidate["japanese_text"].strip()
+            or candidate["kanji"].strip()
+        )
         validated = _validate_payload(
             "vocabulary",
             {
                 "romaji": candidate["romaji"].strip(),
-                "kana": candidate["kana"].strip(),
+                "kana": kana,
                 "meaning": candidate["meaning"].strip(),
                 "category": candidate["category"].strip() or "imported",
+                "kanji": candidate["kanji"].strip() or None,
+                "hiragana": candidate["hiragana"].strip() or None,
+                "katakana": candidate["katakana"].strip() or None,
+                "part_of_speech": candidate["part_of_speech"].strip() or None,
+                "source_text": candidate["source_text"].strip() or None,
+                "source_language": candidate["source_language"].strip() or None,
+                "set_name": entry.set_name.strip() or set_name or None,
             },
         )
         cleaned_entries.append(validated)

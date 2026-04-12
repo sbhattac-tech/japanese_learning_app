@@ -4,8 +4,9 @@ import io
 import re
 from collections import OrderedDict
 
-
-JAPANESE_TOKEN_PATTERN = re.compile(r"[一-龯々ぁ-んァ-ヶー]+")
+TOKEN_PATTERN = re.compile(
+    r"[\u4E00-\u9FFF\u3005\u3040-\u309F\u30A0-\u30FF\u30FC]+|[A-Za-z][A-Za-z' -]*[A-Za-z]|[A-Za-z]"
+)
 
 
 class OcrDependencyError(RuntimeError):
@@ -15,9 +16,8 @@ class OcrDependencyError(RuntimeError):
 class OcrService:
     def extract_candidates(self, image_bytes: bytes) -> list[str]:
         text = self._extract_text(image_bytes)
-        tokens = JAPANESE_TOKEN_PATTERN.findall(text)
-        unique_tokens = list(OrderedDict.fromkeys(token.strip() for token in tokens if token.strip()))
-        return unique_tokens
+        tokens = TOKEN_PATTERN.findall(text)
+        return list(OrderedDict.fromkeys(token.strip() for token in tokens if token.strip()))
 
     def _extract_text(self, image_bytes: bytes) -> str:
         try:
@@ -34,4 +34,4 @@ class OcrService:
         except Exception as error:  # pragma: no cover - defensive parsing
             raise ValueError("Uploaded file is not a valid image") from error
 
-        return pytesseract.image_to_string(image, lang="jpn")
+        return pytesseract.image_to_string(image, lang="jpn+eng")

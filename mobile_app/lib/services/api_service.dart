@@ -63,7 +63,7 @@ class ApiService {
     return jsonDecode(response.body) as Map<String, dynamic>;
   }
 
-  Future<List<ImportCandidate>> extractImportCandidates(XFile file) async {
+  Future<ImportExtractResult> extractImportCandidates(XFile file) async {
     final request = http.MultipartRequest(
       'POST',
       Uri.parse('${AppConfig.baseUrl}/imports/image/extract'),
@@ -85,18 +85,39 @@ class ApiService {
 
     final data = jsonDecode(response.body) as Map<String, dynamic>;
     final entries = data['entries'] as List<dynamic>? ?? const [];
-    return entries
-        .map((item) => ImportCandidate.fromJson(item as Map<String, dynamic>))
+    final availableSets = (data['available_sets'] as List<dynamic>? ?? const [])
+        .map((item) => item.toString())
+        .toList();
+    return ImportExtractResult(
+      entries: entries
+          .map((item) => ImportCandidate.fromJson(item as Map<String, dynamic>))
+          .toList(),
+      availableSets: availableSets,
+    );
+  }
+
+  Future<List<String>> fetchImportSets() async {
+    final uri = Uri.parse('${AppConfig.baseUrl}/imports/sets');
+    final response = await http.get(uri);
+    if (response.statusCode != 200) {
+      throw Exception(_errorMessage(response));
+    }
+
+    final data = jsonDecode(response.body) as List<dynamic>;
+    return data
+        .map((item) => (item as Map<String, dynamic>)['name'] as String? ?? '')
+        .where((item) => item.trim().isNotEmpty)
         .toList();
   }
 
-  Future<int> saveImportedEntries(List<ImportCandidate> entries) async {
+  Future<int> saveImportedEntries(List<ImportCandidate> entries, {required String setName}) async {
     final uri = Uri.parse('${AppConfig.baseUrl}/imports/image/save');
     final response = await http.post(
       uri,
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'entries': entries.map((entry) => entry.toJson()).toList(),
+        'set_name': setName,
       }),
     );
 

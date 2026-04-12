@@ -1,0 +1,2 @@
+cd C:\Users\sbssj\OneDrive\apps\tango
+build_apk.bat https://sourcecode-production.up.railway.app

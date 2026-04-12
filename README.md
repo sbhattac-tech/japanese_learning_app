@@ -49,7 +49,12 @@ Set these variables on the app service:
 DATABASE_URL=${{Postgres.DATABASE_URL}}
 BOOTSTRAP_DATABASE=true
 BOOTSTRAP_CATEGORIES=vocabulary,adjectives,verbs
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=gemini-2.5-flash
 ```
+
+`GEMINI_API_KEY` enables Gemini-based image import extraction at `POST /imports/image/extract`.
+If the key is not set, the backend falls back to local OCR.
 
 On the first deploy, Railway Postgres will be seeded from:
 

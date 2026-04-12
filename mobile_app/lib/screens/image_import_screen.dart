@@ -20,12 +20,37 @@ class ImageImportScreen extends StatefulWidget {
 
 class _ImageImportScreenState extends State<ImageImportScreen> {
   final ImagePicker _picker = ImagePicker();
+  final TextEditingController _setNameController = TextEditingController();
 
   XFile? _selectedFile;
   Uint8List? _previewBytes;
   List<_ImportDraft> _drafts = const [];
+  List<String> _availableSets = const [];
+  bool _loadingSets = true;
   bool _extracting = false;
   bool _saving = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSets();
+  }
+
+  Future<void> _loadSets() async {
+    try {
+      final sets = await widget.api.fetchImportSets();
+      if (!mounted) return;
+      setState(() {
+        _availableSets = sets;
+        _loadingSets = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _loadingSets = false;
+      });
+    }
+  }
 
   Future<void> _pickImage(ImageSource source) async {
     final file = await _picker.pickImage(
@@ -54,12 +79,13 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
     });
 
     try {
-      final entries = await widget.api.extractImportCandidates(file);
+      final result = await widget.api.extractImportCandidates(file);
       if (!mounted) return;
 
       setState(() {
         _disposeDrafts();
-        _drafts = entries.map(_ImportDraft.fromCandidate).toList();
+        _drafts = result.entries.map(_ImportDraft.fromCandidate).toList();
+        _availableSets = result.availableSets;
         _extracting = false;
       });
     } catch (error) {
@@ -74,20 +100,23 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
   }
 
   Future<void> _saveEntries() async {
+    final setName = _setNameController.text.trim();
+    if (setName.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Choose an existing set or enter a new set name.')),
+      );
+      return;
+    }
+
     final entries = _drafts
-        .map((draft) => draft.toCandidate())
-        .where(
-          (entry) =>
-              entry.kana.trim().isNotEmpty &&
-              entry.meaning.trim().isNotEmpty &&
-              entry.romaji.trim().isNotEmpty,
-        )
+        .map((draft) => draft.toCandidate(setName: setName))
+        .where((entry) => _isReadyToSave(entry))
         .toList();
 
     if (entries.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Fill in kana, romaji, and meaning for at least one entry.'),
+          content: Text('Fill in Japanese text, romaji, and meaning for at least one entry.'),
         ),
       );
       return;
@@ -98,11 +127,11 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
     });
 
     try {
-      final count = await widget.api.saveImportedEntries(entries);
+      final count = await widget.api.saveImportedEntries(entries, setName: setName);
       if (!mounted) return;
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Saved $count entries to the vocabulary database.')),
+        SnackBar(content: Text('Saved $count entries to "$setName".')),
       );
       setState(() {
         _saving = false;
@@ -110,6 +139,9 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
         _previewBytes = null;
         _disposeDrafts();
         _drafts = const [];
+        if (!_availableSets.contains(setName)) {
+          _availableSets = [..._availableSets, setName]..sort((a, b) => a.compareTo(b));
+        }
       });
     } catch (error) {
       if (!mounted) return;
@@ -120,6 +152,14 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
         SnackBar(content: Text(error.toString().replaceFirst('Exception: ', ''))),
       );
     }
+  }
+
+  bool _isReadyToSave(ImportCandidate entry) {
+    final hasJapanese = entry.japaneseText.trim().isNotEmpty ||
+        entry.hiragana.trim().isNotEmpty ||
+        entry.katakana.trim().isNotEmpty ||
+        entry.kanji.trim().isNotEmpty;
+    return hasJapanese && entry.meaning.trim().isNotEmpty && entry.romaji.trim().isNotEmpty;
   }
 
   void _removeDraft(_ImportDraft draft) {
@@ -137,6 +177,7 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
 
   @override
   void dispose() {
+    _setNameController.dispose();
     _disposeDrafts();
     super.dispose();
   }
@@ -155,12 +196,12 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Add vocabulary from a photo',
+                    'Add study words from notes',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Take a picture or upload one, extract Japanese text, then review the entries before saving them into vocabulary.',
+                    'Take a photo of handwritten or typed Japanese and English notes. Tango will extract the words, look up translations and Japanese forms, then let you verify everything before saving.',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 20),
@@ -210,7 +251,7 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
                                 child: CircularProgressIndicator(strokeWidth: 2),
                               )
                             : const Icon(Icons.document_scanner_outlined),
-                        label: Text(_extracting ? 'Extracting...' : 'Extract Words'),
+                        label: Text(_extracting ? 'Extracting...' : 'Extract And Review'),
                       ),
                     ),
                   ],
@@ -225,6 +266,50 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 12),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Destination set',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      controller: _setNameController,
+                      decoration: const InputDecoration(
+                        labelText: 'Existing set or new set name',
+                        hintText: 'Examples: Lesson 4 Notes, Cafe Vocabulary',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    if (_loadingSets) ...[
+                      const SizedBox(height: 12),
+                      const LinearProgressIndicator(),
+                    ] else if (_availableSets.isNotEmpty) ...[
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: _availableSets
+                            .map(
+                              (set) => ActionChip(
+                                label: Text(set),
+                                onPressed: () {
+                                  _setNameController.text = set;
+                                },
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
             ..._drafts.map(
               (draft) => Padding(
                 padding: const EdgeInsets.only(bottom: 16),
@@ -245,7 +330,7 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
                     : const Icon(Icons.save_outlined),
-                label: Text(_saving ? 'Saving...' : 'Save To Vocabulary'),
+                label: Text(_saving ? 'Saving...' : 'Save Reviewed Entries'),
               ),
             ),
           ],
@@ -257,44 +342,75 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
 
 class _ImportDraft {
   final TextEditingController sourceTextController;
-  final TextEditingController kanaController;
+  final TextEditingController sourceLanguageController;
+  final TextEditingController japaneseTextController;
+  final TextEditingController hiraganaController;
+  final TextEditingController katakanaController;
+  final TextEditingController kanjiController;
   final TextEditingController romajiController;
   final TextEditingController meaningController;
+  final TextEditingController partOfSpeechController;
   final TextEditingController categoryController;
+  final String matchedCategory;
 
   _ImportDraft({
     required this.sourceTextController,
-    required this.kanaController,
+    required this.sourceLanguageController,
+    required this.japaneseTextController,
+    required this.hiraganaController,
+    required this.katakanaController,
+    required this.kanjiController,
     required this.romajiController,
     required this.meaningController,
+    required this.partOfSpeechController,
     required this.categoryController,
+    required this.matchedCategory,
   });
 
   factory _ImportDraft.fromCandidate(ImportCandidate candidate) {
     return _ImportDraft(
       sourceTextController: TextEditingController(text: candidate.sourceText),
-      kanaController: TextEditingController(text: candidate.kana),
+      sourceLanguageController: TextEditingController(text: candidate.sourceLanguage),
+      japaneseTextController: TextEditingController(text: candidate.japaneseText),
+      hiraganaController: TextEditingController(text: candidate.hiragana),
+      katakanaController: TextEditingController(text: candidate.katakana),
+      kanjiController: TextEditingController(text: candidate.kanji),
       romajiController: TextEditingController(text: candidate.romaji),
       meaningController: TextEditingController(text: candidate.meaning),
+      partOfSpeechController: TextEditingController(text: candidate.partOfSpeech),
       categoryController: TextEditingController(text: candidate.category),
+      matchedCategory: candidate.matchedCategory,
     );
   }
 
-  ImportCandidate toCandidate() {
+  ImportCandidate toCandidate({required String setName}) {
     return ImportCandidate(
-      sourceText: sourceTextController.text,
-      kana: kanaController.text,
-      romaji: romajiController.text,
-      meaning: meaningController.text,
-      category: categoryController.text,
+      sourceText: sourceTextController.text.trim(),
+      sourceLanguage: sourceLanguageController.text.trim(),
+      normalizedText: '',
+      romaji: romajiController.text.trim(),
+      japaneseText: japaneseTextController.text.trim(),
+      hiragana: hiraganaController.text.trim(),
+      katakana: katakanaController.text.trim(),
+      kanji: kanjiController.text.trim(),
+      meaning: meaningController.text.trim(),
+      partOfSpeech: partOfSpeechController.text.trim(),
+      category: categoryController.text.trim(),
+      matchedCategory: matchedCategory,
+      setName: setName,
     );
   }
 
   void dispose() {
     sourceTextController.dispose();
-    kanaController.dispose();
+    sourceLanguageController.dispose();
+    japaneseTextController.dispose();
+    hiraganaController.dispose();
+    katakanaController.dispose();
+    kanjiController.dispose();
     romajiController.dispose();
     meaningController.dispose();
+    partOfSpeechController.dispose();
     categoryController.dispose();
   }
 }
@@ -310,6 +426,8 @@ class _ImportDraftCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -320,8 +438,10 @@ class _ImportDraftCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Detected: ${draft.sourceTextController.text}',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    draft.sourceTextController.text.trim().isEmpty
+                        ? 'Imported word'
+                        : draft.sourceTextController.text.trim(),
+                    style: theme.textTheme.titleMedium,
                   ),
                 ),
                 IconButton(
@@ -331,41 +451,113 @@ class _ImportDraftCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: draft.kanaController,
-              decoration: const InputDecoration(
-                labelText: 'Kana or Japanese text',
-                border: OutlineInputBorder(),
-              ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _MetaPill(label: 'Source: ${draft.sourceLanguageController.text.trim().isEmpty ? 'unknown' : draft.sourceLanguageController.text.trim()}'),
+                if (draft.matchedCategory.trim().isNotEmpty)
+                  _MetaPill(label: 'Matched: ${draft.matchedCategory.trim()}'),
+              ],
             ),
             const SizedBox(height: 12),
-            TextField(
+            _draftField(
+              controller: draft.sourceTextController,
+              label: 'Detected text',
+            ),
+            const SizedBox(height: 12),
+            _draftField(
+              controller: draft.japaneseTextController,
+              label: 'Japanese text',
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: _draftField(
+                    controller: draft.hiraganaController,
+                    label: 'Hiragana',
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _draftField(
+                    controller: draft.katakanaController,
+                    label: 'Katakana',
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            _draftField(
+              controller: draft.kanjiController,
+              label: 'Kanji',
+            ),
+            const SizedBox(height: 12),
+            _draftField(
               controller: draft.romajiController,
-              decoration: const InputDecoration(
-                labelText: 'Romaji',
-                border: OutlineInputBorder(),
-              ),
+              label: 'Romaji',
             ),
             const SizedBox(height: 12),
-            TextField(
+            _draftField(
               controller: draft.meaningController,
-              decoration: const InputDecoration(
-                labelText: 'Meaning',
-                border: OutlineInputBorder(),
-              ),
+              label: 'English meaning / translation',
             ),
             const SizedBox(height: 12),
-            TextField(
-              controller: draft.categoryController,
-              decoration: const InputDecoration(
-                labelText: 'Vocabulary category',
-                border: OutlineInputBorder(),
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: _draftField(
+                    controller: draft.partOfSpeechController,
+                    label: 'Word type',
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _draftField(
+                    controller: draft.categoryController,
+                    label: 'Topic category',
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _draftField({
+    required TextEditingController controller,
+    required String label,
+  }) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(),
+      ),
+    );
+  }
+}
+
+class _MetaPill extends StatelessWidget {
+  final String label;
+
+  const _MetaPill({
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Text(label),
     );
   }
 }
