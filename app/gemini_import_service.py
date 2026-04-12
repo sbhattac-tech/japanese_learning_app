@@ -91,11 +91,15 @@ class GeminiImportService:
         return (
             "Extract study words or short phrases from this notes photo. The notes may contain handwritten "
             "or typed Japanese and/or English. Return only real visible study items from the image, deduplicated. "
+            "If English and Japanese appear on the same line or obviously correspond to each other, treat them as "
+            "one vocabulary item instead of separate entries. Prefer the Japanese term as japanese_text and use the "
+            "English term as meaning when both are visible. Fill hiragana, katakana, kanji, and romaji whenever "
+            "they are visible or can be confidently derived from the visible Japanese term. "
             "For each item, provide source_text, source_language (english, japanese, romaji, mixed, unknown), "
             "normalized_text, japanese_text, hiragana, katakana, kanji, romaji, meaning, part_of_speech "
             "(verb, adjective, vocabulary, adverb, expression, etc.), category (topic like food, school, weather, "
-            "imported), matched_category (leave empty if unknown), and set_name as an empty string. "
-            "If a field is not applicable, return an empty string. Prefer accurate Japanese readings and translations."
+            "transportation, imported), matched_category (leave empty if unknown), and set_name as an empty string. "
+            "If a field is not applicable, return an empty string. Do not return explanatory prose, only the JSON object."
         )
 
     def _schema(self) -> dict[str, Any]:

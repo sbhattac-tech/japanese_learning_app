@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import mimetypes
 import os
 from contextlib import asynccontextmanager
 from typing import Any, Literal
@@ -252,12 +253,27 @@ async def extract_entries_from_image(
 
     if gemini_import_service.is_configured:
         try:
+            mime_type = _resolve_image_mime_type(file.content_type, file.filename)
             entries = gemini_import_service.extract_candidates(
                 image_bytes,
-                mime_type=file.content_type or "image/jpeg",
+                mime_type=mime_type,
             )
         except GeminiImportError as error:
-            raise HTTPException(status_code=502, detail=str(error)) from error
+            logger.warning("Gemini import failed, falling back to local OCR: %s", error)
+            try:
+                tokens = ocr_service.extract_candidates(image_bytes)
+            except OcrDependencyError as ocr_error:
+                raise HTTPException(
+                    status_code=503,
+                    detail=(
+                        "Image extraction could not complete. Gemini was unavailable and "
+                        "local OCR is not configured on the server."
+                    ),
+                ) from ocr_error
+            except ValueError as value_error:
+                raise HTTPException(status_code=400, detail=str(value_error)) from value_error
+
+            entries = import_service.build_candidates(tokens)
     else:
         try:
             tokens = ocr_service.extract_candidates(image_bytes)
@@ -337,6 +353,18 @@ def _validate_payload(category: str, payload: dict[str, Any]) -> dict[str, Any]:
         raise HTTPException(status_code=404, detail=f"Unsupported category: {category}") from error
 
     return model.model_validate(payload).model_dump()
+
+
+def _resolve_image_mime_type(content_type: str | None, filename: str | None) -> str:
+    provided = (content_type or "").strip().lower()
+    if provided.startswith("image/") and provided != "image/*":
+        return provided
+
+    guessed, _ = mimetypes.guess_type(filename or "")
+    if guessed and guessed.startswith("image/"):
+        return guessed
+
+    return "image/jpeg"
 
 
 def _ensure_mutations_supported() -> None:

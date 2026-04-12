@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../config/app_config.dart';
@@ -64,6 +65,7 @@ class ApiService {
   }
 
   Future<ImportExtractResult> extractImportCandidates(XFile file) async {
+    final fileBytes = await file.readAsBytes();
     final request = http.MultipartRequest(
       'POST',
       Uri.parse('${AppConfig.baseUrl}/imports/image/extract'),
@@ -72,8 +74,9 @@ class ApiService {
     request.files.add(
       http.MultipartFile.fromBytes(
         'file',
-        await file.readAsBytes(),
+        fileBytes,
         filename: file.name,
+        contentType: _mediaTypeForFileName(file.name),
       ),
     );
 
@@ -142,5 +145,19 @@ class ApiService {
     return category.apiName == 'hiragana' ||
         category.apiName == 'katakana' ||
         category.apiName == 'kanji';
+  }
+
+  MediaType _mediaTypeForFileName(String fileName) {
+    final lowerName = fileName.toLowerCase();
+    if (lowerName.endsWith('.png')) {
+      return MediaType('image', 'png');
+    }
+    if (lowerName.endsWith('.webp')) {
+      return MediaType('image', 'webp');
+    }
+    if (lowerName.endsWith('.gif')) {
+      return MediaType('image', 'gif');
+    }
+    return MediaType('image', 'jpeg');
   }
 }

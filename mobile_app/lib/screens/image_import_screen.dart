@@ -82,12 +82,22 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
       final result = await widget.api.extractImportCandidates(file);
       if (!mounted) return;
 
+      final drafts = result.entries.map(_ImportDraft.fromCandidate).toList();
       setState(() {
         _disposeDrafts();
-        _drafts = result.entries.map(_ImportDraft.fromCandidate).toList();
+        _drafts = drafts;
         _availableSets = result.availableSets;
         _extracting = false;
       });
+      if (drafts.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'No study words were found. Try a clearer photo with larger text and good lighting.',
+            ),
+          ),
+        );
+      }
     } catch (error) {
       if (!mounted) return;
       setState(() {
@@ -129,6 +139,17 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
     try {
       final count = await widget.api.saveImportedEntries(entries, setName: setName);
       if (!mounted) return;
+      List<String> refreshedSets;
+      try {
+        refreshedSets = await widget.api.fetchImportSets();
+      } catch (_) {
+        refreshedSets = [..._availableSets];
+        if (!refreshedSets.contains(setName)) {
+          refreshedSets.add(setName);
+          refreshedSets.sort((a, b) => a.compareTo(b));
+        }
+      }
+      if (!mounted) return;
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Saved $count entries to "$setName".')),
@@ -139,9 +160,8 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
         _previewBytes = null;
         _disposeDrafts();
         _drafts = const [];
-        if (!_availableSets.contains(setName)) {
-          _availableSets = [..._availableSets, setName]..sort((a, b) => a.compareTo(b));
-        }
+        _availableSets = refreshedSets;
+        _setNameController.text = setName;
       });
     } catch (error) {
       if (!mounted) return;
