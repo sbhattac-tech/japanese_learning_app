@@ -3,17 +3,26 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../models/practice_category.dart';
+import '../models/study_direction.dart';
 import '../models/study_entry.dart';
-import '../services/api_service.dart';
+import '../models/study_session_result.dart';
+import '../services/progress_service.dart';
+import '../widgets/session_summary_card.dart';
 
 class QuizScreen extends StatefulWidget {
-  final ApiService api;
+  final String username;
   final PracticeCategory category;
+  final List<StudyEntry> entries;
+  final StudyDirection direction;
+  final ProgressService progress;
 
   const QuizScreen({
     super.key,
-    required this.api,
+    required this.username,
     required this.category,
+    required this.entries,
+    required this.direction,
+    required this.progress,
   });
 
   @override
@@ -23,130 +32,164 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   final Random _random = Random();
 
-  List<StudyEntry> _entries = const [];
   StudyEntry? _current;
   List<String> _choices = const [];
   String? _selected;
-  bool _loading = true;
   int _score = 0;
+  int _attempts = 0;
+  int _asked = 0;
+  StudySessionResult? _summary;
+  List<StudySessionResult> _history = const [];
 
   @override
   void initState() {
     super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    try {
-      final entries = await widget.api.fetchEntries(widget.category);
-      if (!mounted) return;
-      setState(() {
-        _entries = entries;
-        _loading = false;
-      });
-      _nextQuestion();
-    } catch (_) {
-      if (!mounted) return;
-      setState(() {
-        _loading = false;
-      });
-    }
+    _nextQuestion();
   }
 
   void _nextQuestion() {
-    if (_entries.length < 4) return;
+    if (widget.entries.length < 4) {
+      return;
+    }
+    if (_asked >= widget.entries.length) {
+      _finishSession();
+      return;
+    }
 
-    final current = _entries[_random.nextInt(_entries.length)];
-    final distractors = _entries.where((entry) => entry.id != current.id).toList()
+    final current = widget.entries[_random.nextInt(widget.entries.length)];
+    final distractors = widget.entries.where((entry) => entry.id != current.id).toList()
       ..shuffle(_random);
 
     final choices = <String>[
-      current.meaning,
-      ...distractors.take(3).map((entry) => entry.meaning),
+      current.answerFor(widget.direction),
+      ...distractors.take(3).map((entry) => entry.answerFor(widget.direction)),
     ]..shuffle(_random);
 
     setState(() {
       _current = current;
       _choices = choices;
       _selected = null;
+      _asked += 1;
+    });
+  }
+
+  Future<void> _finishSession() async {
+    final result = StudySessionResult(
+      mode: 'quiz',
+      category: widget.category.apiName,
+      totalItems: widget.entries.length,
+      attempts: _attempts,
+      correctOnFirstTry: _score,
+      scorePercent: widget.entries.isEmpty ? 0 : ((_score / widget.entries.length) * 100).round(),
+      completedAt: DateTime.now(),
+    );
+    await widget.progress.recordSession(widget.username, result);
+    final history = await widget.progress.loadHistoryFor(
+      username: widget.username,
+      mode: 'quiz',
+      category: widget.category.apiName,
+    );
+    if (!mounted) return;
+    setState(() {
+      _summary = result;
+      _history = history;
+      _current = null;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_summary != null) {
+      return Scaffold(
+        appBar: AppBar(title: Text('${widget.category.label} Quiz')),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: SessionSummaryCard(result: _summary!, history: _history),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text('${widget.category.label} Quiz')),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: _loading
-            ? const Center(child: CircularProgressIndicator())
-            : _current == null
-                ? Center(
-                    child: Text(
-                      'Not enough ${widget.category.label.toLowerCase()} entries to build a quiz yet.',
+        child: _current == null
+            ? Center(
+                child: Text(
+                  'Not enough ${widget.category.label.toLowerCase()} entries to build a quiz yet.',
+                ),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Score: $_score', style: Theme.of(context).textTheme.titleMedium),
+                  const SizedBox(height: 24),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(widget.category.promptForDirection(widget.direction)),
+                          const SizedBox(height: 12),
+                          Text(
+                            _current!.promptFor(widget.direction),
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          if (_current!.subtitleFor(widget.direction).isNotEmpty) ...[
+                            const SizedBox(height: 8),
+                            Text(_current!.subtitleFor(widget.direction)),
+                          ],
+                        ],
+                      ),
                     ),
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Score: $_score', style: Theme.of(context).textTheme.titleMedium),
-                      const SizedBox(height: 24),
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(widget.category.quizPrompt),
-                              const SizedBox(height: 12),
-                              Text(
-                                _current!.primaryJapanese,
-                                style: Theme.of(context).textTheme.headlineMedium,
-                              ),
-                              if (_current!.romaji.isNotEmpty) ...[
-                                const SizedBox(height: 8),
-                                Text(_current!.romaji),
-                              ],
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 18),
-                      ..._choices.map(
-                        (choice) => Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: FilledButton.tonal(
-                              onPressed: _selected != null
-                                  ? null
-                                  : () {
-                                      final correct = choice == _current!.meaning;
-                                      setState(() {
-                                        _selected = choice;
-                                        if (correct) {
-                                          _score += 1;
-                                        }
-                                      });
-                                    },
-                              child: Text(choice),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      if (_selected != null)
-                        SizedBox(
-                          width: double.infinity,
-                          child: FilledButton(
-                            onPressed: _nextQuestion,
-                            child: Text(
-                              _selected == _current!.meaning ? 'Next Question' : 'Try Another',
-                            ),
-                          ),
-                        ),
-                    ],
                   ),
+                  const SizedBox(height: 18),
+                  ..._choices.map(
+                    (choice) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: FilledButton.tonal(
+                          onPressed: _selected != null
+                              ? null
+                              : () async {
+                                  final correct = choice == _current!.answerFor(widget.direction);
+                                  await widget.progress.updateItemProgress(
+                                    username: widget.username,
+                                    category: widget.category,
+                                    entryId: _current!.id,
+                                    answeredCorrectly: correct,
+                                  );
+                                  if (!mounted) return;
+                                  setState(() {
+                                    _attempts += 1;
+                                    _selected = choice;
+                                    if (correct) {
+                                      _score += 1;
+                                    }
+                                  });
+                                },
+                          child: Text(choice),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  if (_selected != null)
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton(
+                        onPressed: _nextQuestion,
+                        child: Text(
+                          _selected == _current!.answerFor(widget.direction)
+                              ? 'Next Question'
+                              : 'Try Another',
+                        ),
+                      ),
+                    ),
+                ],
+              ),
       ),
     );
   }

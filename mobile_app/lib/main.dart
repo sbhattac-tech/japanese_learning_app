@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_screen.dart';
+import 'screens/dashboard_screen.dart';
+import 'screens/landing_screen.dart';
+import 'services/auth_service.dart';
 
 void main() {
   runApp(const JapaneseLearningApp());
@@ -12,9 +14,10 @@ class JapaneseLearningApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const seed = Color(0xFF0E7C66);
+    final auth = AuthService();
 
     return MaterialApp(
-      title: 'Japanese Learning',
+      title: 'Tango App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: seed),
@@ -25,6 +28,9 @@ class JapaneseLearningApp extends StatelessWidget {
           foregroundColor: Color(0xFF11221D),
           elevation: 0,
         ),
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(),
+        ),
         cardTheme: CardThemeData(
           color: Colors.white,
           shape: RoundedRectangleBorder(
@@ -33,7 +39,22 @@ class JapaneseLearningApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const HomeScreen(),
+      home: FutureBuilder<String?>(
+        future: auth.getCurrentUsername(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+
+          final username = snapshot.data;
+          if (username == null || username.isEmpty) {
+            return const LandingScreen();
+          }
+          return DashboardScreen(username: username);
+        },
+      ),
     );
   }
 }

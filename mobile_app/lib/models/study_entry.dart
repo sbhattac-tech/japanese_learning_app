@@ -1,3 +1,5 @@
+import 'study_direction.dart';
+
 class StudyEntry {
   final int id;
   final String romaji;
@@ -103,4 +105,59 @@ class StudyEntry {
   }
 
   String get primaryJapanese => kanji != null && kanji!.isNotEmpty ? kanji! : kana;
+
+  String promptFor(StudyDirection direction) {
+    switch (direction) {
+      case StudyDirection.japaneseToEnglish:
+        return primaryJapanese;
+      case StudyDirection.englishToJapanese:
+        return meaning;
+    }
+  }
+
+  String answerFor(StudyDirection direction) {
+    switch (direction) {
+      case StudyDirection.japaneseToEnglish:
+        return meaning;
+      case StudyDirection.englishToJapanese:
+        return primaryJapanese;
+    }
+  }
+
+  String subtitleFor(StudyDirection direction) {
+    switch (direction) {
+      case StudyDirection.japaneseToEnglish:
+        return romaji;
+      case StudyDirection.englishToJapanese:
+        return romaji.isNotEmpty ? romaji : kana;
+    }
+  }
+
+  bool matchesTypedAnswer(StudyDirection direction, String value) {
+    final normalized = _normalize(value);
+    if (normalized.isEmpty) {
+      return false;
+    }
+
+    switch (direction) {
+      case StudyDirection.japaneseToEnglish:
+        final accepted = meaning
+            .split(RegExp(r'[,/;]'))
+            .map(_normalize)
+            .where((item) => item.isNotEmpty);
+        return accepted.any((item) => item == normalized);
+      case StudyDirection.englishToJapanese:
+        final candidates = {
+          _normalize(primaryJapanese),
+          _normalize(kana),
+          _normalize(romaji),
+          if (kanji != null) _normalize(kanji!),
+        };
+        return candidates.contains(normalized);
+    }
+  }
+
+  static String _normalize(String value) {
+    return value.trim().toLowerCase();
+  }
 }

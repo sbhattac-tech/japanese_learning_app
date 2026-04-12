@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../models/study_direction.dart';
 import '../models/study_entry.dart';
 
 class FlashcardView extends StatelessWidget {
   final StudyEntry entry;
   final bool showAnswer;
-  final String answerLabel;
+  final StudyDirection direction;
 
   const FlashcardView({
     super.key,
     required this.entry,
     required this.showAnswer,
-    required this.answerLabel,
+    required this.direction,
   });
 
   @override
@@ -33,14 +34,16 @@ class FlashcardView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            entry.primaryJapanese,
+            entry.promptFor(direction),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
                 ),
           ),
-          if (entry.kana.isNotEmpty && entry.kana != entry.primaryJapanese) ...[
+          if (direction == StudyDirection.japaneseToEnglish &&
+              entry.kana.isNotEmpty &&
+              entry.kana != entry.primaryJapanese) ...[
             const SizedBox(height: 16),
             Text(
               entry.kana,
@@ -51,16 +54,19 @@ class FlashcardView extends StatelessWidget {
           ],
           const SizedBox(height: 16),
           Text(
-            showAnswer ? '$answerLabel: ${entry.meaning}' : 'Tap reveal to see the answer',
+            showAnswer
+                ? '${direction.answerLanguageLabel}: ${entry.answerFor(direction)}'
+                : 'Tap reveal to see the answer',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Colors.white,
                 ),
           ),
-          if (entry.romaji.isNotEmpty && entry.romaji != entry.meaning) ...[
+          if (entry.subtitleFor(direction).isNotEmpty &&
+              entry.subtitleFor(direction) != entry.answerFor(direction)) ...[
             const SizedBox(height: 10),
             Text(
-              entry.romaji,
+              entry.subtitleFor(direction),
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Colors.white70,
                   ),

@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -14,7 +12,7 @@ class ImageTextImportService {
     final latinResult = await _latinRecognizer.processImage(image);
     final japaneseResult = await _japaneseRecognizer.processImage(image);
 
-    final orderedTexts = LinkedHashSet<String>();
+    final orderedTexts = <String>{};
     orderedTexts.addAll(_extractTokens(latinResult));
     orderedTexts.addAll(_extractTokens(japaneseResult));
 
@@ -55,7 +53,6 @@ class ImageTextImportService {
       case 'english':
         return ImportCandidate(
           sourceText: sourceText,
-          detectedType: detectedType,
           romaji: '',
           kana: '',
           meaning: sourceText,
@@ -64,7 +61,6 @@ class ImageTextImportService {
       case 'romaji':
         return ImportCandidate(
           sourceText: sourceText,
-          detectedType: detectedType,
           romaji: sourceText,
           kana: '',
           meaning: '',
@@ -73,7 +69,6 @@ class ImageTextImportService {
       default:
         return ImportCandidate(
           sourceText: sourceText,
-          detectedType: detectedType,
           romaji: '',
           kana: sourceText,
           meaning: '',

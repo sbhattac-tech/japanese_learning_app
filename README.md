@@ -88,6 +88,24 @@ cd mobile_app
 flutter build apk --release --dart-define=API_BASE_URL=https://your-service.up.railway.app
 ```
 
+Or run the root script (uses Android Studio JBR automatically and defaults to production API URL):
+
+```powershell
+./build_apk.bat
+```
+
+Pass a custom API URL:
+
+```powershell
+./build_apk.bat https://your-service.up.railway.app
+```
+
+Optional clean build:
+
+```powershell
+./build_apk.bat https://your-service.up.railway.app --clean
+```
+
 or:
 
 ```powershell
