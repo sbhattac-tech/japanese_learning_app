@@ -1,0 +1,301 @@
+{
+  "czech_vocabulary": [
+    {
+      "id": 1,
+      "english": "north",
+      "czech": "sever",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 2,
+      "english": "cousin",
+      "czech": "bratranec",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 3,
+      "english": "pencil",
+      "czech": "tužka",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 4,
+      "english": "shop",
+      "czech": "obchod",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 5,
+      "english": "price",
+      "czech": "cena",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 6,
+      "english": "notebook",
+      "czech": "sešit",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 7,
+      "english": "textbook",
+      "czech": "učebnice",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 8,
+      "english": "chapter",
+      "czech": "kapitola",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 9,
+      "english": "animal",
+      "czech": "zvíře",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 10,
+      "english": "fish",
+      "czech": "ryba",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 11,
+      "english": "nature",
+      "czech": "příroda",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 12,
+      "english": "carpet",
+      "czech": "koberec",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 13,
+      "english": "cube",
+      "czech": "kostka",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 14,
+      "english": "color",
+      "czech": "barva",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 15,
+      "english": "egg",
+      "czech": "vejce",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 16,
+      "english": "trip",
+      "czech": "výlet",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 17,
+      "english": "age",
+      "czech": "věk",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 18,
+      "english": "money",
+      "czech": "peníze",
+      "notes": "plural",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 19,
+      "english": "happiness",
+      "czech": "štěstí",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 20,
+      "english": "world",
+      "czech": "svět",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 21,
+      "english": "island",
+      "czech": "ostrov",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 22,
+      "english": "wedding",
+      "czech": "svatba",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 23,
+      "english": "fruit",
+      "czech": "ovoce",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 24,
+      "english": "vegetables",
+      "czech": "zelenina",
+      "notes": "",
+      "part_of_speech": "noun",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    },
+    {
+      "id": 25,
+      "english": "often",
+      "czech": "často",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 26,
+      "english": "soon",
+      "czech": "brzy",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 27,
+      "english": "late",
+      "czech": "pozdě",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 28,
+      "english": "probably",
+      "czech": "asi",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 29,
+      "english": "almost",
+      "czech": "skoro",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 30,
+      "english": "more",
+      "czech": "víc",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 31,
+      "english": "less",
+      "czech": "míň",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 32,
+      "english": "for the first time",
+      "czech": "poprvé",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 33,
+      "english": "for the last time",
+      "czech": "naposledy",
+      "notes": "",
+      "part_of_speech": "adverb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    }
+  ]
+}

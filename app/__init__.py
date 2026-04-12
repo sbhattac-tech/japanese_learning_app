@@ -1,1 +1,1 @@
-"""Japanese Learning App API package."""
+"""Cognita API package."""

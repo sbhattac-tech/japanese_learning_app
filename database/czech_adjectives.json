@@ -1,0 +1,94 @@
+{
+  "czech_adjectives": [
+    {
+      "id": 1,
+      "english": "good",
+      "czech": "dobrý",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 2,
+      "english": "expensive",
+      "czech": "drahý",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 3,
+      "english": "cheap",
+      "czech": "levný",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 4,
+      "english": "simple",
+      "czech": "jednoduchý",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 5,
+      "english": "difficult",
+      "czech": "těžký",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 6,
+      "english": "old",
+      "czech": "starý",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 7,
+      "english": "new",
+      "czech": "nový",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 8,
+      "english": "green",
+      "czech": "zelený",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 9,
+      "english": "blue",
+      "czech": "modrý",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    },
+    {
+      "id": 10,
+      "english": "yellow",
+      "czech": "žlutý",
+      "notes": "",
+      "part_of_speech": "adjective",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 3"
+    }
+  ]
+}

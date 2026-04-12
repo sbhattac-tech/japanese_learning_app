@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../services/auth_service.dart';
-import 'dashboard_screen.dart';
+import 'language_selection_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (_) => DashboardScreen(username: _usernameController.text.trim()),
+          builder: (_) => LanguageSelectionScreen(username: _usernameController.text.trim()),
         ),
         (_) => false,
       );

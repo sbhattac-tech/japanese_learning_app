@@ -7,6 +7,7 @@ class StudyEntry {
   final String? kanji;
   final String meaning;
   final String category;
+  final String? setName;
 
   const StudyEntry({
     required this.id,
@@ -15,6 +16,7 @@ class StudyEntry {
     required this.kanji,
     required this.meaning,
     required this.category,
+    this.setName,
   });
 
   factory StudyEntry.fromVocabularyJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class StudyEntry {
       kanji: json['kanji'] as String?,
       meaning: json['meaning'] as String? ?? '',
       category: json['category'] as String? ?? 'general',
+      setName: json['set_name'] as String?,
     );
   }
 
@@ -36,6 +39,7 @@ class StudyEntry {
       kanji: json['kanji'] as String?,
       meaning: json['meaning'] as String? ?? '',
       category: 'verb',
+      setName: json['set_name'] as String?,
     );
   }
 
@@ -45,10 +49,13 @@ class StudyEntry {
     required int fallbackId,
   }) {
     switch (category) {
+      case 'japanese_vocabulary':
       case 'vocabulary':
         return StudyEntry.fromVocabularyJson(json);
+      case 'japanese_verbs':
       case 'verbs':
         return StudyEntry.fromVerbJson(json);
+      case 'japanese_adjectives':
       case 'adjectives':
         return StudyEntry(
           id: (json['id'] as num?)?.toInt() ?? fallbackId,
@@ -57,6 +64,19 @@ class StudyEntry {
           kanji: json['kanji'] as String?,
           meaning: json['meaning'] as String? ?? '',
           category: 'adjective',
+          setName: json['set_name'] as String?,
+        );
+      case 'czech_adjectives':
+      case 'czech_verbs':
+      case 'czech_vocabulary':
+        return StudyEntry(
+          id: (json['id'] as num?)?.toInt() ?? fallbackId,
+          romaji: json['english'] as String? ?? '',
+          kana: json['czech'] as String? ?? '',
+          kanji: null,
+          meaning: json['english'] as String? ?? '',
+          category: json['category'] as String? ?? 'general',
+          setName: json['set_name'] as String?,
         );
       case 'hiragana':
         final character = json['character'] as String? ?? '';
@@ -68,6 +88,7 @@ class StudyEntry {
           kanji: null,
           meaning: romaji,
           category: 'hiragana',
+          setName: null,
         );
       case 'katakana':
         final character = json['katakana'] as String? ?? '';
@@ -79,6 +100,7 @@ class StudyEntry {
           kanji: null,
           meaning: romaji,
           category: 'katakana',
+          setName: null,
         );
       case 'kanji':
         final meaning = (json['meaning'] as List<dynamic>? ?? const [])
@@ -98,6 +120,7 @@ class StudyEntry {
           kanji: json['kanji'] as String?,
           meaning: meaning,
           category: 'kanji',
+          setName: null,
         );
       default:
         throw UnsupportedError('Unsupported practice category: $category');
@@ -105,6 +128,7 @@ class StudyEntry {
   }
 
   String get primaryJapanese => kanji != null && kanji!.isNotEmpty ? kanji! : kana;
+  String get primaryText => primaryJapanese;
 
   String promptFor(StudyDirection direction) {
     switch (direction) {

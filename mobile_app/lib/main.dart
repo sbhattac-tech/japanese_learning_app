@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'screens/dashboard_screen.dart';
 import 'screens/landing_screen.dart';
+import 'screens/language_selection_screen.dart';
 import 'services/auth_service.dart';
 
 void main() {
-  runApp(const JapaneseLearningApp());
+  runApp(const CognitaApp());
 }
 
-class JapaneseLearningApp extends StatelessWidget {
-  const JapaneseLearningApp({super.key});
+class CognitaApp extends StatelessWidget {
+  const CognitaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class JapaneseLearningApp extends StatelessWidget {
     final auth = AuthService();
 
     return MaterialApp(
-      title: 'Tango App',
+      title: 'Cognita',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: seed),
@@ -52,7 +52,7 @@ class JapaneseLearningApp extends StatelessWidget {
           if (username == null || username.isEmpty) {
             return const LandingScreen();
           }
-          return DashboardScreen(username: username);
+          return LanguageSelectionScreen(username: username);
         },
       ),
     );

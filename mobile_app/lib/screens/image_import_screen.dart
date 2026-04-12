@@ -221,7 +221,7 @@ class _ImageImportScreenState extends State<ImageImportScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Take a photo of handwritten or typed Japanese and English notes. Tango will extract the words, look up translations and Japanese forms, then let you verify everything before saving.',
+                    'Take a photo of handwritten or typed notes. Cognita will extract the words, look up translations and language forms, then let you verify everything before saving.',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 20),

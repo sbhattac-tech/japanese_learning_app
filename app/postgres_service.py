@@ -23,7 +23,38 @@ from sqlalchemy.dialects.postgresql import JSONB
 from app.database_service import CATEGORY_CONFIG, CategoryConfig
 from scripts.build_database import build_database_from_sources
 
-POSTGRES_CATEGORIES = ("vocabulary", "adjectives", "verbs")
+# Maps any accepted API name → actual DB storage name
+POSTGRES_CATEGORY_DB_MAP: dict[str, str] = {
+    # New Flutter API names
+    "japanese_vocabulary": "vocabulary",
+    "japanese_adjectives": "adjectives",
+    "japanese_verbs": "verbs",
+    # Old names (backward compat; stored as-is)
+    "vocabulary": "vocabulary",
+    "adjectives": "adjectives",
+    "verbs": "verbs",
+    # Czech categories (stored with these names)
+    "czech_vocabulary": "czech_vocabulary",
+    "czech_adjectives": "czech_adjectives",
+    "czech_verbs": "czech_verbs",
+}
+
+# User-facing category names returned by list_categories()
+POSTGRES_API_CATEGORIES = (
+    "czech_vocabulary",
+    "czech_adjectives",
+    "czech_verbs",
+    "japanese_vocabulary",
+    "japanese_adjectives",
+    "japanese_verbs",
+)
+
+# Maps DB storage name → CATEGORY_CONFIG key (which uses japanese_* keys)
+_DB_TO_CONFIG_KEY: dict[str, str] = {
+    "vocabulary": "japanese_vocabulary",
+    "adjectives": "japanese_adjectives",
+    "verbs": "japanese_verbs",
+}
 
 DEMONSTRATIVE_CATEGORY = "ko-so-a-do"
 DEMONSTRATIVE_DESCRIPTION = (
@@ -96,27 +127,30 @@ class PostgresDatabaseService:
         self._metadata.create_all(self._engine)
 
     def list_categories(self) -> list[str]:
-        return list(POSTGRES_CATEGORIES)
+        return list(POSTGRES_API_CATEGORIES)
 
     def get_category(self, category: str) -> Any:
-        self._config(category)
-        rows = self._fetch_category_rows(category)
-        if category == "demonstratives":
+        db_cat = self._db_category(category)
+        rows = self._fetch_category_rows(db_cat)
+        if db_cat == "demonstratives":
             return self._serialize_demonstratives(rows)
-        return [self._materialize_payload(category, row) for row in rows]
+        return [self._materialize_payload(db_cat, row) for row in rows]
 
     def get_entry(self, category: str, entry_id: int) -> dict[str, Any] | None:
-        self._config(category)
-        row = self._fetch_entry_row(category, entry_id)
+        db_cat = self._db_category(category)
+        row = self._fetch_entry_row(db_cat, entry_id)
         if row is None:
             return None
-        return self._materialize_payload(category, row)
+        return self._materialize_payload(db_cat, row)
 
     def get_master_database(self) -> Any:
         return build_database_from_sources(
-            verbs={"verbs": self.get_category("verbs")},
-            adjectives={"adjectives": self.get_category("adjectives")},
-            vocabulary={"vocabulary": self.get_category("vocabulary")},
+            czech_vocabulary={"czech_vocabulary": self.get_category("czech_vocabulary")},
+            czech_adjectives={"czech_adjectives": self.get_category("czech_adjectives")},
+            czech_verbs={"czech_verbs": self.get_category("czech_verbs")},
+            japanese_verbs={"japanese_verbs": self.get_category("japanese_verbs")},
+            japanese_adjectives={"japanese_adjectives": self.get_category("japanese_adjectives")},
+            japanese_vocabulary={"japanese_vocabulary": self.get_category("japanese_vocabulary")},
             demonstratives={
                 "category": DEMONSTRATIVE_CATEGORY,
                 "description": DEMONSTRATIVE_DESCRIPTION,
@@ -129,19 +163,18 @@ class PostgresDatabaseService:
         )
 
     def create_entry(self, category: str, payload: dict[str, Any]) -> dict[str, Any]:
-        self._config(category)
         created = self.create_entries(category, [payload])
         return created[0]
 
     def create_entries(self, category: str, payloads: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        self._config(category)
-        rows = self._fetch_category_rows(category)
+        db_cat = self._db_category(category)
+        rows = self._fetch_category_rows(db_cat)
         next_entry_id = max((row.entry_id for row in rows), default=0) + 1
         next_sort_order = max((row.sort_order for row in rows), default=0) + 1
 
         created_rows: list[StoredEntry] = []
         for payload in payloads:
-            entry_payload, group_type = self._prepare_payload_for_storage(category, payload)
+            entry_payload, group_type = self._prepare_payload_for_storage(db_cat, payload)
             created_rows.append(
                 StoredEntry(
                     entry_id=next_entry_id,
@@ -158,7 +191,7 @@ class PostgresDatabaseService:
                 self._entries.insert(),
                 [
                     {
-                        "category": category,
+                        "category": db_cat,
                         "entry_id": row.entry_id,
                         "sort_order": row.sort_order,
                         "group_type": row.group_type,
@@ -170,20 +203,20 @@ class PostgresDatabaseService:
                 ],
             )
 
-        return [self._materialize_payload(category, row) for row in created_rows]
+        return [self._materialize_payload(db_cat, row) for row in created_rows]
 
     def update_entry(self, category: str, entry_id: int, payload: dict[str, Any]) -> dict[str, Any] | None:
-        self._config(category)
-        current = self._fetch_entry_row(category, entry_id)
+        db_cat = self._db_category(category)
+        current = self._fetch_entry_row(db_cat, entry_id)
         if current is None:
             return None
 
-        entry_payload, group_type = self._prepare_payload_for_storage(category, payload)
+        entry_payload, group_type = self._prepare_payload_for_storage(db_cat, payload)
         with self._engine.begin() as connection:
             connection.execute(
                 self._entries.update()
                 .where(
-                    self._entries.c.category == category,
+                    self._entries.c.category == db_cat,
                     self._entries.c.entry_id == entry_id,
                 )
                 .values(
@@ -199,14 +232,14 @@ class PostgresDatabaseService:
             group_type=group_type,
             payload=entry_payload,
         )
-        return self._materialize_payload(category, updated)
+        return self._materialize_payload(db_cat, updated)
 
     def delete_entry(self, category: str, entry_id: int) -> bool:
-        self._config(category)
+        db_cat = self._db_category(category)
         with self._engine.begin() as connection:
             result = connection.execute(
                 delete(self._entries).where(
-                    self._entries.c.category == category,
+                    self._entries.c.category == db_cat,
                     self._entries.c.entry_id == entry_id,
                 )
             )
@@ -232,15 +265,16 @@ class PostgresDatabaseService:
                     return {}
 
             for category in selected_categories:
+                db_category = self._db_category(category)
                 payloads = self._category_payloads_for_bootstrap(json_service, category)
                 sort_order = 1
                 rows = []
                 for payload in payloads:
-                    entry_payload, group_type = self._prepare_payload_for_storage(category, payload)
-                    entry_id = self._payload_entry_id(category, payload, sort_order)
+                    entry_payload, group_type = self._prepare_payload_for_storage(db_category, payload)
+                    entry_id = self._payload_entry_id(db_category, payload, sort_order)
                     rows.append(
                         {
-                            "category": category,
+                            "category": db_category,
                             "entry_id": entry_id,
                             "sort_order": sort_order,
                             "group_type": group_type,
@@ -279,7 +313,14 @@ class PostgresDatabaseService:
 
     def _materialize_payload(self, category: str, row: StoredEntry) -> dict[str, Any]:
         payload = dict(row.payload)
-        if category in {"verbs", "adjectives", "vocabulary"}:
+        if category in {
+            "czech_vocabulary",
+            "czech_adjectives",
+            "czech_verbs",
+            "vocabulary",
+            "adjectives",
+            "verbs",
+        }:
             payload["id"] = row.entry_id
         return payload
 
@@ -327,14 +368,20 @@ class PostgresDatabaseService:
             payload=dict(row.payload),
         )
 
-    def _config(self, category: str) -> CategoryConfig:
-        if category not in POSTGRES_CATEGORIES:
+    def _db_category(self, category: str) -> str:
+        """Resolve any accepted API name to the DB storage name."""
+        if category not in POSTGRES_CATEGORY_DB_MAP:
             raise ValueError(
                 f"Unsupported Postgres category: {category}. "
-                f"Supported categories: {', '.join(POSTGRES_CATEGORIES)}"
+                f"Supported categories: {', '.join(POSTGRES_API_CATEGORIES)}"
             )
+        return POSTGRES_CATEGORY_DB_MAP[category]
+
+    def _config(self, category: str) -> CategoryConfig:
+        db_cat = self._db_category(category)
+        config_key = _DB_TO_CONFIG_KEY.get(db_cat, db_cat)
         try:
-            return CATEGORY_CONFIG[category]
+            return CATEGORY_CONFIG[config_key]
         except KeyError as error:
             raise ValueError(f"Unsupported category: {category}") from error
 

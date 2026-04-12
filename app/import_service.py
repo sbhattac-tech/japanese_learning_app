@@ -43,7 +43,7 @@ class ImportService:
 
     def list_import_sets(self) -> list[dict[str, Any]]:
         try:
-            vocabulary_entries = self._database_service.get_category("vocabulary")
+            vocabulary_entries = self._database_service.get_category("japanese_vocabulary")
         except ValueError:
             return []
 
@@ -110,7 +110,7 @@ class ImportService:
 
     def _build_lexicon(self) -> list[LexiconEntry]:
         entries: list[LexiconEntry] = []
-        for category in ("vocabulary", "adjectives", "verbs"):
+        for category in ("japanese_vocabulary", "japanese_adjectives", "japanese_verbs"):
             try:
                 rows = self._database_service.get_category(category)
             except ValueError:
@@ -141,7 +141,7 @@ class ImportService:
         partial_match: LexiconEntry | None = None
         for entry in lexicon:
             if normalized in entry.search_terms:
-                if language == "english" and entry.category == "vocabulary":
+                if language == "english" and entry.category == "japanese_vocabulary":
                     return entry
                 if exact_match is None:
                     exact_match = entry
@@ -170,7 +170,7 @@ class ImportService:
         return tuple(OrderedDict.fromkeys(terms))
 
     def _extract_japanese_text(self, category: str, payload: dict[str, Any]) -> str:
-        if category == "verbs":
+        if category == "japanese_verbs":
             return str(payload.get("kanji") or payload.get("hiragana") or "").strip()
         return str(
             payload.get("kanji")
@@ -181,13 +181,13 @@ class ImportService:
         ).strip()
 
     def _extract_hiragana(self, category: str, payload: dict[str, Any]) -> str:
-        if category == "verbs":
+        if category == "japanese_verbs":
             return str(payload.get("hiragana", "")).strip()
         value = str(payload.get("hiragana") or payload.get("kana") or "").strip()
         return self._to_hiragana(value) if self._is_katakana(value) else value
 
     def _extract_katakana(self, category: str, payload: dict[str, Any]) -> str:
-        if category == "verbs":
+        if category == "japanese_verbs":
             return self._to_katakana(str(payload.get("hiragana", "")).strip())
         value = str(payload.get("katakana") or payload.get("kana") or "").strip()
         return self._to_katakana(value) if self._is_hiragana(value) else value
@@ -196,7 +196,7 @@ class ImportService:
         value = str(payload.get("kanji", "")).strip()
         if value:
             return value
-        if category == "vocabulary":
+        if category == "japanese_vocabulary":
             kana = str(payload.get("kana", "")).strip()
             if self._has_kanji(kana):
                 return kana
@@ -209,19 +209,19 @@ class ImportService:
         return str(raw).strip()
 
     def _extract_topic_category(self, category: str, payload: dict[str, Any]) -> str:
-        if category == "vocabulary":
+        if category == "japanese_vocabulary":
             return str(payload.get("category", "")).strip() or "imported"
-        if category == "adjectives":
+        if category == "japanese_adjectives":
             adjective_type = str(payload.get("type", "")).strip()
             return f"{adjective_type}-adjective" if adjective_type else "adjective"
-        if category == "verbs":
+        if category == "japanese_verbs":
             return str(payload.get("group", "")).strip() or "verb"
         return "imported"
 
     def _part_of_speech_for_category(self, category: str, payload: dict[str, Any]) -> str:
-        if category == "verbs":
+        if category == "japanese_verbs":
             return "verb"
-        if category == "adjectives":
+        if category == "japanese_adjectives":
             adjective_type = str(payload.get("type", "")).strip()
             return f"{adjective_type}-adjective" if adjective_type else "adjective"
         return str(payload.get("part_of_speech", "")).strip() or "vocabulary"

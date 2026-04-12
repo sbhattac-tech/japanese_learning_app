@@ -43,7 +43,7 @@ class FlashcardView extends StatelessWidget {
           ),
           if (direction == StudyDirection.japaneseToEnglish &&
               entry.kana.isNotEmpty &&
-              entry.kana != entry.primaryJapanese) ...[
+              entry.kana != entry.primaryText) ...[
             const SizedBox(height: 16),
             Text(
               entry.kana,
@@ -56,7 +56,7 @@ class FlashcardView extends StatelessWidget {
           Text(
             showAnswer
                 ? '${direction.answerLanguageLabel}: ${entry.answerFor(direction)}'
-                : 'Tap reveal to see the answer',
+                : 'Tap Reveal to see the answer',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Colors.white,

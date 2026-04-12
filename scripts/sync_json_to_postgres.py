@@ -1,6 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from app.database_service import DatabaseService
 from app.postgres_service import PostgresDatabaseService
@@ -19,7 +25,10 @@ def main() -> None:
     parser.add_argument(
         "--categories",
         nargs="+",
-        help="Optional list of categories to import, for example: vocabulary adjectives verbs",
+        help=(
+            "Optional list of categories to import, for example: "
+            "japanese_vocabulary japanese_adjectives japanese_verbs"
+        ),
     )
     args = parser.parse_args()
 

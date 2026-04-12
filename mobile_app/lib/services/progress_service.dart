@@ -130,6 +130,31 @@ class ProgressService {
   }
 
   List<StudySet> buildStudySets(List<StudyEntry> entries) {
+    final namedSets = <String, List<StudyEntry>>{};
+    for (final entry in entries) {
+      final setName = entry.setName?.trim() ?? '';
+      if (setName.isEmpty) {
+        continue;
+      }
+      namedSets.putIfAbsent(setName, () => <StudyEntry>[]).add(entry);
+    }
+
+    if (namedSets.isNotEmpty) {
+      final sets = <StudySet>[];
+      var index = 1;
+      for (final entry in namedSets.entries) {
+        sets.add(
+          StudySet(
+            index: index,
+            label: entry.key,
+            entries: entry.value,
+          ),
+        );
+        index += 1;
+      }
+      return sets;
+    }
+
     final sets = <StudySet>[];
     for (var start = 0; start < entries.length; start += 20) {
       final index = (start ~/ 20) + 1;

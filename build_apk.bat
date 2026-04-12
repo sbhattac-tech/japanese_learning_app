@@ -4,7 +4,7 @@ setlocal
 set "ROOT=%~dp0"
 set "FLUTTER_BIN=C:\Users\sbssj\Downloads\flutter\bin\flutter.bat"
 set "APP_DIR=%ROOT%mobile_app"
-set "TEMP_BUILD_ROOT=C:\temp\tango_mobile_app_build"
+set "TEMP_BUILD_ROOT=C:\temp\cognita_mobile_app_build"
 set "JBR_DIR=C:\Program Files\Android\Android Studio\jbr"
 set "API_BASE_URL=%~1"
 set "BUILD_MODE=%~2"

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/practice_category.dart';
 import '../models/study_entry.dart';
 import '../models/study_item_progress.dart';
+import '../models/study_language.dart';
 import '../services/api_service.dart';
 import '../services/progress_service.dart';
 
@@ -10,12 +11,14 @@ class LibraryScreen extends StatefulWidget {
   final String username;
   final ApiService api;
   final ProgressService progress;
+  final StudyLanguage learningLanguage;
 
   const LibraryScreen({
     super.key,
     required this.username,
     required this.api,
     required this.progress,
+    required this.learningLanguage,
   });
 
   @override
@@ -35,7 +38,11 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
   Future<List<_LibraryCategoryData>> _load() async {
     final categories = PracticeCategory.values
-        .where((category) => category.group == _selectedGroup)
+        .where(
+          (category) =>
+              category.group == _selectedGroup &&
+              category.supportsLanguage(widget.learningLanguage),
+        )
         .toList();
     final items = <_LibraryCategoryData>[];
     for (final category in categories) {
@@ -63,6 +70,12 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final canShowLetters = PracticeCategory.values.any(
+      (category) =>
+          category.group == CategoryGroup.letters &&
+          category.supportsLanguage(widget.learningLanguage),
+    );
+
     return Scaffold(
       appBar: AppBar(title: const Text('Learning Analytics')),
       body: Column(
@@ -72,15 +85,16 @@ class _LibraryScreenState extends State<LibraryScreen> {
             child: Column(
               children: [
                 SegmentedButton<CategoryGroup>(
-                  segments: const [
-                    ButtonSegment(
+                  segments: [
+                    const ButtonSegment(
                       value: CategoryGroup.words,
                       label: Text('Words'),
                     ),
-                    ButtonSegment(
-                      value: CategoryGroup.letters,
-                      label: Text('Letters'),
-                    ),
+                    if (canShowLetters)
+                      const ButtonSegment(
+                        value: CategoryGroup.letters,
+                        label: Text('Letters'),
+                      ),
                   ],
                   selected: {_selectedGroup},
                   onSelectionChanged: (selection) {
@@ -94,7 +108,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                 TextField(
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.search),
-                    hintText: 'Search items',
+                    hintText: 'Search words, meanings, or set names',
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -122,10 +136,11 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   children: groups.map((group) {
                     final filtered = group.entries.where((entry) {
                       if (_query.isEmpty) return true;
-                      return entry.primaryJapanese.toLowerCase().contains(_query) ||
+                      return entry.primaryText.toLowerCase().contains(_query) ||
                           entry.kana.toLowerCase().contains(_query) ||
                           entry.romaji.toLowerCase().contains(_query) ||
-                          entry.meaning.toLowerCase().contains(_query);
+                          entry.meaning.toLowerCase().contains(_query) ||
+                          (entry.setName?.toLowerCase().contains(_query) ?? false);
                     }).toList();
 
                     return Padding(
@@ -154,15 +169,20 @@ class _LibraryScreenState extends State<LibraryScreen> {
                                     );
                                     await _reload();
                                   },
-                                  title: Text(entry.primaryJapanese),
+                                  title: Text(entry.primaryText),
                                   subtitle: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       if (entry.kana.isNotEmpty &&
-                                          entry.kana != entry.primaryJapanese)
+                                          entry.kana != entry.primaryText)
                                         Text(entry.kana),
                                       if (entry.romaji.isNotEmpty) Text(entry.romaji),
                                       Text(entry.meaning),
+                                      if (entry.setName != null &&
+                                          entry.setName!.trim().isNotEmpty) ...[
+                                        const SizedBox(height: 4),
+                                        Text(entry.setName!),
+                                      ],
                                       const SizedBox(height: 8),
                                       LinearProgressIndicator(
                                         value: itemProgress.mastery / 100,
@@ -171,7 +191,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                                       ),
                                       const SizedBox(height: 6),
                                       Text(
-                                        'Mastery ${itemProgress.mastery.toStringAsFixed(0)}% • '
+                                        'Mastery ${itemProgress.mastery.toStringAsFixed(0)}% - '
                                         '${itemProgress.correct}/${itemProgress.attempts} correct',
                                       ),
                                     ],

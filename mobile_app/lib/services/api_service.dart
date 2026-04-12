@@ -70,7 +70,7 @@ class ApiService {
       'POST',
       Uri.parse('${AppConfig.baseUrl}/imports/image/extract'),
     );
-    request.fields['target_category'] = 'vocabulary';
+    request.fields['target_category'] = 'japanese_vocabulary';
     request.files.add(
       http.MultipartFile.fromBytes(
         'file',

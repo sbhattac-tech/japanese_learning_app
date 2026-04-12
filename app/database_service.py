@@ -19,10 +19,20 @@ class CategoryConfig:
     item_key: str | None = None
 
 
+CATEGORY_ALIASES: dict[str, str] = {
+    "vocabulary": "japanese_vocabulary",
+    "adjectives": "japanese_adjectives",
+    "verbs": "japanese_verbs",
+}
+
+
 CATEGORY_CONFIG: dict[str, CategoryConfig] = {
-    "verbs": CategoryConfig(source_file="verbs.json", container_key="verbs"),
-    "adjectives": CategoryConfig(source_file="adjectives.json", container_key="adjectives"),
-    "vocabulary": CategoryConfig(source_file="vocabulary.json", container_key="vocabulary"),
+    "czech_vocabulary": CategoryConfig(source_file="czech_vocabulary.json", container_key="czech_vocabulary"),
+    "czech_adjectives": CategoryConfig(source_file="czech_adjectives.json", container_key="czech_adjectives"),
+    "czech_verbs": CategoryConfig(source_file="czech_verbs.json", container_key="czech_verbs"),
+    "japanese_vocabulary": CategoryConfig(source_file="vocabulary.json", container_key="vocabulary"),
+    "japanese_adjectives": CategoryConfig(source_file="adjectives.json", container_key="adjectives"),
+    "japanese_verbs": CategoryConfig(source_file="verbs.json", container_key="verbs"),
     "kanji": CategoryConfig(source_file="kangi.json", container_key=None),
     "hiragana": CategoryConfig(source_file="hiragana.json", container_key="hiragana"),
     "katakana": CategoryConfig(source_file="katakana.json", container_key="katakana"),
@@ -58,7 +68,7 @@ class DatabaseService:
         return next((entry for entry in entries if entry.get("id") == entry_id), None)
 
     def get_master_database(self) -> Any:
-        return self._load("japanese_database.json")
+        return self._load("cognita_database.json")
 
     def create_entry(self, category: str, payload: dict[str, Any]) -> dict[str, Any]:
         if category == "demonstratives":
@@ -233,6 +243,7 @@ class DatabaseService:
         return max(int(entry["id"]) for entry in entries) + 1
 
     def _config(self, category: str) -> CategoryConfig:
+        category = CATEGORY_ALIASES.get(category, category)
         try:
             return CATEGORY_CONFIG[category]
         except KeyError as error:

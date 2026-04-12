@@ -5,18 +5,18 @@ enum StudyDirection {
   String get compactLabel {
     switch (this) {
       case StudyDirection.japaneseToEnglish:
-        return 'JP -> EN';
+        return 'Prompt -> Meaning';
       case StudyDirection.englishToJapanese:
-        return 'EN -> JP';
+        return 'Meaning -> Answer';
     }
   }
 
   String get answerLanguageLabel {
     switch (this) {
       case StudyDirection.japaneseToEnglish:
-        return 'English';
+        return 'Meaning';
       case StudyDirection.englishToJapanese:
-        return 'Japanese';
+        return 'Answer';
     }
   }
 }

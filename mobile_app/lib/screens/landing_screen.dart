@@ -39,7 +39,7 @@ class LandingScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Tango App',
+                  'Cognita',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontWeight: FontWeight.w800,
                         color: const Color(0xFF11221D),
@@ -47,17 +47,17 @@ class LandingScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Learn Japanese with set-based practice, mastery tracking, typing drills, and offline letter study.',
+                  'Build Japanese and Czech vocabulary with set-based practice, mastery tracking, and guided review.',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: const Color(0xFF51625C),
                       ),
                 ),
                 const SizedBox(height: 24),
-                const _FeaturePill(label: 'Word sets of 20'),
+                const _FeaturePill(label: 'Named study sets'),
                 const SizedBox(height: 12),
-                const _FeaturePill(label: 'Words and letters separated'),
+                const _FeaturePill(label: 'Japanese and Czech in one app'),
                 const SizedBox(height: 12),
-                const _FeaturePill(label: 'JP -> EN and EN -> JP'),
+                const _FeaturePill(label: 'Bidirectional study modes'),
                 const Spacer(),
                 SizedBox(
                   width: double.infinity,

@@ -24,6 +24,10 @@ class _ManualEntryScreenState extends State<ManualEntryScreen> {
   final _kanaController = TextEditingController();
   final _meaningController = TextEditingController();
   final _categoryController = TextEditingController(text: 'general');
+  final _setNameController = TextEditingController();
+  final _englishController = TextEditingController();
+  final _czechController = TextEditingController();
+  final _partOfSpeechController = TextEditingController(text: 'vocabulary');
   final _adjectiveTypeController = TextEditingController(text: 'i');
   final _kanjiController = TextEditingController();
   final _hiraganaController = TextEditingController();
@@ -51,6 +55,10 @@ class _ManualEntryScreenState extends State<ManualEntryScreen> {
     _kanaController.dispose();
     _meaningController.dispose();
     _categoryController.dispose();
+    _setNameController.dispose();
+    _englishController.dispose();
+    _czechController.dispose();
+    _partOfSpeechController.dispose();
     _adjectiveTypeController.dispose();
     _kanjiController.dispose();
     _hiraganaController.dispose();
@@ -102,21 +110,32 @@ class _ManualEntryScreenState extends State<ManualEntryScreen> {
 
   Map<String, dynamic> _buildPayload() {
     switch (widget.category.apiName) {
-      case 'vocabulary':
+      case 'japanese_vocabulary':
         return {
           'romaji': _romajiController.text.trim(),
           'kana': _kanaController.text.trim(),
           'meaning': _meaningController.text.trim(),
           'category': _categoryController.text.trim(),
         };
-      case 'adjectives':
+      case 'japanese_adjectives':
         return {
           'romaji': _romajiController.text.trim(),
           'kana': _kanaController.text.trim(),
           'type': _adjectiveTypeController.text.trim(),
           'meaning': _meaningController.text.trim(),
         };
-      case 'verbs':
+      case 'czech_vocabulary':
+      case 'czech_adjectives':
+      case 'czech_verbs':
+        return {
+          'english': _englishController.text.trim(),
+          'czech': _czechController.text.trim(),
+          'notes': _notesController.text.trim(),
+          'part_of_speech': _partOfSpeechController.text.trim(),
+          'category': _categoryController.text.trim(),
+          'set_name': _setNameController.text.trim(),
+        };
+      case 'japanese_verbs':
         return {
           'romaji': _romajiController.text.trim(),
           'hiragana': _hiraganaController.text.trim(),
@@ -145,6 +164,10 @@ class _ManualEntryScreenState extends State<ManualEntryScreen> {
       _romajiController,
       _kanaController,
       _meaningController,
+      _setNameController,
+      _englishController,
+      _czechController,
+      _notesController,
       _kanjiController,
       _hiraganaController,
       _masuController,
@@ -160,6 +183,7 @@ class _ManualEntryScreenState extends State<ManualEntryScreen> {
       controller.clear();
     }
     _categoryController.text = 'general';
+    _partOfSpeechController.text = 'vocabulary';
     _adjectiveTypeController.text = 'i';
     _verbTypeController.text = 'ru-verb';
     _verbGroupController.text = 'ichidan';
@@ -201,21 +225,32 @@ class _ManualEntryScreenState extends State<ManualEntryScreen> {
 
   List<Widget> _buildFields() {
     switch (widget.category.apiName) {
-      case 'vocabulary':
+      case 'japanese_vocabulary':
         return [
           _requiredField(_kanaController, 'Kana'),
           _requiredField(_romajiController, 'Romaji'),
           _requiredField(_meaningController, 'Meaning'),
           _requiredField(_categoryController, 'Category'),
         ];
-      case 'adjectives':
+      case 'japanese_adjectives':
         return [
           _requiredField(_kanaController, 'Kana'),
           _requiredField(_romajiController, 'Romaji'),
           _requiredField(_meaningController, 'Meaning'),
           _requiredField(_adjectiveTypeController, 'Adjective type'),
         ];
-      case 'verbs':
+      case 'czech_vocabulary':
+      case 'czech_adjectives':
+      case 'czech_verbs':
+        return [
+          _requiredField(_englishController, 'English'),
+          _requiredField(_czechController, 'Czech'),
+          _requiredField(_partOfSpeechController, 'Part of speech'),
+          _requiredField(_categoryController, 'Category'),
+          _textField(_setNameController, 'Set name', required: false),
+          _textField(_notesController, 'Notes', required: false),
+        ];
+      case 'japanese_verbs':
         return [
           _requiredField(_romajiController, 'Romaji'),
           _requiredField(_hiraganaController, 'Hiragana'),
@@ -236,8 +271,8 @@ class _ManualEntryScreenState extends State<ManualEntryScreen> {
       default:
         return [
           const Text(
-            'Manual entry is available only for vocabulary, adjectives, and verbs. '
-            'Kana and kanji study data is bundled inside the app for offline use.',
+            'Manual entry is available for editable vocabulary categories. '
+            'Bundled script study data stays offline inside the app.',
           ),
         ];
     }

@@ -3,21 +3,25 @@ import 'package:flutter/material.dart';
 import '../models/category_analytics.dart';
 import '../models/practice_category.dart';
 import '../models/study_entry.dart';
+import '../models/study_language.dart';
 import '../services/api_service.dart';
 import '../services/auth_service.dart';
 import '../services/progress_service.dart';
 import '../widgets/study_header.dart';
 import 'image_import_screen.dart';
 import 'landing_screen.dart';
+import 'language_selection_screen.dart';
 import 'library_screen.dart';
 import 'set_selection_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final String username;
+  final StudyLanguage learningLanguage;
 
   const DashboardScreen({
     super.key,
     required this.username,
+    required this.learningLanguage,
   });
 
   @override
@@ -39,7 +43,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Future<List<_DashboardCategoryData>> _loadDashboard() async {
     final items = <_DashboardCategoryData>[];
-    for (final category in PracticeCategory.values) {
+    final categories = PracticeCategory.values
+        .where((category) => category.supportsLanguage(widget.learningLanguage))
+        .toList();
+    for (final category in categories) {
       final entries = await _api.fetchEntries(category);
       final analytics = await _progress.buildAnalytics(
         username: widget.username,
@@ -78,8 +85,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tango App'),
+        title: Text('Cognita - ${widget.learningLanguage.label}'),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (_) => LanguageSelectionScreen(username: widget.username),
+                ),
+                (_) => false,
+              );
+            },
+            icon: const Icon(Icons.language),
+          ),
           IconButton(
             onPressed: _refresh,
             icon: const Icon(Icons.refresh),
@@ -114,8 +132,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               padding: const EdgeInsets.all(20),
               children: [
                 StudyHeader(
-                  title: 'Konnichiwa, ${widget.username}',
-                  subtitle: 'Track progress across words and letters, then study one set at a time.',
+                  title: '${widget.learningLanguage.greeting}, ${widget.username}',
+                  subtitle:
+                      'Track progress across ${widget.learningLanguage.label.toLowerCase()} study content, then practice one set at a time.',
                 ),
                 const SizedBox(height: 24),
                 Row(
@@ -156,6 +175,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             username: widget.username,
                             api: _api,
                             progress: _progress,
+                            learningLanguage: widget.learningLanguage,
                           ),
                         ),
                       );
@@ -164,35 +184,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     label: const Text('Open Learning Analytics'),
                   ),
                 ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton.tonalIcon(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const ImageImportScreen(api: _api),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.photo_camera_outlined),
-                    label: const Text('Import Words From Image'),
+                if (widget.learningLanguage == StudyLanguage.japanese) ...[
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton.tonalIcon(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const ImageImportScreen(api: _api),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.photo_camera_outlined),
+                      label: const Text('Import Words From Image'),
+                    ),
                   ),
-                ),
+                ],
                 const SizedBox(height: 24),
                 _CategorySection(
                   title: 'Words',
-                  subtitle: 'Vocabulary, verbs, and adjectives with editable online study data.',
+                  subtitle:
+                      '${widget.learningLanguage.label} vocabulary, adjectives, and verbs with editable online study data.',
                   items: words,
                   username: widget.username,
                 ),
-                const SizedBox(height: 24),
-                _CategorySection(
-                  title: 'Letters',
-                  subtitle: 'Hiragana, katakana, and kanji bundled inside the app for offline study.',
-                  items: letters,
-                  username: widget.username,
-                ),
+                if (letters.isNotEmpty) ...[
+                  const SizedBox(height: 24),
+                  _CategorySection(
+                    title: 'Letters',
+                    subtitle: 'Hiragana, katakana, and kanji bundled inside the app for offline study.',
+                    items: letters,
+                    username: widget.username,
+                  ),
+                ],
               ],
             ),
           );

@@ -65,6 +65,15 @@ class VocabularyPayload(BaseModel):
     set_name: str | None = None
 
 
+class CzechVocabularyPayload(BaseModel):
+    english: str
+    czech: str
+    notes: str = ""
+    part_of_speech: str
+    category: str
+    set_name: str | None = None
+
+
 class KanjiPayload(BaseModel):
     kanji: str
     meaning: list[str]
@@ -104,9 +113,9 @@ async def lifespan(_: FastAPI):
     yield
 
 app = FastAPI(
-    title="Japanese Learning App API",
+    title="Cognita API",
     version="1.0.0",
-    description="CRUD API for the Japanese learning JSON database.",
+    description="Multi-language learning API for Cognita.",
     lifespan=lifespan,
 )
 
@@ -122,7 +131,7 @@ app.add_middleware(
 @app.get("/")
 def read_root() -> dict[str, Any]:
     return {
-        "message": "Japanese Learning App API",
+        "message": "Cognita API",
         "docs": "/docs",
         "categories": service.list_categories(),
     }
@@ -238,12 +247,12 @@ def get_master_database() -> Any:
 @app.post("/imports/image/extract", response_model=ImportExtractResponse)
 async def extract_entries_from_image(
     file: UploadFile = File(...),
-    target_category: str = Form(default="vocabulary"),
+    target_category: str = Form(default="japanese_vocabulary"),
 ) -> ImportExtractResponse:
-    if target_category != "vocabulary":
+    if target_category != "japanese_vocabulary":
         raise HTTPException(
             status_code=400,
-            detail="Image import currently supports only the vocabulary category.",
+            detail="Image import currently supports only the japanese_vocabulary category.",
         )
 
     image_bytes = await file.read()
@@ -307,7 +316,7 @@ def save_imported_entries(payload: ImportSaveRequest) -> dict[str, Any]:
             or candidate["kanji"].strip()
         )
         validated = _validate_payload(
-            "vocabulary",
+            "japanese_vocabulary",
             {
                 "romaji": candidate["romaji"].strip(),
                 "kana": kana,
@@ -328,7 +337,7 @@ def save_imported_entries(payload: ImportSaveRequest) -> dict[str, Any]:
         raise HTTPException(status_code=400, detail="No entries were provided for import")
 
     try:
-        created = service.create_entries("vocabulary", cleaned_entries)
+        created = service.create_entries("japanese_vocabulary", cleaned_entries)
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
 
@@ -337,6 +346,12 @@ def save_imported_entries(payload: ImportSaveRequest) -> dict[str, Any]:
 
 def _validate_payload(category: str, payload: dict[str, Any]) -> dict[str, Any]:
     model_map = {
+        "czech_vocabulary": CzechVocabularyPayload,
+        "czech_adjectives": CzechVocabularyPayload,
+        "czech_verbs": CzechVocabularyPayload,
+        "japanese_verbs": VerbPayload,
+        "japanese_adjectives": AdjectivePayload,
+        "japanese_vocabulary": VocabularyPayload,
         "verbs": VerbPayload,
         "adjectives": AdjectivePayload,
         "vocabulary": VocabularyPayload,

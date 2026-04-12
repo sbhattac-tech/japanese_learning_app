@@ -1,0 +1,238 @@
+{
+  "czech_verbs": [
+    {
+      "id": 1,
+      "english": "to run",
+      "czech": "běhat",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 2,
+      "english": "to watch",
+      "czech": "dívat se",
+      "notes": "reflexive",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 3,
+      "english": "to lie",
+      "czech": "ležet",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 4,
+      "english": "to look / appear",
+      "czech": "vypadat",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 5,
+      "english": "to know (be familiar with)",
+      "czech": "znát",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 6,
+      "english": "to finish",
+      "czech": "končit",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 7,
+      "english": "to experience",
+      "czech": "zažívat",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 8,
+      "english": "to think",
+      "czech": "myslet",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 9,
+      "english": "to write",
+      "czech": "psát",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 10,
+      "english": "to know how",
+      "czech": "umět",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 11,
+      "english": "must / to have to",
+      "czech": "muset",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 12,
+      "english": "to want",
+      "czech": "chtít",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 13,
+      "english": "to know (fact)",
+      "czech": "vědět",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 14,
+      "english": "to break",
+      "czech": "rozbít se",
+      "notes": "reflexive",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 15,
+      "english": "to use",
+      "czech": "používat",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 16,
+      "english": "to make excuses",
+      "czech": "vymlouvat se",
+      "notes": "reflexive",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 17,
+      "english": "to come from",
+      "czech": "pocházet",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 18,
+      "english": "to remember",
+      "czech": "pamatovat si",
+      "notes": "reflexive",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 19,
+      "english": "to be enough",
+      "czech": "stačit",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 20,
+      "english": "to arrive",
+      "czech": "přijet",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 21,
+      "english": "to call",
+      "czech": "zavolat",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 22,
+      "english": "to ask",
+      "czech": "zeptat se",
+      "notes": "reflexive",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 23,
+      "english": "to try",
+      "czech": "snažit se",
+      "notes": "reflexive",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 24,
+      "english": "to laugh",
+      "czech": "smát se",
+      "notes": "reflexive",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 25,
+      "english": "to dawn",
+      "czech": "svítat",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 1"
+    },
+    {
+      "id": 26,
+      "english": "to turn on light",
+      "czech": "rozsvítit",
+      "notes": "",
+      "part_of_speech": "verb",
+      "category": "general",
+      "set_name": "Hanka's Lesson Set 2"
+    }
+  ]
+}

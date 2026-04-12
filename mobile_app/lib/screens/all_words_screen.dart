@@ -17,7 +17,7 @@ class AllWordsScreen extends StatefulWidget {
 }
 
 class _AllWordsScreenState extends State<AllWordsScreen> {
-  PracticeCategory _selectedCategory = PracticeCategory.vocabulary;
+  PracticeCategory _selectedCategory = PracticeCategory.japaneseVocabulary;
   List<StudyEntry> _entries = const [];
   bool _loading = true;
   String _query = '';
@@ -60,10 +60,11 @@ class _AllWordsScreenState extends State<AllWordsScreen> {
 
     final needle = _query.trim().toLowerCase();
     return _entries.where((entry) {
-      return entry.primaryJapanese.toLowerCase().contains(needle) ||
+      return entry.primaryText.toLowerCase().contains(needle) ||
           entry.kana.toLowerCase().contains(needle) ||
           entry.romaji.toLowerCase().contains(needle) ||
-          entry.meaning.toLowerCase().contains(needle);
+          entry.meaning.toLowerCase().contains(needle) ||
+          (entry.setName?.toLowerCase().contains(needle) ?? false);
     }).toList();
   }
 
@@ -93,7 +94,7 @@ class _AllWordsScreenState extends State<AllWordsScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Switch categories and search through verbs, adjectives, kana, kanji, and more.',
+              'Switch categories and search through Japanese and Czech study content in one place.',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 20),
@@ -118,7 +119,7 @@ class _AllWordsScreenState extends State<AllWordsScreen> {
             TextField(
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.search),
-                hintText: 'Search Japanese, romaji, or meaning',
+                hintText: 'Search words, readings, meanings, or set names',
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) {
@@ -158,10 +159,10 @@ class _AllWordsScreenState extends State<AllWordsScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      entry.primaryJapanese,
+                                      entry.primaryText,
                                       style: Theme.of(context).textTheme.titleLarge,
                                     ),
-                                    if (entry.kana.isNotEmpty && entry.kana != entry.primaryJapanese) ...[
+                                    if (entry.kana.isNotEmpty && entry.kana != entry.primaryText) ...[
                                       const SizedBox(height: 4),
                                       Text(
                                         entry.kana,
@@ -182,6 +183,15 @@ class _AllWordsScreenState extends State<AllWordsScreen> {
                                       entry.meaning,
                                       style: Theme.of(context).textTheme.bodyLarge,
                                     ),
+                                    if (entry.setName != null && entry.setName!.trim().isNotEmpty) ...[
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        entry.setName!,
+                                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                              color: const Color(0xFF51625C),
+                                            ),
+                                      ),
+                                    ],
                                   ],
                                 ),
                               ),

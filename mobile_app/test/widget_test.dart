@@ -5,21 +5,16 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:japanese_learning_app/main.dart';
 
 void main() {
-  testWidgets('Home screen renders main study sections', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const JapaneseLearningApp());
+  testWidgets('Landing screen renders Cognita entry points', (WidgetTester tester) async {
+    await tester.pumpWidget(const CognitaApp());
 
-    expect(find.text('Japanese Learning'), findsOneWidget);
-    expect(find.text('Flashcards'), findsOneWidget);
-    expect(find.text('Quiz'), findsOneWidget);
-    expect(find.text('Matching'), findsOneWidget);
-    expect(find.text('Import From Image'), findsOneWidget);
-    expect(find.byIcon(Icons.style_outlined), findsOneWidget);
+    expect(find.text('Cognita'), findsOneWidget);
+    expect(find.text('Log In'), findsOneWidget);
+    expect(find.text('Create Account'), findsOneWidget);
   });
 }

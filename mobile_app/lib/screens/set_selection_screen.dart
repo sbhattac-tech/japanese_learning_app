@@ -29,7 +29,7 @@ class SetSelectionScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         children: [
           Text(
-            'Learn ${category.label.toLowerCase()} in focused sets of 20.',
+            'Choose a focused study set for ${category.label.toLowerCase()}.',
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 18),

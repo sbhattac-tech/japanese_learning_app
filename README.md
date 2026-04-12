@@ -1,8 +1,8 @@
-# Tango Backend
+# Cognita Backend
 
 This project uses a split architecture:
 
-- `vocabulary`, `adjectives`, and `verbs` are served by FastAPI and stored in PostgreSQL
+- `japanese_vocabulary`, `japanese_adjectives`, `japanese_verbs`, `czech_vocabulary`, `czech_adjectives`, and `czech_verbs` are served by FastAPI and stored in PostgreSQL
 - `kanji`, `hiragana`, and `katakana` are bundled into the Flutter app as offline assets
 
 That means the Android APK/AAB can use kana and kanji study modes without internet, while editable study content lives in Postgres.
@@ -11,9 +11,12 @@ That means the Android APK/AAB can use kana and kanji study modes without intern
 
 The Postgres-backed API supports these categories:
 
-- `vocabulary`
-- `adjectives`
-- `verbs`
+- `czech_vocabulary`
+- `czech_adjectives`
+- `czech_verbs`
+- `japanese_vocabulary`
+- `japanese_adjectives`
+- `japanese_verbs`
 
 ## Local run
 
@@ -48,7 +51,7 @@ Set these variables on the app service:
 ```text
 DATABASE_URL=${{Postgres.DATABASE_URL}}
 BOOTSTRAP_DATABASE=true
-BOOTSTRAP_CATEGORIES=vocabulary,adjectives,verbs
+BOOTSTRAP_CATEGORIES=czech_vocabulary,czech_adjectives,czech_verbs,japanese_vocabulary,japanese_adjectives,japanese_verbs
 GEMINI_API_KEY=your_gemini_api_key
 GEMINI_MODEL=gemini-2.5-flash
 ```
@@ -58,22 +61,25 @@ If the key is not set, the backend falls back to local OCR.
 
 On the first deploy, Railway Postgres will be seeded from:
 
+- `database/czech_vocabulary.json`
+- `database/czech_adjectives.json`
+- `database/czech_verbs.json`
 - `database/vocabulary.json`
 - `database/adjectives.json`
 - `database/verbs.json`
 
 ## Manual Postgres import
 
-You can import the three JSON datasets manually with:
+You can import the JSON datasets manually with:
 
 ```powershell
-python scripts/sync_json_to_postgres.py --database-url "YOUR_DATABASE_URL" --categories vocabulary adjectives verbs
+python scripts/sync_json_to_postgres.py --database-url "YOUR_DATABASE_URL" --categories czech_vocabulary czech_adjectives czech_verbs japanese_vocabulary japanese_adjectives japanese_verbs
 ```
 
 To replace existing data:
 
 ```powershell
-python scripts/sync_json_to_postgres.py --database-url "YOUR_DATABASE_URL" --categories vocabulary adjectives verbs --overwrite
+python scripts/sync_json_to_postgres.py --database-url "YOUR_DATABASE_URL" --categories czech_vocabulary czech_adjectives czech_verbs japanese_vocabulary japanese_adjectives japanese_verbs --overwrite
 ```
 
 ## Mobile app
