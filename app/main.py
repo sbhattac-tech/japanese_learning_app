@@ -95,7 +95,6 @@ service = create_database_service()
 ocr_service = OcrService()
 gemini_import_service = GeminiImportService()
 import_service = ImportService(service)
-IS_VERCEL = bool(os.getenv("VERCEL"))
 logger = logging.getLogger(__name__)
 
 
@@ -368,14 +367,7 @@ def _resolve_image_mime_type(content_type: str | None, filename: str | None) -> 
 
 
 def _ensure_mutations_supported() -> None:
-    if IS_VERCEL and getattr(service, "storage_backend", "json") == "json":
-        raise HTTPException(
-            status_code=501,
-            detail=(
-                "Write operations are disabled on Vercel because the filesystem is read-only. "
-                "Use a persistent database for POST/PUT/DELETE support."
-            ),
-        )
+    return None
 
 
 def _bootstrap_postgres_if_needed() -> None:
